@@ -27,15 +27,16 @@ public class LootingUI : MonoBehaviour
         IEnumerable<Item> items = (IEnumerable<Item>)args["items"];
 
         EraseDrawnItems();
-
+        int index = 0;
         foreach (var item in items)
         {
             GameObject go = Instantiate(inventoryItemPrefab, inventoryItemParent);
             if (go.TryGetComponent(out InventorySlotUI slot))
             {
-                slot.SetupSlot(item.ItemIcon, $"{item.ItemName}", "", 0);
+                slot.SetupSlot(item.ItemIcon, $"{item.ItemName}", "", index, callback);
             }
             drawnGameObjects.Add(go);
+            index++;
         }
 
     }

@@ -83,7 +83,9 @@ public class InventoryUI : MonoBehaviour
 
     private void InventoryItemClicked(Dictionary<string, object> args, Action<Dictionary<string, object>> callback)
     {
-        inventoryItemClickedPopup.GetComponent<InventorySlotClicked>().Index = (int)args["Index"];
+        var slotClicked = inventoryItemClickedPopup.GetComponent<InventorySlotClicked>();
+        slotClicked.Index = (int)args["Index"];
+        slotClicked.Callback = callback;
         inventoryItemClickedPopup.transform.position = (Vector3)args["Position"];
         inventoryItemClickedPopup.SetActive(true);
     }
