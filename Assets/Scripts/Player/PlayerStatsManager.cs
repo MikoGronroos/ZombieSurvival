@@ -7,20 +7,22 @@ public class PlayerStatsManager : MonoBehaviour
 
     [SerializeField] private PlayerStats currentPlayerStats;
 
-    [SerializeField] private PlayerCombatChannel playerCombatChannel;
+    [SerializeField] private PlayerStatsChannel playerStatsChannel;
     [SerializeField] private InventoryChannel inventoryChannel;
     
     public PlayerStats CurrentPlayerStats { get { return currentPlayerStats; } }
 
     private void OnEnable()
     {
-        playerCombatChannel.GetPlayerDamage += GetPlayerDamage;
+        playerStatsChannel.GetPlayerDamage += GetPlayerDamage;
+        playerStatsChannel.ChangePlayerWeight += currentPlayerStats.PlayerWeightSystem.ChangePlayerWeight;
         inventoryChannel.InventoryEat += OnInventoryEatListener;
     }
 
     private void OnDisable()
     {
-        playerCombatChannel.GetPlayerDamage -= GetPlayerDamage;
+        playerStatsChannel.GetPlayerDamage -= GetPlayerDamage;
+        playerStatsChannel.ChangePlayerWeight -= currentPlayerStats.PlayerWeightSystem.ChangePlayerWeight;
         inventoryChannel.InventoryEat -= OnInventoryEatListener;
     }
 

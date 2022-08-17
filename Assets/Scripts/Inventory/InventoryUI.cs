@@ -14,7 +14,7 @@ public class InventoryUI : MonoBehaviour
     [SerializeField] private GameObject inventoryFullTextGameObject;
     [SerializeField] private float inventoryFullTextTime;
 
-    [Header("Inventory Item Clicked")]
+    [Header("Inventory Item Clicked GameObject")]
 
     [SerializeField] private GameObject inventoryItemClickedPopup;
 

@@ -8,7 +8,11 @@ public abstract class Item : ScriptableObject
     [SerializeField] private int itemId;
     [SerializeField] private int maxStackSize;
 
+    [SerializeField] private float weight;
+
     public int MaxStackSize { get { return maxStackSize; } private set { } }
+
+    public float Weight { get { return weight; } private set { } }
 
     public Sprite ItemIcon { get { return itemIcon; } private set { } }
 

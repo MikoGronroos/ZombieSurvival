@@ -8,6 +8,7 @@ public class InventoryManager : MonoBehaviour
     [SerializeField] private InventoryDatabase currentDatabase;
 
     [SerializeField] private UserInterfaceChannel userInterfaceChannel;
+    [SerializeField] private PlayerStatsChannel playerStatsChannel;
     [SerializeField] private InventoryChannel inventoryChannel;
     [SerializeField] private ItemDatabaseChannel itemDatabaseChannel;
 
@@ -40,6 +41,7 @@ public class InventoryManager : MonoBehaviour
             {
                 data.DecrementStack();
             }
+            playerStatsChannel.ChangePlayerWeight?.Invoke(new Dictionary<string, object> { { "Weight", -item.Weight } });
             SendInventoryDrawRequestToUI();
         }
     }
@@ -58,6 +60,7 @@ public class InventoryManager : MonoBehaviour
             else
             {
                 CreateNewStack(item);
+                playerStatsChannel.ChangePlayerWeight?.Invoke(new Dictionary<string, object> { { "Weight", item.Weight } });
                 return true;
             }
         }
@@ -66,6 +69,7 @@ public class InventoryManager : MonoBehaviour
             if (!DatabaseIsFull())
             {
                 CreateNewStack(item);
+                playerStatsChannel.ChangePlayerWeight?.Invoke(new Dictionary<string, object> { { "Weight", item.Weight } });
                 return true;
             }
         }

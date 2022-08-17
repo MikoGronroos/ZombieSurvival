@@ -9,6 +9,7 @@ public class InventorySlotUI : MonoBehaviour, IPointerClickHandler
 {
 
     [SerializeField] private Image spriteRenderer;
+    [SerializeField] private Image itemLoadingBar;
     [SerializeField] private TextMeshProUGUI itemNameAndStackSizeText;
     [SerializeField] private TextMeshProUGUI stateText;
     [SerializeField] private int inventoryIndex;
@@ -26,11 +27,17 @@ public class InventorySlotUI : MonoBehaviour, IPointerClickHandler
         this.stateText.text = stateText;
         this.inventoryIndex = inventoryIndex;
         _callback = callback;
+        UpdateLoadingBarState(50f, 125f);
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
         inventoryChannel.InventorySlotClicked?.Invoke(new Dictionary<string, object> { { "Index", inventoryIndex }, { "Position", transform.position } }, _callback);
+    }
+
+    private void UpdateLoadingBarState(float current, float max)
+    {
+        itemLoadingBar.fillAmount = current / max;
     }
 
 }

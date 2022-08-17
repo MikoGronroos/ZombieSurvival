@@ -2385,7 +2385,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentPlayerStats: {fileID: 11400000, guid: 3c6846abcbd2a20439af97ec21e83d90, type: 2}
-  playerCombatChannel: {fileID: 11400000, guid: 9bc0f0d04ff220540b89be2ffab6e248, type: 2}
+  playerStatsChannel: {fileID: 11400000, guid: 9bc0f0d04ff220540b89be2ffab6e248, type: 2}
   inventoryChannel: {fileID: 11400000, guid: 6b7520e56ff7e1e478127af115e1efb5, type: 2}
 --- !u!1 &735172199
 GameObject:
@@ -3009,7 +3009,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 000017cd649136d438eab6cf2299ab0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerCombatChannel: {fileID: 11400000, guid: 9bc0f0d04ff220540b89be2ffab6e248, type: 2}
+  playerStatsChannel: {fileID: 11400000, guid: 9bc0f0d04ff220540b89be2ffab6e248, type: 2}
 --- !u!1 &876602945
 GameObject:
   m_ObjectHideFlags: 0
@@ -3057,6 +3057,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentDatabase: {fileID: 11400000, guid: 06a9c6d0fbc38594db8e22d0c60ce92b, type: 2}
   userInterfaceChannel: {fileID: 11400000, guid: aabecbb7def401244ae2372c2cf234d7, type: 2}
+  playerStatsChannel: {fileID: 11400000, guid: 9bc0f0d04ff220540b89be2ffab6e248, type: 2}
   inventoryChannel: {fileID: 11400000, guid: 6b7520e56ff7e1e478127af115e1efb5, type: 2}
   itemDatabaseChannel: {fileID: 11400000, guid: 3de50ed75ebbd73489ddce25d36ef9f0, type: 2}
 --- !u!114 &876602948

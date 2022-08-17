@@ -17,9 +17,12 @@ MonoBehaviour:
     currentHealth: 100
     immortal: 0
   playerVitalsSystem:
-    currentHydration: 0
     maxHydration: 100
-    currentFullness: 0
+    currentHydration: 0
     maxFullness: 100
+    currentFullness: 0
+  playerWeightSystem:
+    maxCarryWeight: 10
+    currentCarryWeight: 0
   armorRating: 0
   damage: 5

@@ -3,7 +3,7 @@ using UnityEngine;
 public class PlayerCombat : MonoBehaviour
 {
 
-    [SerializeField] private PlayerCombatChannel playerCombatChannel;
+    [SerializeField] private PlayerStatsChannel playerStatsChannel;
 
     private Camera _cam;
 
@@ -22,7 +22,7 @@ public class PlayerCombat : MonoBehaviour
             {
                 if (hit.transform.TryGetComponent(out IDamageable damageable))
                 {
-                    damageable.DoDamage((float)playerCombatChannel.GetPlayerDamage?.Invoke(null));
+                    damageable.DoDamage((float)playerStatsChannel.GetPlayerDamage?.Invoke(null));
                 }
             }
         }
