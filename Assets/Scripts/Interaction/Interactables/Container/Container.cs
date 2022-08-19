@@ -28,17 +28,22 @@ public class Container : MonoBehaviour, IInteractable
         {
             for (int i = containerItems.Count - 1; i >= 0; i--)
             {
-                inventoryChannel.TryToAddItemToInventory.Invoke(new Dictionary<string, object> { { "id", containerItems[i].ItemId } });
-                RemoveItemWithIndex(i);
+                LootItem(i);
             }
         }
         else
         {
             int index = (int)args["Index"];
-            inventoryChannel.TryToAddItemToInventory.Invoke(new Dictionary<string, object> { { "id", containerItems[index].ItemId } });
-            RemoveItemWithIndex(index);
+            LootItem(index);
         }
-        inventoryChannel.OpenedContainer?.Invoke(new Dictionary<string, object> { { "items", containerItems } }, ItemLooting);
+    }
+
+    public void LootItem(int index)
+    {
+        inventoryChannel.TryToAddItemToInventory?.Invoke(new Dictionary<string, object> { { "id", containerItems[index].ItemId } }, (Dictionary<string, object> args) => {
+            RemoveItemWithIndex(index);
+            inventoryChannel.OpenedContainer?.Invoke(new Dictionary<string, object> { { "items", containerItems } }, ItemLooting);
+        });
     }
 
     private void RemoveItemWithIndex(int index)

@@ -9,12 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9e4010342b4d3048bed3b20e2fd408f, type: 3}
-  m_Name: InventoryDatabase
+  m_Script: {fileID: 11500000, guid: be3f959526948a247a9a7e61eff8a3d0, type: 3}
+  m_Name: InteractionData
   m_EditorClassIdentifier: 
-  databaseMaxSize: 25
-  database:
-  - item: {fileID: 11400000, guid: fdfa9ac355d8ede40b810208c6ae74bb, type: 2}
-    currentStackSize: 1
-    equipped: 0
-    itemIndexInDatabase: 0

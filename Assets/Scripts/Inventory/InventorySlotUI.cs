@@ -15,10 +15,13 @@ public class InventorySlotUI : MonoBehaviour, IPointerClickHandler
     [SerializeField] private int inventoryIndex;
 
     [SerializeField] private InventoryChannel inventoryChannel;
+    [SerializeField] private InteractionData interactionData;
 
     private Action<Dictionary<string, object>> _callback;
 
     public int InventoryIndex { get { return inventoryIndex; } private set { } }
+
+    public Image ItemLoadingBar { get { return itemLoadingBar; } private set { } }
 
     public void SetupSlot(Sprite icon, string itemNameAndStackSizeText, string stateText, int inventoryIndex, Action<Dictionary<string, object>> callback = null)
     {
@@ -27,17 +30,11 @@ public class InventorySlotUI : MonoBehaviour, IPointerClickHandler
         this.stateText.text = stateText;
         this.inventoryIndex = inventoryIndex;
         _callback = callback;
-        UpdateLoadingBarState(50f, 125f);
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        inventoryChannel.InventorySlotClicked?.Invoke(new Dictionary<string, object> { { "Index", inventoryIndex }, { "Position", transform.position } }, _callback);
-    }
-
-    private void UpdateLoadingBarState(float current, float max)
-    {
-        itemLoadingBar.fillAmount = current / max;
+        inventoryChannel.InventorySlotClicked?.Invoke(new Dictionary<string, object> { { "Index", inventoryIndex }, { "Position", transform.position }, { "Slot", this } }, _callback);
     }
 
 }

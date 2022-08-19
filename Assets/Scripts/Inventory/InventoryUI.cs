@@ -86,8 +86,9 @@ public class InventoryUI : MonoBehaviour
         var slotClicked = inventoryItemClickedPopup.GetComponent<InventorySlotClicked>();
         slotClicked.Index = (int)args["Index"];
         slotClicked.Callback = callback;
+        slotClicked.InventorySlotUI = (InventorySlotUI)args["Slot"];
         inventoryItemClickedPopup.transform.position = (Vector3)args["Position"];
-        inventoryItemClickedPopup.SetActive(true);
+        slotClicked.TogglePanel(true);
     }
 
 }

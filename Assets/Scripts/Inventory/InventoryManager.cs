@@ -1,6 +1,8 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System;
+using System.Collections;
+using System.Threading.Tasks;
 
 public class InventoryManager : MonoBehaviour
 {
@@ -11,6 +13,8 @@ public class InventoryManager : MonoBehaviour
     [SerializeField] private PlayerStatsChannel playerStatsChannel;
     [SerializeField] private InventoryChannel inventoryChannel;
     [SerializeField] private ItemDatabaseChannel itemDatabaseChannel;
+
+    [SerializeField] private InteractionData interactionData;
 
     private void OnEnable()
     {
@@ -49,32 +53,44 @@ public class InventoryManager : MonoBehaviour
     private bool AddItem(Dictionary<string, object> args, Action<Dictionary<string, object>> callback)
     {
         Item item = itemDatabaseChannel.FetchItemFromDatabaseWithID(args);
+        if (DatabaseIsFull())
+        {
+            inventoryChannel.InventoryFull?.Invoke(null);
+        }
+        else
+        {
+            StartCoroutine(AddItemCoroutine(item, callback));
+        }
+        return false;
+    }
+
+    private IEnumerator AddItemCoroutine(Item item, Action<Dictionary<string, object>> callback)
+    {
+        Timer timer = new Timer(ItemPickupSpeedFormula.GetItemPickupSpeed(item.Weight), null);
+        while (timer.CurrentTime <= timer.MaxTime)
+        {
+            timer.Tick();
+            interactionData.UpdateProgressBarEvent?.Invoke(timer.CurrentTime, timer.MaxTime);
+            yield return null;
+        }
         if (FindItemWithSpaceWithId(item.ItemId, out var data))
         {
             if (data.HasSpaceOnStack())
             {
                 data.IncrementStack();
-                SendInventoryDrawRequestToUI();
-                return true;
             }
             else
             {
                 CreateNewStack(item);
-                playerStatsChannel.ChangePlayerWeight?.Invoke(new Dictionary<string, object> { { "Weight", item.Weight } });
-                return true;
             }
         }
         else
         {
-            if (!DatabaseIsFull())
-            {
-                CreateNewStack(item);
-                playerStatsChannel.ChangePlayerWeight?.Invoke(new Dictionary<string, object> { { "Weight", item.Weight } });
-                return true;
-            }
+            CreateNewStack(item);
         }
-        inventoryChannel.InventoryFull?.Invoke(null);
-        return false;
+        playerStatsChannel.ChangePlayerWeight?.Invoke(new Dictionary<string, object> { { "Weight", item.Weight } });
+        callback?.Invoke(null);
+        SendInventoryDrawRequestToUI();
     }
 
     private bool FindItemWithSpaceWithId(int id, out DatabaseItem wrapper)

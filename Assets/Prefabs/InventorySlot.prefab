@@ -370,6 +370,7 @@ MonoBehaviour:
   stateText: {fileID: 2676752955477280501}
   inventoryIndex: 0
   inventoryChannel: {fileID: 11400000, guid: 6b7520e56ff7e1e478127af115e1efb5, type: 2}
+  interactionData: {fileID: 11400000, guid: fcf0a7cae64868942b3159543838ab7b, type: 2}
 --- !u!114 &8382625999962431371
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -499,10 +500,10 @@ RectTransform:
   m_Father: {fileID: 4791079306012451698}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 1, y: 0.5}
   m_AnchoredPosition: {x: 35, y: 0}
-  m_SizeDelta: {x: 773.64, y: 70}
+  m_SizeDelta: {x: -70.359985, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4759094921172560253
 CanvasRenderer:
