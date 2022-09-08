@@ -5,11 +5,10 @@ using UnityEngine.EventSystems;
 using System.Collections.Generic;
 using System;
 
-public class InventorySlotUI : MonoBehaviour, IPointerClickHandler
+public class InventorySlotUI : InventoryDelay, IPointerClickHandler
 {
 
     [SerializeField] private Image spriteRenderer;
-    [SerializeField] private Image itemLoadingBar;
     [SerializeField] private TextMeshProUGUI itemNameAndStackSizeText;
     [SerializeField] private TextMeshProUGUI stateText;
     [SerializeField] private int inventoryIndex;
@@ -20,8 +19,6 @@ public class InventorySlotUI : MonoBehaviour, IPointerClickHandler
     private Action<Dictionary<string, object>> _callback;
 
     public int InventoryIndex { get { return inventoryIndex; } private set { } }
-
-    public Image ItemLoadingBar { get { return itemLoadingBar; } private set { } }
 
     public void SetupSlot(Sprite icon, string itemNameAndStackSizeText, string stateText, int inventoryIndex, Action<Dictionary<string, object>> callback = null)
     {

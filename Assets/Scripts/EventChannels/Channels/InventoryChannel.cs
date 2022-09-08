@@ -5,21 +5,21 @@ using Finark.Events;
 public class InventoryChannel : EventChannelBase
 {
 
-    public EventChannelBool TryToAddItemToInventory;
+    public EventChannelBool TryToAddItemToInventory { get; set; }
 
-    public EventChannel InventoryFull;
+    public EventChannel InventoryFull { get; set; }
 
-    public EventChannel InventorySlotClicked;
+    public EventChannel InventorySlotClicked { get; set; }
 
-    public EventChannel InventoryEquip;
-    public EventChannel InventoryDequip;
-    public EventChannel InventoryEat;
+    public EventChannel InventoryEquip { get; set; }
+    public EventChannel InventoryDequip { get; set; }
+    public EventChannel InventoryEat { get; set; }
 
-    public EventChannelDatabaseItem FetchInventoryItemWithIndex;
+    public EventChannelDatabaseItem FetchInventoryItemWithIndex { get; set; }
 
     #region Looting
 
-    public EventChannel OpenedContainer;
+    public EventChannel OpenedContainer { get; set; }
 
     #endregion
 

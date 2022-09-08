@@ -1,16 +1,19 @@
-using System;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "InteractionData")]
 public class InteractionData : ScriptableObject
 {
 
-    public delegate void Interacted(InventorySlotUI slot);
+    public delegate void Interacted(InventoryDelay slot);
 
-    public delegate void UpdateProgressBar(float current, float max);
+    public delegate void StartProgressBar(float time);
+
+    public delegate bool CanInteract(Transform target);
 
     public Interacted InteractedEvent { get; set; }
 
-    public UpdateProgressBar UpdateProgressBarEvent { get; set; }
+    public StartProgressBar StartProgressBarEvent { get; set; }
+
+    public CanInteract CanInteractEvent { get; set; }
 
 }

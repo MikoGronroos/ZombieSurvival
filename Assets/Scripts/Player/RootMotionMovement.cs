@@ -45,11 +45,13 @@ public class RootMotionMovement : MonoBehaviour
 
         if (direction.x == 0 && direction.z == 0)
         {
-            _playerAnimator.Play("Relax-Idle");
+            _playerAnimator.SetBool("isIdle", true);
+            _playerAnimator.SetBool("isWalking", false);
         }
         else
         {
-            _playerAnimator.Play("Unarmed-Run-Forward");
+            _playerAnimator.SetBool("isIdle", false);
+            _playerAnimator.SetBool("isWalking", true);
         }
 
     }

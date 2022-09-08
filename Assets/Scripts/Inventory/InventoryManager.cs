@@ -66,11 +66,11 @@ public class InventoryManager : MonoBehaviour
 
     private IEnumerator AddItemCoroutine(Item item, Action<Dictionary<string, object>> callback)
     {
+        interactionData.StartProgressBarEvent?.Invoke(ItemPickupSpeedFormula.GetItemPickupSpeed(item.Weight));
         Timer timer = new Timer(ItemPickupSpeedFormula.GetItemPickupSpeed(item.Weight), null);
         while (timer.CurrentTime <= timer.MaxTime)
         {
             timer.Tick();
-            interactionData.UpdateProgressBarEvent?.Invoke(timer.CurrentTime, timer.MaxTime);
             yield return null;
         }
         if (FindItemWithSpaceWithId(item.ItemId, out var data))

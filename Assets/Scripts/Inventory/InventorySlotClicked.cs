@@ -13,18 +13,19 @@ public class InventorySlotClicked : MonoBehaviour
     [SerializeField] private InteractionData interactionData;
 
     private Action<Dictionary<string, object>> _callback;
-    private InventorySlotUI inventorySlotUI;
+    private InventoryDelay inventoryDelay;
 
     public int Index { get { return index; } set { index = value; } }
-    public InventorySlotUI InventorySlotUI {
+    public InventoryDelay InventoryDelay
+    {
         get
         { 
-            return inventorySlotUI;
+            return inventoryDelay;
         } 
         set
-        { 
-            inventorySlotUI = value;
-            interactionData.InteractedEvent?.Invoke(inventorySlotUI);
+        {
+            inventoryDelay = value;
+            interactionData.InteractedEvent?.Invoke(inventoryDelay);
         } 
     }
     public Action<Dictionary<string, object>> Callback { get { return _callback; } set { _callback = value; } }

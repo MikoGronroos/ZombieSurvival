@@ -5,6 +5,7 @@ public class Interaction : MonoBehaviour
 {
 
     [SerializeField] private UserInterfaceChannel userInterfaceChannel;
+    [SerializeField] private InteractionData interactionData;
 
     private Camera _cam;
 
@@ -22,6 +23,9 @@ public class Interaction : MonoBehaviour
         {
             if (hit.transform.TryGetComponent(out IInteractable interactable))
             {
+
+                if (!interactionData.CanInteractEvent(hit.transform)) return;
+
                 userInterfaceChannel.ToggleMouseOnTopOfInteractionUI?.Invoke(new Dictionary<string, object> { { "value", true }, { "description", interactable.GetDescription() } });
 
                 if (InputSystem.Instance.IsInteracting)

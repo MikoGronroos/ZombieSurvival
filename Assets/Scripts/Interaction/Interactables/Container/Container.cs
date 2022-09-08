@@ -1,9 +1,10 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Container : MonoBehaviour, IInteractable
 {
+
+    [SerializeField] private string containerName;
 
     [SerializeField] private List<Item> containerItems = new List<Item>();
 
@@ -11,14 +12,12 @@ public class Container : MonoBehaviour, IInteractable
 
     public string GetDescription()
     {
-        return "Open container";
+        return $"Open {containerName}";
     }
 
     public void Interact()
     {
-
         inventoryChannel.OpenedContainer?.Invoke(new Dictionary<string, object> { { "items", containerItems } }, ItemLooting);
-
     }
 
     private void ItemLooting(Dictionary<string, object> args)
