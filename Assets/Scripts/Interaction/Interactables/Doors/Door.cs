@@ -4,9 +4,7 @@ using UnityEngine;
 public class Door : MonoBehaviour, IInteractable
 {
 
-    public float InteractionTime { get; set; }
-
-
+    [SerializeField] private float openingTime;
 
     public string GetDescription()
     {
@@ -15,7 +13,7 @@ public class Door : MonoBehaviour, IInteractable
 
     public float GetInteractionTime()
     {
-        return 0f;
+        return openingTime;
     }
 
     public void Interact()

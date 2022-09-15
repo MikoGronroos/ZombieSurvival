@@ -25,12 +25,11 @@ public class Container : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        inventoryChannel.OpenedContainer?.Invoke(new Dictionary<string, object> { { "items", containerItems } }, ItemLooting);
+        inventoryChannel.OpenedContainerEvent?.Invoke(containerItems, ItemLooting);
     }
 
-    private void ItemLooting(Dictionary<string, object> args)
+    private void ItemLooting(bool fullLooting, int index)
     {
-        bool fullLooting = (bool)args["FullLooting"];
         if (fullLooting)
         {
             for (int i = containerItems.Count - 1; i >= 0; i--)
@@ -40,7 +39,6 @@ public class Container : MonoBehaviour, IInteractable
         }
         else
         {
-            int index = (int)args["Index"];
             LootItem(index);
         }
     }
@@ -49,7 +47,7 @@ public class Container : MonoBehaviour, IInteractable
     {
         inventoryChannel.TryToAddItemToInventory?.Invoke(new Dictionary<string, object> { { "id", containerItems[index].ItemId } }, (Dictionary<string, object> args) => {
             RemoveItemWithIndex(index);
-            inventoryChannel.OpenedContainer?.Invoke(new Dictionary<string, object> { { "items", containerItems } }, ItemLooting);
+            inventoryChannel.OpenedContainerEvent?.Invoke(containerItems, ItemLooting);
         });
     }
 

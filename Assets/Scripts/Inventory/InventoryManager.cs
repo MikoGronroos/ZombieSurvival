@@ -59,39 +59,28 @@ public class InventoryManager : MonoBehaviour
         }
         else
         {
-            StartCoroutine(AddItemCoroutine(item, callback));
-        }
-        return false;
-    }
-
-    private IEnumerator AddItemCoroutine(Item item, Action<Dictionary<string, object>> callback)
-    {
-        interactionData.StartProgressBarEvent?.Invoke(ItemPickupSpeedFormula.GetItemPickupSpeed(item.Weight));
-        Timer timer = new Timer(ItemPickupSpeedFormula.GetItemPickupSpeed(item.Weight), null);
-        while (timer.CurrentTime <= timer.MaxTime)
-        {
-            timer.Tick();
-            yield return null;
-        }
-        if (FindItemWithSpaceWithId(item.ItemId, out var data))
-        {
-            if (data.HasSpaceOnStack())
+            if (FindItemWithSpaceWithId(item.ItemId, out var data))
             {
-                data.IncrementStack();
+                if (data.HasSpaceOnStack())
+                {
+                    data.IncrementStack();
+                }
+                else
+                {
+                    CreateNewStack(item);
+                }
             }
             else
             {
                 CreateNewStack(item);
             }
+            playerStatsChannel.ChangePlayerWeight?.Invoke(new Dictionary<string, object> { { "Weight", item.Weight } });
+            callback?.Invoke(null);
+            SendInventoryDrawRequestToUI();
         }
-        else
-        {
-            CreateNewStack(item);
-        }
-        playerStatsChannel.ChangePlayerWeight?.Invoke(new Dictionary<string, object> { { "Weight", item.Weight } });
-        callback?.Invoke(null);
-        SendInventoryDrawRequestToUI();
+        return false;
     }
+
 
     private bool FindItemWithSpaceWithId(int id, out DatabaseItem wrapper)
     {

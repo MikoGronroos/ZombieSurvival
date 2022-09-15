@@ -1,5 +1,7 @@
 using UnityEngine;
 using Finark.Events;
+using System.Collections.Generic;
+using System;
 
 [CreateAssetMenu(menuName = "EventChannels/InventoryChannel")]
 public class InventoryChannel : EventChannelBase
@@ -9,7 +11,9 @@ public class InventoryChannel : EventChannelBase
 
     public EventChannel InventoryFull { get; set; }
 
-    public EventChannel InventorySlotClicked { get; set; }
+    public delegate void InventorySlotClicked(int index, Item item, Vector3 pos, InventoryDelay delay, Action<bool, int> callback = null);
+
+    public InventorySlotClicked InventorySlotClickedEvent { get; set; }
 
     public EventChannel InventoryEquip { get; set; }
     public EventChannel InventoryDequip { get; set; }
@@ -19,7 +23,9 @@ public class InventoryChannel : EventChannelBase
 
     #region Looting
 
-    public EventChannel OpenedContainer { get; set; }
+    public delegate void OpenedContainer(IEnumerable<Item> items, Action<bool, int> callback);
+
+    public OpenedContainer OpenedContainerEvent { get; set; }
 
     #endregion
 

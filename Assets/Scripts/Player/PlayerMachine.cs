@@ -25,10 +25,10 @@ public class PlayerMachine : StateMachine
 
         #region Transitions
 
-        AddAnyTransition(stateIdle, new List<Func<bool>> { IsIdle, stateAttacking.IsNotAttacking });
-        AddAnyTransition(stateMoving, new List<Func<bool>> { IsMoving, stateAttacking.IsNotAttacking });
-        AddAnyTransition(stateAttacking, new List<Func<bool>> { IsAttacking });
-        //AddAnyTransition(stateInteracting, new List<Func<bool>> { stateAttacking.IsNotAttacking });
+        AddAnyTransition(stateIdle, new List<Func<bool>> { IsIdle, stateAttacking.IsNotAttacking, IsNotInteracting });
+        AddAnyTransition(stateMoving, new List<Func<bool>> { IsMoving, stateAttacking.IsNotAttacking, IsNotInteracting });
+        AddAnyTransition(stateAttacking, new List<Func<bool>> { IsAttacking, IsNotInteracting });
+        AddAnyTransition(stateInteracting, new List<Func<bool>> { IsInteracting, stateAttacking.IsNotAttacking });
 
         #endregion
 
@@ -37,19 +37,29 @@ public class PlayerMachine : StateMachine
 
     #region Conditions
 
-    public bool IsMoving()
+    private bool IsMoving()
     {
         return InputSystem.Instance.MoveVector.magnitude != 0;
     }
 
-    public bool IsIdle()
+    private bool IsIdle()
     {
         return InputSystem.Instance.MoveVector.magnitude == 0 && !InputSystem.Instance.IsInteracting && !InputSystem.Instance.IsAttacking;
     }
 
-    public bool IsAttacking()
+    private bool IsAttacking()
     {
         return InputSystem.Instance.IsAttacking;
+    }
+
+    private bool IsInteracting()
+    {
+        return (bool)interactionData.IsInteractingEvent?.Invoke();
+    }
+
+    private bool IsNotInteracting()
+    {
+        return !(bool)interactionData.IsInteractingEvent?.Invoke();
     }
 
     #endregion
@@ -61,9 +71,14 @@ public class PlayerMachine : StateMachine
         stateAttacking.ResetAttack();
     }
 
-    public void PickupIdleAnimation()
+    public void PlaySecondLootAnimation()
     {
-        stateInteracting.CanPlayMiddleAnim();
+        stateInteracting.PlaySecondLootAnimation();
+    }
+
+    public void StopLootingAnimation()
+    {
+        stateInteracting.StopLootingAnimation();
     }
 
     #endregion

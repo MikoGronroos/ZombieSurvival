@@ -16,18 +16,16 @@ public class LootingUI : MonoBehaviour
 
     private void OnEnable()
     {
-        inventoryChannel.OpenedContainer += OnOpenedContainerListener;
+        inventoryChannel.OpenedContainerEvent += OnOpenedContainerListener;
     }
 
     private void OnDisable()
     {
-        inventoryChannel.OpenedContainer -= OnOpenedContainerListener;
+        inventoryChannel.OpenedContainerEvent -= OnOpenedContainerListener;
     }
 
-    private void OnOpenedContainerListener(Dictionary<string, object> args, Action<Dictionary<string, object>> callback)
+    private void OnOpenedContainerListener(IEnumerable<Item> items, Action<bool,int> callback)
     {
-
-        IEnumerable<Item> items = (IEnumerable<Item>)args["items"];
 
         EraseDrawnItems();
         int index = 0;
@@ -36,7 +34,7 @@ public class LootingUI : MonoBehaviour
             GameObject go = Instantiate(inventoryItemPrefab, inventoryItemParent);
             if (go.TryGetComponent(out InventorySlotUI slot))
             {
-                slot.SetupSlot(item.ItemIcon, $"{item.ItemName}", "", index, callback);
+                slot.SetupSlot(item.ItemIcon, $"{item.ItemName}", "", index, item, callback);
             }
             drawnGameObjects.Add(go);
             index++;

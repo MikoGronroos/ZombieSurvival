@@ -16,7 +16,7 @@ public class InventoryUI : MonoBehaviour
 
     [Header("Inventory Item Clicked GameObject")]
 
-    [SerializeField] private GameObject inventoryItemClickedPopup;
+    [SerializeField] private InventorySlotClicked inventoryItemClickedPopup;
 
     [Header("EventChannels")]
 
@@ -29,14 +29,14 @@ public class InventoryUI : MonoBehaviour
     {
         userInterfaceChannel.DrawInventory += OnDrawInventoryListener;
         inventoryChannel.InventoryFull += InventoryFullPopupInvoke;
-        inventoryChannel.InventorySlotClicked += InventoryItemClicked;
+        inventoryChannel.InventorySlotClickedEvent += InventoryItemClicked;
     }
 
     private void OnDisable()
     {
         userInterfaceChannel.DrawInventory -= OnDrawInventoryListener;
         inventoryChannel.InventoryFull -= InventoryFullPopupInvoke;
-        inventoryChannel.InventorySlotClicked -= InventoryItemClicked;
+        inventoryChannel.InventorySlotClickedEvent -= InventoryItemClicked;
     }
 
     private void OnDrawInventoryListener(Dictionary<string, object> args, Action<Dictionary<string, object>> callback)
@@ -51,7 +51,7 @@ public class InventoryUI : MonoBehaviour
             drawnSlots.Add(newSlot);
             if (newSlot.TryGetComponent(out InventorySlotUI slot))
             {
-                slot.SetupSlot(item.Item.ItemIcon, $"{item.Item.ItemName} x{item.CurrentStackSize}", $"", item.ItemIndexInDatabase);
+                slot.SetupSlot(item.Item.ItemIcon, $"{item.Item.ItemName} x{item.CurrentStackSize}", $"", item.ItemIndexInDatabase, item.Item);
             }
         }
     }
@@ -81,14 +81,14 @@ public class InventoryUI : MonoBehaviour
 
     #endregion
 
-    private void InventoryItemClicked(Dictionary<string, object> args, Action<Dictionary<string, object>> callback)
+    private void InventoryItemClicked(int index, Item item, Vector3 pos, InventoryDelay delay, Action<bool, int> callback)
     {
-        var slotClicked = inventoryItemClickedPopup.GetComponent<InventorySlotClicked>();
-        slotClicked.Index = (int)args["Index"];
-        slotClicked.Callback = callback;
-        slotClicked.InventoryDelay = (InventoryDelay)args["Slot"];
-        inventoryItemClickedPopup.transform.position = (Vector3)args["Position"];
-        slotClicked.TogglePanel(true);
+        inventoryItemClickedPopup.Index = index;
+        inventoryItemClickedPopup.Callback = callback;
+        inventoryItemClickedPopup.InventoryDelay = delay;
+        inventoryItemClickedPopup.transform.position = pos;
+        inventoryItemClickedPopup.CurrentItem = item;
+        inventoryItemClickedPopup.TogglePanel(true);
     }
 
 }

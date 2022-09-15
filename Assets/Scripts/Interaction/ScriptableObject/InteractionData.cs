@@ -10,9 +10,14 @@ public class InteractionData : ScriptableObject
 
     public delegate bool CanInteract(Transform target);
 
+    public delegate bool IsInteracting();
+
     public Interacted InteractedEvent { get; set; }
 
     public StartProgressBar StartProgressBarEvent { get; set; }
 
     public CanInteract CanInteractEvent { get; set; }
+
+    public IsInteracting IsInteractingEvent { get; set; }
+
 }
