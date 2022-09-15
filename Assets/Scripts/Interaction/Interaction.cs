@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
+using Finark.Utils;
+using System;
 
 public class Interaction : MonoBehaviour
 {
@@ -23,6 +25,8 @@ public class Interaction : MonoBehaviour
         {
             if (hit.transform.TryGetComponent(out IInteractable interactable))
             {
+
+                if (MyUtils.IsPointerOverUI()) return;
 
                 if (!interactionData.CanInteractEvent(hit.transform)) return;
 

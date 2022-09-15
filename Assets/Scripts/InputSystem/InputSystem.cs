@@ -1,11 +1,10 @@
 using UnityEngine;
+using Finark.Utils;
 
 public class InputSystem : MonoBehaviour
 {
 
     [field: SerializeField] public Vector3 MoveVector { get; private set; }
-
-    [field: SerializeField] public bool IsRunning { get; private set; }
 
     [field: SerializeField] public bool IsInteracting { get; private set; }
 
@@ -33,9 +32,11 @@ public class InputSystem : MonoBehaviour
     private void Update()
     {
         MoveVector = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-        IsRunning = Input.GetKey(KeyCode.LeftShift);
-        IsInteracting = Input.GetMouseButtonDown(0);
-        IsAttacking = Input.GetMouseButtonDown(0);
+        if (!MyUtils.IsPointerOverUI())
+        {
+            IsInteracting = Input.GetKeyDown(KeyCode.F);
+            IsAttacking = Input.GetMouseButtonDown(0);
+        }
     }
 
 }

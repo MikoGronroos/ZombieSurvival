@@ -6,7 +6,6 @@ namespace Finark.AI
 {
     public abstract class StateMachine : MonoBehaviour
     {
-
         private Dictionary<Type, List<Transition>> _transitions = new Dictionary<Type, List<Transition>>();
         private List<Transition> _currentTransitions = new List<Transition>();
         private List<Transition> _anyTransitions = new List<Transition>();

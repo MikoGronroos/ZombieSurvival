@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,6 +7,8 @@ public class Container : MonoBehaviour, IInteractable
 
     [SerializeField] private string containerName;
 
+    [SerializeField] private float interactionTime;
+
     [SerializeField] private List<Item> containerItems = new List<Item>();
 
     [SerializeField] private InventoryChannel inventoryChannel;
@@ -13,6 +16,11 @@ public class Container : MonoBehaviour, IInteractable
     public string GetDescription()
     {
         return $"Open {containerName}";
+    }
+
+    public float GetInteractionTime()
+    {
+        return interactionTime;
     }
 
     public void Interact()
@@ -37,7 +45,7 @@ public class Container : MonoBehaviour, IInteractable
         }
     }
 
-    public void LootItem(int index)
+    private void LootItem(int index)
     {
         inventoryChannel.TryToAddItemToInventory?.Invoke(new Dictionary<string, object> { { "id", containerItems[index].ItemId } }, (Dictionary<string, object> args) => {
             RemoveItemWithIndex(index);

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 public class ItemOnGround : MonoBehaviour, IInteractable
 {
 
-    [SerializeField] private int itemId;
+    [SerializeField] private Item item;
 
     [Header("Item Settings")]
     [SerializeField] private bool infiteItem;
@@ -12,16 +12,20 @@ public class ItemOnGround : MonoBehaviour, IInteractable
     [Header("Event Channels")]
     [SerializeField] private InventoryChannel inventoryChannel;
 
+    public float GetInteractionTime()
+    {
+        return ItemPickupSpeedFormula.GetItemPickupSpeed(item.Weight);
+    }
+
     public string GetDescription()
     {
-        return "Pickup the item.";
+        return $"Pickup {item.ItemName}";
     }
 
     public void Interact()
     {
-        if (inventoryChannel.TryToAddItemToInventory.Invoke(new Dictionary<string, object> { { "id", itemId } }))
+        if (inventoryChannel.TryToAddItemToInventory.Invoke(new Dictionary<string, object> { { "id", item.ItemId } }))
         {
-
             if (infiteItem) return;
 
             Destroy(gameObject);

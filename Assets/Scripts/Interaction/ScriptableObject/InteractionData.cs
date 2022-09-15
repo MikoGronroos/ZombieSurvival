@@ -15,5 +15,4 @@ public class InteractionData : ScriptableObject
     public StartProgressBar StartProgressBarEvent { get; set; }
 
     public CanInteract CanInteractEvent { get; set; }
-
 }

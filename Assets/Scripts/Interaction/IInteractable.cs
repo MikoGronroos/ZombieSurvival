@@ -1,7 +1,10 @@
+using System;
 using UnityEngine;
 
 public interface IInteractable
 {
+
+    public float GetInteractionTime();
 
     public void Interact();
 

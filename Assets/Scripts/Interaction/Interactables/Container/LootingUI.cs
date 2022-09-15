@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LootingUI : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class LootingUI : MonoBehaviour
     [SerializeField] private InventoryChannel inventoryChannel;
     [SerializeField] private GameObject inventoryItemPrefab;
     [SerializeField] private Transform inventoryItemParent;
+
+    [SerializeField] private Button closeLootingUIButton;
 
     private List<GameObject> drawnGameObjects = new List<GameObject>();
 
@@ -38,6 +41,14 @@ public class LootingUI : MonoBehaviour
             drawnGameObjects.Add(go);
             index++;
         }
+
+
+        inventoryItemParent.gameObject.SetActive(true);
+
+        closeLootingUIButton.onClick.AddListener(() => {
+            inventoryItemParent.gameObject.SetActive(false);
+            closeLootingUIButton.onClick.RemoveAllListeners();
+        });
 
     }
 
