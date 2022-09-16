@@ -15,6 +15,7 @@ public class PlayerMachine : StateMachine
     StateInteracting stateInteracting;
     StateAttacking stateAttacking;
     StateIdle stateIdle;
+    StateAiming stateAiming;
 
     private void Awake()
     {
@@ -22,13 +23,15 @@ public class PlayerMachine : StateMachine
         stateInteracting = new StateInteracting(animator);
         stateAttacking = new StateAttacking(animator);
         stateIdle = new StateIdle(animator);
+        stateAiming = new StateAiming(animator);
 
         #region Transitions
 
-        AddAnyTransition(stateIdle, new List<Func<bool>> { IsIdle, stateAttacking.IsNotAttacking, IsNotInteracting });
-        AddAnyTransition(stateMoving, new List<Func<bool>> { IsMoving, stateAttacking.IsNotAttacking, IsNotInteracting });
-        AddAnyTransition(stateAttacking, new List<Func<bool>> { IsAttacking, IsNotInteracting });
-        AddAnyTransition(stateInteracting, new List<Func<bool>> { IsInteracting, stateAttacking.IsNotAttacking });
+        AddAnyTransition(stateIdle, new List<Func<bool>> { IsIdle, stateAttacking.IsNotAttacking, IsNotInteracting, IsNotAiming });
+        AddAnyTransition(stateMoving, new List<Func<bool>> { IsMoving, stateAttacking.IsNotAttacking, IsNotInteracting, IsNotAiming });
+        AddAnyTransition(stateAttacking, new List<Func<bool>> { IsAttacking, IsNotInteracting, IsIdle });
+        AddAnyTransition(stateInteracting, new List<Func<bool>> { IsInteracting, stateAttacking.IsNotAttacking, IsNotAiming });
+        AddAnyTransition(stateAiming, new List<Func<bool>> { IsAiming, stateAttacking.IsNotAttacking, IsNotInteracting });
 
         #endregion
 
@@ -60,6 +63,16 @@ public class PlayerMachine : StateMachine
     private bool IsNotInteracting()
     {
         return !(bool)interactionData.IsInteractingEvent?.Invoke();
+    }
+
+    private bool IsAiming()
+    {
+        return InputSystem.Instance.IsAiming;
+    }
+
+    private bool IsNotAiming()
+    {
+        return !InputSystem.Instance.IsAiming;
     }
 
     #endregion

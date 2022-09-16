@@ -10,6 +10,8 @@ public class InputSystem : MonoBehaviour
 
     [field: SerializeField] public bool IsAttacking { get; private set; }
 
+    [field: SerializeField] public bool IsAiming { get; private set; }
+
     #region Singleton
 
     public static InputSystem Instance {
@@ -37,6 +39,7 @@ public class InputSystem : MonoBehaviour
             IsInteracting = Input.GetKeyDown(KeyCode.F);
             IsAttacking = Input.GetMouseButtonDown(0);
         }
+        IsAiming = Input.GetKey(KeyCode.LeftControl);
     }
 
 }

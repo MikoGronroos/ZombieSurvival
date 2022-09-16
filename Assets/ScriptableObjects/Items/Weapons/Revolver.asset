@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4c4a3be83112dbf409ef8693de827033, type: 3}
-  m_Name: Scrimitar
+  m_Name: Revolver
   m_EditorClassIdentifier: 
-  itemName: Scrimitar
-  itemIcon: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
-  itemId: 1
+  itemName: Revolver
+  itemIcon: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  itemId: 4
   maxStackSize: 1
-  weight: 3
+  weight: 1
   type: 5
-  equipmentPrefab: {fileID: 4901090922616655373, guid: eece8bde85551fc4893714f946e8abb8, type: 3}
-  damage: 10
-  range: 5
+  equipmentPrefab: {fileID: 7838372753583287522, guid: deccfcd50224f72488a1e860abf13517, type: 3}
+  damage: 15
+  range: 20

@@ -23,6 +23,6 @@ MonoBehaviour:
     currentFullness: 0
   playerWeightSystem:
     maxCarryWeight: 10
-    currentCarryWeight: 0
+    currentCarryWeight: 23.2
   armorRating: 0
   damage: 5

@@ -17,5 +17,5 @@ MonoBehaviour:
   itemId: 2
   maxStackSize: 1
   weight: 1
-  type: 4
+  type: 5
   equipmentPrefab: {fileID: 8784802520016189606, guid: 441d8a9b937df4b4898688a2d8085218, type: 3}

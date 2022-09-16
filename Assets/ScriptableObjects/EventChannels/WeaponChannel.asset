@@ -9,12 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9e4010342b4d3048bed3b20e2fd408f, type: 3}
-  m_Name: InventoryDatabase
+  m_Script: {fileID: 11500000, guid: 3ecc79a62958390468fda2d738d5260a, type: 3}
+  m_Name: WeaponChannel
   m_EditorClassIdentifier: 
-  databaseMaxSize: 25
-  database:
-  - item: {fileID: 11400000, guid: 9873170bc616d34458ea5495bd9839a8, type: 2}
-    currentStackSize: 1
-    equipped: 0
-    itemIndexInDatabase: 0

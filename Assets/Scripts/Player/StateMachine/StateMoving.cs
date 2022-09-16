@@ -11,7 +11,7 @@ public class StateMoving : State
 
     private Vector3 _direction;
 
-    private float _turnSmoothTime = 0.09f;
+    private float _turnSmoothTime = 0.04f;
 
     private float _turnSmoothVelocity;
 

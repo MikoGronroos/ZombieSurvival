@@ -10,8 +10,10 @@ public partial class PlayerEquipment : MonoBehaviour
     [SerializeField] private List<GameObject> playerInstancedEquipmentPrefabs = new List<GameObject>();
 
     [SerializeField] private Transform handGameObjectParent;
+    [SerializeField] private Transform backPackGameObjectParent;
 
     [SerializeField] private InventoryChannel inventoryChannel;
+    [SerializeField] private WeaponChannel weaponChannel;
 
     private void OnEnable()
     {
@@ -56,6 +58,10 @@ public partial class PlayerEquipment : MonoBehaviour
             DequipItem(playerEquipment.FindEquippedItemWithType(newItem.Type).CurrentDatabaseItem);
         }
         GameObject obj = Instantiate(newItem.EquipmentPrefab, GetEquipmentParenTransform(newItem.Type));
+        if (newItem is ItemWeapon)
+        {
+            weaponChannel.SwitchWeaponEvent?.Invoke(obj.GetComponent<Weapon>());
+        }
         obj.transform.rotation = new Quaternion(0,0,0,0);
         playerInstancedEquipmentPrefabs.Add(obj);
         equippedItem.CurrentEquipmentPrefabIndex = playerInstancedEquipmentPrefabs.IndexOf(obj);
@@ -69,7 +75,7 @@ public partial class PlayerEquipment : MonoBehaviour
         {
             var equippedItem = playerEquipment.FindEquippedItem(item.Item);
             playerEquipment.PlayerEquipment.Remove(equippedItem);
-            if (playerInstancedEquipmentPrefabs.Count > 0)
+            if (playerInstancedEquipmentPrefabs.Count > equippedItem.CurrentEquipmentPrefabIndex)
             {
                 GameObject temp = playerInstancedEquipmentPrefabs[equippedItem.CurrentEquipmentPrefabIndex];
                 playerInstancedEquipmentPrefabs.RemoveAt(equippedItem.CurrentEquipmentPrefabIndex);
@@ -104,6 +110,8 @@ public partial class PlayerEquipment : MonoBehaviour
             case EquipmentType.Torso:
 
                 break;
+            case EquipmentType.Backpack:
+                return backPackGameObjectParent;
             case EquipmentType.Legs:
 
                 break;
@@ -122,6 +130,7 @@ public enum EquipmentType
 {
     Head,
     Torso,
+    Backpack,
     Legs,
     Feet,
     Hand
