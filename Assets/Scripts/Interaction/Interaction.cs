@@ -41,7 +41,7 @@ public class Interaction : MonoBehaviour
 
                 if (MyUtils.IsPointerOverUI()) return;
 
-                if (!interactionData.CanInteractEvent(hit.transform)) return;
+                if (!interactionData.CanInteractEvent(hit.transform)) return; 
 
                 userInterfaceChannel.ToggleMouseOnTopOfInteractionUI?.Invoke(new Dictionary<string, object> { { "value", true }, { "description", interactable.GetDescription() } });
 

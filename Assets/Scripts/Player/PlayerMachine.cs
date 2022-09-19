@@ -29,7 +29,7 @@ public class PlayerMachine : StateMachine
 
         AddAnyTransition(stateIdle, new List<Func<bool>> { IsIdle, stateAttacking.IsNotAttacking, IsNotInteracting, IsNotAiming });
         AddAnyTransition(stateMoving, new List<Func<bool>> { IsMoving, stateAttacking.IsNotAttacking, IsNotInteracting, IsNotAiming });
-        AddAnyTransition(stateAttacking, new List<Func<bool>> { IsAttacking, IsNotInteracting, IsIdle });
+        AddAnyTransition(stateAttacking, new List<Func<bool>> { IsAttacking, IsNotInteracting, IsAiming });
         AddAnyTransition(stateInteracting, new List<Func<bool>> { IsInteracting, stateAttacking.IsNotAttacking, IsNotAiming });
         AddAnyTransition(stateAiming, new List<Func<bool>> { IsAiming, stateAttacking.IsNotAttacking, IsNotInteracting });
 
@@ -47,7 +47,7 @@ public class PlayerMachine : StateMachine
 
     private bool IsIdle()
     {
-        return InputSystem.Instance.MoveVector.magnitude == 0 && !InputSystem.Instance.IsInteracting && !InputSystem.Instance.IsAttacking;
+        return InputSystem.Instance.MoveVector.magnitude == 0;
     }
 
     private bool IsAttacking()
