@@ -5,10 +5,12 @@ public class StateAiming : State
 {
 
     private Animator _animator;
+    private Transform _transform;
 
-    public StateAiming(Animator animator)
+    public StateAiming(Animator animator, Transform transform)
     {
         _animator = animator;
+        _transform = transform;
     }
 
     public override void EnterState(StateMachine machine)
@@ -27,5 +29,17 @@ public class StateAiming : State
 
     public override void RunState(StateMachine machine)
     {
+
+        Ray cameraRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Plane groundPlane = new Plane(Vector3.up, Vector3.zero);
+        float rayLength;
+
+        if (groundPlane.Raycast(cameraRay, out rayLength))
+        {
+            Vector3 pointToLook = cameraRay.GetPoint(rayLength);
+
+            _transform.LookAt(new Vector3(pointToLook.x, _transform.position.y, pointToLook.z));
+        }
+
     }
 }

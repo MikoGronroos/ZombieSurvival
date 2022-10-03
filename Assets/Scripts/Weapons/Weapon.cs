@@ -3,29 +3,28 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
 
-    [SerializeField] private ItemWeapon weapon;
+    [SerializeField] protected ItemWeapon weapon;
+    [SerializeField] protected PlayerSkill weaponSkill;
 
-    private Collider weaponCollider;
+    [Header("Animations")]
+    [SerializeField] protected string weaponAttackAnimation;
+    [SerializeField] protected string weaponReloadAnimation;
 
-    private void Awake()
+    [Header("References")]
+    [SerializeField] protected InputEventChannel inputEventChannel;
+
+    public virtual void Attack() { }
+
+    public virtual void EndAttack() { }
+
+    public string GetWeaponAttackAnimation()
     {
-        weaponCollider = GetComponent<Collider>();
+        return weaponAttackAnimation;
     }
 
-    public void ToggleCollider(bool value)
+    public string GetWeaponReloadAnimation()
     {
-
-        if (weaponCollider == null) return;
-
-        weaponCollider.enabled = value;
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.TryGetComponent(out IDamageable damageable))
-        {
-            damageable.DoDamage(weapon.Damage);
-        }
+        return weaponReloadAnimation;
     }
 
 }

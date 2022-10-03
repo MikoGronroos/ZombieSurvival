@@ -461,7 +461,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 7838372753583287522}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 227f9ac1186a1c34ca50c58dd67a27cb, type: 3}
+  m_Script: {fileID: 11500000, guid: da450737abc0ab34ab4561ff15c1e12c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   weapon: {fileID: 11400000, guid: 1bd269768756b4245b18892634356373, type: 2}
+  weaponSkill: {fileID: 11400000, guid: 4aa263d049d724e4d849751f5b395ffe, type: 2}
+  weaponAttackAnimation: PistolAttackR1
+  weaponReloadAnimation: PistolReloadR1
+  inputEventChannel: {fileID: 11400000, guid: 881aa76ade36a60468c90e5598bf5627, type: 2}
+  hitMask:
+    serializedVersion: 2
+    m_Bits: 128
+  playerEventChannel: {fileID: 11400000, guid: 707d7a0e19393aa428d0cfa2eafdf608, type: 2}
+  inventoryEventChannel: {fileID: 11400000, guid: 6b7520e56ff7e1e478127af115e1efb5, type: 2}
+  neededAmmunition: {fileID: 11400000, guid: 1e9489cf3ccc21f40bc92ae01fc971eb, type: 2}
+  currentAmmo: 0
+  maxAmmo: 6

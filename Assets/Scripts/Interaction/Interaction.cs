@@ -1,18 +1,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Finark.Utils;
-using System;
 using System.Collections;
+using System;
 
 public class Interaction : MonoBehaviour
 {
 
     [SerializeField] private UserInterfaceChannel userInterfaceChannel;
     [SerializeField] private InteractionData interactionData;
+    [SerializeField] private InputEventChannel inputEventChannel;
 
     [SerializeField] private bool isInteracting;
 
     private Camera _cam;
+    private IInteractable _interactable;
 
     private void Awake()
     {
@@ -22,11 +24,21 @@ public class Interaction : MonoBehaviour
     private void OnEnable()
     {
         interactionData.IsInteractingEvent += GetIsInteracting;
+        inputEventChannel.IsInteracting += IsInteractingListener;
     }
 
     private void OnDisable()
     {
         interactionData.IsInteractingEvent -= GetIsInteracting;
+        inputEventChannel.IsInteracting -= IsInteractingListener;
+    }
+
+    private void IsInteractingListener()
+    {
+        if (_interactable != null)
+        {
+            StartCoroutine(Interacting(_interactable));
+        }
     }
 
     private void Update()
@@ -41,17 +53,14 @@ public class Interaction : MonoBehaviour
 
                 if (MyUtils.IsPointerOverUI()) return;
 
-                if (!interactionData.CanInteractEvent(hit.transform)) return; 
+                if (!interactionData.CanInteractEvent(hit.transform)) return;
 
+                _interactable = interactable;
                 userInterfaceChannel.ToggleMouseOnTopOfInteractionUI?.Invoke(new Dictionary<string, object> { { "value", true }, { "description", interactable.GetDescription() } });
-
-                if (InputSystem.Instance.IsInteracting)
-                {
-                    StartCoroutine(Interacting(interactable));
-                }
             }
             else
             {
+                _interactable = null;
                 userInterfaceChannel.ToggleMouseOnTopOfInteractionUI?.Invoke(new Dictionary<string, object> { { "value", false } });
             }
         }

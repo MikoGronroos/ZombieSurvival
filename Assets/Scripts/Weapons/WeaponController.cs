@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class WeaponController : MonoBehaviour
@@ -7,6 +6,8 @@ public class WeaponController : MonoBehaviour
     [SerializeField] private Weapon currentWeapon;
 
     [SerializeField] private WeaponChannel weaponChannel;
+
+    public Weapon CurrentWeapon { get { return currentWeapon; } }
 
     private void OnEnable()
     {
@@ -29,7 +30,7 @@ public class WeaponController : MonoBehaviour
 
         if (currentWeapon == null) return;
 
-        currentWeapon.ToggleCollider(true);
+        currentWeapon.Attack();
     }
 
     public void DisableWeaponCollider()
@@ -37,7 +38,7 @@ public class WeaponController : MonoBehaviour
 
         if (currentWeapon == null) return;
 
-        currentWeapon.ToggleCollider(false);
+        currentWeapon.EndAttack();
     }
 
 }

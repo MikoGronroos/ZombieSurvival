@@ -12,10 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd3c20fc149dd894fb53abd5a7ebd2e6, type: 3}
   m_Name: PlayerEquipmentDatabase
   m_EditorClassIdentifier: 
-  playerEquipment:
-  - currentDatabaseItem:
-      item: {fileID: 11400000, guid: 9873170bc616d34458ea5495bd9839a8, type: 2}
-      currentStackSize: 1
-      equipped: 1
-      itemIndexInDatabase: 0
-    currentEquipmentPrefabIndex: 0
+  playerEquipment: []

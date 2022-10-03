@@ -1,8 +1,6 @@
-using UnityEngine;
-using System.Collections.Generic;
 using System;
-using System.Collections;
-using System.Threading.Tasks;
+using System.Collections.Generic;
+using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
 {
@@ -18,13 +16,17 @@ public class InventoryManager : MonoBehaviour
 
     private void OnEnable()
     {
-        inventoryChannel.TryToAddItemToInventory += AddItem;
+        inventoryChannel.AddAmountOfItems += AddItem;
+        inventoryChannel.RemoveAmountOfItems += RemoveItem;
+        inventoryChannel.HasAmountOfItems += HasAmountOfItems;
         inventoryChannel.FetchInventoryItemWithIndex += FetchInventoryItemWithIndex;
     }
 
     private void OnDisable()
     {
-        inventoryChannel.TryToAddItemToInventory -= AddItem;
+        inventoryChannel.AddAmountOfItems -= AddItem;
+        inventoryChannel.RemoveAmountOfItems -= RemoveItem;
+        inventoryChannel.HasAmountOfItems -= HasAmountOfItems;
         inventoryChannel.FetchInventoryItemWithIndex -= FetchInventoryItemWithIndex;
     }
 
@@ -33,54 +35,71 @@ public class InventoryManager : MonoBehaviour
         SendInventoryDrawRequestToUI();
     }
 
-    public void RemoveItem(Item item)
+    public bool RemoveItem(Item item, int amount, Action callback)
     {
-        if (FindItemWithSpaceWithId(item.ItemId, out var data))
-        {
-            if (data.IsLastItemOnStack())
-            {
-                currentDatabase.Database.Remove(data);
-            }
-            else
-            {
-                data.DecrementStack();
-            }
-            playerStatsChannel.ChangePlayerWeight?.Invoke(new Dictionary<string, object> { { "Weight", -item.Weight } });
-            SendInventoryDrawRequestToUI();
-        }
-    }
-
-    private bool AddItem(Dictionary<string, object> args, Action<Dictionary<string, object>> callback)
-    {
-        Item item = itemDatabaseChannel.FetchItemFromDatabaseWithID(args);
-        if (DatabaseIsFull())
-        {
-            inventoryChannel.InventoryFull?.Invoke(null);
-        }
-        else
+        for (int i = 0; i < amount; i++)
         {
             if (FindItemWithSpaceWithId(item.ItemId, out var data))
             {
-                if (data.HasSpaceOnStack())
+                if (data.IsLastItemOnStack())
                 {
-                    data.IncrementStack();
+                    currentDatabase.Database.Remove(data);
+                }
+                else
+                {
+                    data.DecrementStack();
+                }
+                playerStatsChannel.ChangePlayerWeight?.Invoke(new Dictionary<string, object> { { "Weight", -item.Weight } });
+                SendInventoryDrawRequestToUI();
+            }
+        }
+        return false;
+    }
+
+    private bool AddItem(Item item, int amount, Action callback)
+    {
+        for (int i = 0; i < amount; i++)
+        {
+            if (DatabaseIsFull())
+            {
+                inventoryChannel.InventoryFull?.Invoke(null);
+            }
+            else
+            {
+                if (FindItemWithSpaceWithId(item.ItemId, out var data))
+                {
+                    if (data.HasSpaceOnStack())
+                    {
+                        data.IncrementStack();
+                    }
+                    else
+                    {
+                        CreateNewStack(item);
+                    }
                 }
                 else
                 {
                     CreateNewStack(item);
                 }
+                playerStatsChannel.ChangePlayerWeight?.Invoke(new Dictionary<string, object> { { "Weight", item.Weight } });
+                callback?.Invoke();
+                SendInventoryDrawRequestToUI();
             }
-            else
-            {
-                CreateNewStack(item);
-            }
-            playerStatsChannel.ChangePlayerWeight?.Invoke(new Dictionary<string, object> { { "Weight", item.Weight } });
-            callback?.Invoke(null);
-            SendInventoryDrawRequestToUI();
         }
         return false;
     }
 
+    private bool HasAmountOfItems(Item item, int amount, Action callback)
+    {
+        foreach (var curItem in currentDatabase.Database)
+        {
+            if (curItem.Item == item && curItem.CurrentStackSize >= amount)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 
     private bool FindItemWithSpaceWithId(int id, out DatabaseItem wrapper)
     {

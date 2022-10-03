@@ -45,7 +45,7 @@ public class Container : MonoBehaviour, IInteractable
 
     private void LootItem(int index)
     {
-        inventoryChannel.TryToAddItemToInventory?.Invoke(new Dictionary<string, object> { { "id", containerItems[index].ItemId } }, (Dictionary<string, object> args) => {
+        inventoryChannel.AddAmountOfItems?.Invoke(containerItems[index], 1, ()=> {
             RemoveItemWithIndex(index);
             inventoryChannel.OpenedContainerEvent?.Invoke(containerItems, ItemLooting);
         });

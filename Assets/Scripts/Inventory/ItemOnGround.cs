@@ -5,6 +5,7 @@ public class ItemOnGround : MonoBehaviour, IInteractable
 {
 
     [SerializeField] private Item item;
+    [SerializeField] private int amountOfItems = 1;
 
     [Header("Item Settings")]
     [SerializeField] private bool infiteItem;
@@ -24,7 +25,7 @@ public class ItemOnGround : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        if (inventoryChannel.TryToAddItemToInventory.Invoke(new Dictionary<string, object> { { "id", item.ItemId } }))
+        if ((bool)inventoryChannel.AddAmountOfItems?.Invoke(item, amountOfItems))
         {
             if (infiteItem) return;
 
