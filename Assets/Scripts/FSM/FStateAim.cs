@@ -67,7 +67,7 @@ public class FStateAim: FState
 
         if (_moving)
         {
-            _character.Controller.Move(_character.transform.forward * _character.CurrentMovementSpeed * Time.deltaTime);
+            _character.Controller.Move(_inputEventChannel.MoveVector * _character.CurrentMovementSpeed * Time.deltaTime);
         }
 
         _character.AnimationSystem.PlayAnimation("Aim");

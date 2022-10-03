@@ -22,13 +22,16 @@ public class InventoryChannel : EventChannelBase
 
     #region Inventory Manipulation
 
-    public delegate bool ItemAmount(Item item, int amount, Action callback = null);
+    public delegate bool ItemAmountBool(Item item, int amount, Action callback = null);
+    public delegate int ItemAmountInt(Item item);
 
-    public ItemAmount HasAmountOfItems { get; set; }
+    public ItemAmountBool HasAmountOfItems { get; set; }
 
-    public ItemAmount RemoveAmountOfItems { get; set; }
+    public ItemAmountInt GetAmountOfItems { get; set; }
 
-    public ItemAmount AddAmountOfItems { get; set; }
+    public ItemAmountBool RemoveAmountOfItems { get; set; }
+
+    public ItemAmountBool AddAmountOfItems { get; set; }
 
     #endregion
 

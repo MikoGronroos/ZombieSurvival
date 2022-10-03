@@ -15,7 +15,7 @@ public class RangedWeapon : Weapon
 
     private void Start()
     {
-        Reload();
+        currentAmmo = maxAmmo;
     }
 
     private void OnEnable()
@@ -57,19 +57,23 @@ public class RangedWeapon : Weapon
 
     private void Reload()
     {
+        int amountOfAmmoInInventory = (int)inventoryEventChannel.GetAmountOfItems?.Invoke(neededAmmunition);
         int neededAmmo = maxAmmo - currentAmmo;
+        if (amountOfAmmoInInventory < neededAmmo)
+        {
+            neededAmmo = amountOfAmmoInInventory;
+        }
         inventoryEventChannel.RemoveAmountOfItems?.Invoke(neededAmmunition, neededAmmo);
-        currentAmmo = maxAmmo;
+        currentAmmo = currentAmmo + neededAmmo;
     }
 
     public bool CanReload()
     {
-
-        if (!(bool)inventoryEventChannel.HasAmountOfItems?.Invoke(neededAmmunition, maxAmmo))
+        //Check if inventory has more than 1 bullet so the gun can reload
+        if (!(bool)inventoryEventChannel.HasAmountOfItems?.Invoke(neededAmmunition, 1))
         {
             return false;
         }
-
         return true;
     }
 

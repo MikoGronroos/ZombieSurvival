@@ -20,6 +20,7 @@ public class InventoryManager : MonoBehaviour
         inventoryChannel.RemoveAmountOfItems += RemoveItem;
         inventoryChannel.HasAmountOfItems += HasAmountOfItems;
         inventoryChannel.FetchInventoryItemWithIndex += FetchInventoryItemWithIndex;
+        inventoryChannel.GetAmountOfItems += GetAmountOfItems;
     }
 
     private void OnDisable()
@@ -28,6 +29,7 @@ public class InventoryManager : MonoBehaviour
         inventoryChannel.RemoveAmountOfItems -= RemoveItem;
         inventoryChannel.HasAmountOfItems -= HasAmountOfItems;
         inventoryChannel.FetchInventoryItemWithIndex -= FetchInventoryItemWithIndex;
+        inventoryChannel.GetAmountOfItems -= GetAmountOfItems;
     }
 
     private void Start()
@@ -99,6 +101,18 @@ public class InventoryManager : MonoBehaviour
             }
         }
         return false;
+    }
+
+    private int GetAmountOfItems(Item item)
+    {
+        foreach (var curItem in currentDatabase.Database)
+        {
+            if (curItem.Item == item)
+            {
+                return curItem.CurrentStackSize;
+            }
+        }
+        return 0;
     }
 
     private bool FindItemWithSpaceWithId(int id, out DatabaseItem wrapper)
