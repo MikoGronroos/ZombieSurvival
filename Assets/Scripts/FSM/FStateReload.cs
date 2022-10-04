@@ -9,6 +9,15 @@ public class FStateReload : FState
     public override void Enter()
     {
         AnimMethodChannel.ResetReloadEvent += ResetReload;
+        if ((_character.WeaponController.CurrentWeapon as RangedWeapon).CanReload())
+        {
+            _character.AnimationSystem.PlayAnimation(_character.WeaponController.CurrentWeapon.GetWeaponReloadAnimation());
+        }
+        else
+        {
+            Debug.Log("Can't Reload");
+            _stateMachine.ChangeState(_character.fStateIdle);
+        }
     }
 
     public override void Exit()
@@ -22,15 +31,6 @@ public class FStateReload : FState
 
     public override void LogicUpdate()
     {
-        if ((_character.WeaponController.CurrentWeapon as RangedWeapon).CanReload())
-        {
-            _character.AnimationSystem.PlayAnimation(_character.WeaponController.CurrentWeapon.GetWeaponReloadAnimation());
-        }
-        else
-        {
-            Debug.Log("Can't Reload");
-            _stateMachine.ChangeState(_character.fStateIdle);
-        }
     }
 
     private void ResetReload()

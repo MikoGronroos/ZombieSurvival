@@ -9,6 +9,14 @@ public class FStateAttack : FState
     public override void Enter()
     {
         AnimMethodChannel.ResetAttackEvent += ResetAttack;
+        if ((_character.WeaponController.CurrentWeapon as RangedWeapon).CanShoot())
+        {
+            _character.AnimationSystem.PlayAnimation(_character.WeaponController.CurrentWeapon.GetWeaponAttackAnimation());
+        }
+        else
+        {
+            _stateMachine.ChangeState(_character.fStateIdle);
+        }
     }
 
     public override void Exit()
@@ -22,7 +30,6 @@ public class FStateAttack : FState
 
     public override void LogicUpdate()
     {
-        _character.AnimationSystem.PlayAnimation(_character.WeaponController.CurrentWeapon.GetWeaponAttackAnimation());
     }
 
     private void ResetAttack()
