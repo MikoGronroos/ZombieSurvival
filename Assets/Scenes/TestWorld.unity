@@ -6385,7 +6385,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &2112805633
 GameObject:
   m_ObjectHideFlags: 0
@@ -7335,6 +7335,7 @@ MonoBehaviour:
   weaponController: {fileID: 8870599160117813306}
   controller: {fileID: 8870599160117813304}
   inputEventChannel: {fileID: 11400000, guid: 881aa76ade36a60468c90e5598bf5627, type: 2}
+  playerEventChannel: {fileID: 11400000, guid: 707d7a0e19393aa428d0cfa2eafdf608, type: 2}
   animator: {fileID: 8870599160117813303}
 --- !u!95 &8870599160117813303 stripped
 Animator:

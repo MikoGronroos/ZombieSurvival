@@ -28,7 +28,7 @@ public class MeleeWeapon : Weapon
     {
         if (other.TryGetComponent(out IDamageable damageable))
         {
-            damageable.DoDamage(weapon.Damage);
+            damageable.DoDamage(damage);
         }
     }
 

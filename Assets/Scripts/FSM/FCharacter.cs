@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class FCharacter : MonoBehaviour
@@ -45,6 +46,7 @@ public class FCharacter : MonoBehaviour
     [SerializeField] private WeaponController weaponController;
     [SerializeField] private CharacterController controller;
     [SerializeField] private InputEventChannel inputEventChannel;
+    [SerializeField] private PlayerEventChannel playerEventChannel;
     [SerializeField] private Animator animator;
 
     public WeaponController WeaponController { get { return weaponController; } }
@@ -88,6 +90,16 @@ public class FCharacter : MonoBehaviour
         _animationSystem.SetupAnimationSystem(animator);
     }
 
+    private void OnEnable()
+    {
+        playerEventChannel.IsAttacking += IsAttackingListener;
+    }
+
+    private void OnDisable()
+    {
+        playerEventChannel.IsAttacking -= IsAttackingListener;
+    }
+
     private void Update()
     {
         _stateMachine.currentState.HandleInput();
@@ -99,4 +111,12 @@ public class FCharacter : MonoBehaviour
     {
         _stateMachine.currentState.PhysicsUpdate();
     }
+
+    private void IsAttackingListener()
+    {
+
+        _stateMachine.ChangeState(fStateAttack);
+
+    }
+
 }

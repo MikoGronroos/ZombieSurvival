@@ -12,7 +12,8 @@ public class InputSystem : MonoBehaviour
         inputEventChannel.MoveVector = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
         if (!MyUtils.IsPointerOverUI())
         {
-            inputEventChannel.IsAttacking = Input.GetMouseButton(0);
+            inputEventChannel.IsAttacking = Input.GetMouseButtonDown(0);
+            inputEventChannel.IsHoldingDownAttack = Input.GetMouseButton(0);
             if (Input.GetKeyDown(KeyCode.F)) inputEventChannel.IsInteracting?.Invoke();
         }
         inputEventChannel.IsReloading = Input.GetKeyDown(KeyCode.R);

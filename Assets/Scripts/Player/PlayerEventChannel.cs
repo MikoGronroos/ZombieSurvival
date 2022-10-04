@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 [CreateAssetMenu(menuName = "EventChannels/PlayerChannel")]
 public class PlayerEventChannel : ScriptableObject
@@ -7,5 +8,7 @@ public class PlayerEventChannel : ScriptableObject
     public delegate bool TransformIsVisible(Transform target);
 
     public TransformIsVisible TransformIsVisibleEvent { get; set; }
+
+    public Action IsAttacking { get; set; }
 
 }

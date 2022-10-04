@@ -10,6 +10,7 @@ public class InputEventChannel : ScriptableObject
     public bool IsAiming { get; set; }
 
     public bool IsAttacking { get; set; }
+    public bool IsHoldingDownAttack { get; set; }
 
     public Action IsInteracting { get; set; }
 
