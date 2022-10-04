@@ -2,6 +2,9 @@
 
 public class FStateAttack : FState
 {
+
+    private bool _attacking;
+
     public FStateAttack(FCharacter character, FStateMachine stateMachine, InputEventChannel inputEventChannel) : base(character, stateMachine, inputEventChannel)
     {
     }
@@ -26,6 +29,7 @@ public class FStateAttack : FState
 
     public override void HandleInput()
     {
+        _attacking = _inputEventChannel.IsAttacking;
     }
 
     public override void LogicUpdate()

@@ -41,7 +41,7 @@ public class FStateAim: FState
 
         if (_attacking)
         {
-            _stateMachine.ChangeState(_character.fStateAttack);
+            //_stateMachine.ChangeState(_character.fStateAttack);
         }
 
         if (_reloading)

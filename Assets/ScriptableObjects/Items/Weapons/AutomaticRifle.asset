@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4c4a3be83112dbf409ef8693de827033, type: 3}
-  m_Name: Revolver
+  m_Name: AutomaticRifle
   m_EditorClassIdentifier: 
-  itemName: Revolver
-  itemIcon: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  itemId: 4
+  itemName: Automatic Rifle
+  itemIcon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
+  itemId: 9
   maxStackSize: 1
-  weight: 1
+  weight: 2
   type: 5
-  equipmentPrefab: {fileID: 7838372753583287522, guid: deccfcd50224f72488a1e860abf13517, type: 3}
-  damage: 5
-  range: 20
+  equipmentPrefab: {fileID: 3317211609768970211, guid: 5c2f9a0b0bb59e541a74eedb3d3f474c, type: 3}
+  damage: 13
+  range: 30
