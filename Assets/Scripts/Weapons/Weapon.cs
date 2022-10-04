@@ -6,6 +6,9 @@ public class Weapon : MonoBehaviour
     [SerializeField] protected ItemWeapon weapon;
     [SerializeField] protected PlayerSkill weaponSkill;
 
+    [SerializeField] protected float damage;
+    [SerializeField] protected float range;
+
     [Header("Animations")]
     [SerializeField] protected string weaponAttackAnimation;
     [SerializeField] protected string weaponReloadAnimation;

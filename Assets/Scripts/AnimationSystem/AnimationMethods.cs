@@ -15,4 +15,9 @@ public class AnimationMethods : MonoBehaviour
         AnimMethodChannel.ResetReloadEvent?.Invoke();
     }
 
+    public void ShootEvent()
+    {
+        AnimMethodChannel.ShootEvent?.Invoke();
+    }
+
 }

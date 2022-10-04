@@ -5,7 +5,6 @@ public class FStateAim: FState
 
     private bool _aiming;
     private bool _moving;
-    private bool _attacking;
     private bool _reloading;
 
     public FStateAim(FCharacter character, FStateMachine stateMachine, InputEventChannel inputEventChannel) : base(character, stateMachine, inputEventChannel)
@@ -17,7 +16,6 @@ public class FStateAim: FState
     {
         _aiming = true;
         _moving = false;
-        _attacking = false;
         _reloading = false;
     }
 
@@ -32,17 +30,10 @@ public class FStateAim: FState
 
         _moving = _inputEventChannel.MoveVector.magnitude != 0;
 
-        _attacking = _inputEventChannel.IsAttacking;
-
     }
 
     public override void LogicUpdate()
     {
-
-        if (_attacking)
-        {
-            //_stateMachine.ChangeState(_character.fStateAttack);
-        }
 
         if (_reloading)
         {
