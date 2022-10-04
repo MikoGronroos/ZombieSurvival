@@ -2163,6 +2163,7 @@ GameObject:
   - component: {fileID: 660411102}
   - component: {fileID: 660411104}
   - component: {fileID: 660411106}
+  - component: {fileID: 660411109}
   - component: {fileID: 660411105}
   - component: {fileID: 660411107}
   - component: {fileID: 660411108}
@@ -2246,7 +2247,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.36
+  m_Radius: 0.3
   m_Height: 1.82
   m_Direction: 1
   m_Center: {x: 0, y: 0.92, z: 0}
@@ -2284,6 +2285,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   combatCollider: {fileID: 2112805730}
   handleCollision: {fileID: 2112805732}
+--- !u!136 &660411109
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 660411101}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.46
+  m_Height: 1.82
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.92, z: 0}
 --- !u!1 &695336696
 GameObject:
   m_ObjectHideFlags: 0

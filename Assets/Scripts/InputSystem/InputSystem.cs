@@ -16,6 +16,13 @@ public class InputSystem : MonoBehaviour
             inputEventChannel.IsHoldingDownAttack = Input.GetMouseButton(0);
             if (Input.GetKeyDown(KeyCode.F)) inputEventChannel.IsInteracting?.Invoke();
         }
+        if (inputEventChannel.IsAiming)
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                inputEventChannel.SwitchFiremode?.Invoke();
+            }
+        }
         inputEventChannel.IsReloading = Input.GetKeyDown(KeyCode.R);
         inputEventChannel.IsAiming = Input.GetKey(KeyCode.LeftControl);
         inputEventChannel.IsRunning = Input.GetKey(KeyCode.LeftShift);

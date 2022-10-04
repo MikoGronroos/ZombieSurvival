@@ -23,9 +23,9 @@ public class RangedWeapon : Weapon
 
     private float _timeSinceLastShot = 0;
 
-    [SerializeField] private bool _shooting = false;
-    [SerializeField] private bool _reloading = false;
-    [SerializeField] private bool _readyToShoot = true;
+    private bool _shooting = false;
+    private bool _reloading = false;
+    private bool _readyToShoot = true;
 
     private void Start()
     {
@@ -37,6 +37,7 @@ public class RangedWeapon : Weapon
         AnimMethodChannel.ResetReloadEvent += Reload;
         AnimMethodChannel.ResetAttackEvent += ResetGun;
         AnimMethodChannel.ShootEvent += Shoot;
+        inputEventChannel.SwitchFiremode += SwitchFiremode;
     }
 
     private void OnDisable()
@@ -44,6 +45,7 @@ public class RangedWeapon : Weapon
         AnimMethodChannel.ResetReloadEvent -= Reload;
         AnimMethodChannel.ResetAttackEvent -= ResetGun;
         AnimMethodChannel.ShootEvent -= Shoot;
+        inputEventChannel.SwitchFiremode -= SwitchFiremode;
     }
 
     private void Update()
@@ -91,6 +93,11 @@ public class RangedWeapon : Weapon
     private void ResetGun()
     {
         _readyToShoot = true;
+    }
+
+    private void SwitchFiremode()
+    {
+        automatic = !automatic;
     }
 
     private void Reload()
