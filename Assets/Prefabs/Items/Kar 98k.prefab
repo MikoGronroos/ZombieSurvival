@@ -382,6 +382,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weapon: {fileID: 11400000, guid: 0c3ab05f2e6ff3042ae51c2d81b7bdd8, type: 2}
   weaponSkill: {fileID: 11400000, guid: 5d9546c8eaf8e40409431b9eeaebe232, type: 2}
+  damage: 10
+  range: 100
   weaponAttackAnimation: RifleAttack
   weaponReloadAnimation: PistolReloadR1
   inputEventChannel: {fileID: 11400000, guid: 881aa76ade36a60468c90e5598bf5627, type: 2}
@@ -393,3 +395,6 @@ MonoBehaviour:
   neededAmmunition: {fileID: 11400000, guid: 462b6bc1436eca7489dc3956d9c0dcaf, type: 2}
   currentAmmo: 0
   maxAmmo: 5
+  automatic: 0
+  fireRate: 0
+  fireDelay: 0

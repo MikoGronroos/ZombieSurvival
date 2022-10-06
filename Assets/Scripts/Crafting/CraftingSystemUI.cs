@@ -54,9 +54,10 @@ public class CraftingSystemUI : MonoBehaviour
             {
                 GameObject button = Instantiate(recipeButton, recipeButtonParent);
                 _drawnRecipes.Add(button);
+                button.GetComponent<Button>().onClick.AddListener(() => {
+                    craftingEventChannel.Craft?.Invoke(recipe);
+                });
             }
         }
-
     }
-
 }

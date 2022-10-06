@@ -9,4 +9,8 @@ public class CraftingEventChannel : ScriptableObject
 
     public RecipeDictionaryDelegate GetRecipesFromCategory { get; set; }
 
+    public delegate void CraftDelegate(Recipe recipe);
+
+    public CraftDelegate Craft { get; set; }
+
 }

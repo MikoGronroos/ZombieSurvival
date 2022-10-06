@@ -10,4 +10,6 @@ public class Recipe : ScriptableObject
 
     public RecipeCategory RecipeCategory { get; private set; }
 
+    public Item Product { get; private set; }
+
 }

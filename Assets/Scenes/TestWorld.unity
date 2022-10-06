@@ -328,7 +328,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 483.49, y: 24.577026}
+  m_AnchoredPosition: {x: 483.49, y: 24.576904}
   m_SizeDelta: {x: 59.3457, y: 49.1549}
   m_Pivot: {x: 0.49999967, y: 0.5}
 --- !u!114 &27104027
@@ -2958,10 +2958,10 @@ RectTransform:
   m_Father: {fileID: 747593459}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -546.7271, y: 476.1202}
-  m_SizeDelta: {x: -1093.4541, y: -952.2404}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 437.7729, y: -50.379883}
+  m_SizeDelta: {x: 875.5459, y: 100.75958}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &635028637
 MonoBehaviour:
@@ -5313,7 +5313,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.000061035156, y: -40.76672}
+  m_AnchoredPosition: {x: -0.000061035156, y: -40.7666}
   m_SizeDelta: {x: 0.0156, y: -81.5265}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1292677488
@@ -6604,6 +6604,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   craftingEventChannel: {fileID: 11400000, guid: b2cdb4fb2091c5246a2155b28092a9e4, type: 2}
+  inventoryChannel: {fileID: 11400000, guid: 6b7520e56ff7e1e478127af115e1efb5, type: 2}
 --- !u!1 &1892483172
 GameObject:
   m_ObjectHideFlags: 0
@@ -6771,7 +6772,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f50432b7ff05c21459d0008289ed78f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item: {fileID: 11400000, guid: fdfa9ac355d8ede40b810208c6ae74bb, type: 2}
+  item: {fileID: 11400000, guid: 9873170bc616d34458ea5495bd9839a8, type: 2}
   amountOfItems: 1
   infiteItem: 1
   inventoryChannel: {fileID: 11400000, guid: 6b7520e56ff7e1e478127af115e1efb5, type: 2}
