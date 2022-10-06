@@ -48,9 +48,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 411cee395238fa54886b8bbcae2a1a31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weapon: {fileID: 11400000, guid: 9873170bc616d34458ea5495bd9839a8, type: 2}
+  weapon: {fileID: 11400000, guid: af2de87cbc1b79a40bc815a13f1f70ba, type: 2}
   weaponSkill: {fileID: 0}
+  damage: 0
+  range: 0
   weaponAttackAnimation: SwrodAttackR2
+  weaponReloadAnimation: 
   inputEventChannel: {fileID: 11400000, guid: 881aa76ade36a60468c90e5598bf5627, type: 2}
 --- !u!54 &3788135962941511089
 Rigidbody:

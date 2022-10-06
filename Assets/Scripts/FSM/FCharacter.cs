@@ -70,6 +70,7 @@ public class FCharacter : MonoBehaviour
     public FStateAim fStateAim { get; private set; }
     public FStateAttack fStateAttack { get; private set; }
     public FStateReload fStateReload { get; private set; }
+    public FStateDead fStateDead { get; private set; }
 
     #endregion
 
@@ -82,6 +83,7 @@ public class FCharacter : MonoBehaviour
         fStateAim = new FStateAim(this, _stateMachine, inputEventChannel);
         fStateAttack = new FStateAttack(this, _stateMachine, inputEventChannel);
         fStateReload = new FStateReload(this, _stateMachine, inputEventChannel);
+        fStateDead = new FStateDead(this, _stateMachine, inputEventChannel);
     }
 
     private void Start()
@@ -93,11 +95,13 @@ public class FCharacter : MonoBehaviour
     private void OnEnable()
     {
         playerEventChannel.IsAttacking += IsAttackingListener;
+        playerEventChannel.DeadEvent += DeadEventListener;
     }
 
     private void OnDisable()
     {
         playerEventChannel.IsAttacking -= IsAttackingListener;
+        playerEventChannel.DeadEvent -= DeadEventListener;
     }
 
     private void Update()
@@ -117,6 +121,11 @@ public class FCharacter : MonoBehaviour
 
         _stateMachine.ChangeState(fStateAttack);
 
+    }
+
+    private void DeadEventListener()
+    {
+        _stateMachine.ChangeState(fStateDead);
     }
 
 }

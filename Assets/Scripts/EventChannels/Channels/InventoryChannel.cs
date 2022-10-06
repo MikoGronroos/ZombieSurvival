@@ -16,7 +16,7 @@ public class InventoryChannel : EventChannelBase
     public EventChannel InventoryEquip { get; set; }
     public EventChannel InventoryDequip { get; set; }
 
-    public EventChannel InventoryEat { get; set; }
+    public EventChannel InventoryConsume { get; set; }
 
     public EventChannelDatabaseItem FetchInventoryItemWithIndex { get; set; }
 

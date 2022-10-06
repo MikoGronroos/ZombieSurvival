@@ -77,6 +77,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentPlayerStats: {fileID: 11400000, guid: 3c6846abcbd2a20439af97ec21e83d90, type: 2}
   playerStatsChannel: {fileID: 11400000, guid: 9bc0f0d04ff220540b89be2ffab6e248, type: 2}
+  playerEventChannel: {fileID: 11400000, guid: 707d7a0e19393aa428d0cfa2eafdf608, type: 2}
   inventoryChannel: {fileID: 11400000, guid: 6b7520e56ff7e1e478127af115e1efb5, type: 2}
 --- !u!114 &8870599160458679689
 MonoBehaviour:

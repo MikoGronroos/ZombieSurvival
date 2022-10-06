@@ -55,7 +55,7 @@ public class InventorySlotClicked : MonoBehaviour
 
     public void Eat()
     {
-        inventoryChannel.InventoryEat?.Invoke(new Dictionary<string, object> { { "Index", index } });
+        inventoryChannel.InventoryConsume?.Invoke(new Dictionary<string, object> { { "Index", index } });
         TogglePanel(false);
     }
 

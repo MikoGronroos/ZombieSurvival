@@ -41,7 +41,7 @@ public class InventoryManager : MonoBehaviour
     {
         for (int i = 0; i < amount; i++)
         {
-            if (FindItemWithSpaceWithId(item.ItemId, out var data))
+            if (FindItem(item, out var data))
             {
                 if (data.IsLastItemOnStack())
                 {
@@ -125,6 +125,20 @@ public class InventoryManager : MonoBehaviour
             if (item.Item.ItemId == id)
             {
                 wrapper = item;
+                return true;
+            }
+        }
+        wrapper = null;
+        return false;
+    }
+
+    private bool FindItem(Item item, out DatabaseItem wrapper)
+    {
+        foreach (var curItem in currentDatabase.Database)
+        {
+            if (curItem.Item.ItemId == item.ItemId)
+            {
+                wrapper = curItem;
                 return true;
             }
         }

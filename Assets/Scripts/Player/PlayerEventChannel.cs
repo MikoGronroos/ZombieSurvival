@@ -11,4 +11,6 @@ public class PlayerEventChannel : ScriptableObject
 
     public Action IsAttacking { get; set; }
 
+    public Action DeadEvent { get; set; }
+
 }

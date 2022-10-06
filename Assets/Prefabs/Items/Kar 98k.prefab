@@ -380,8 +380,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da450737abc0ab34ab4561ff15c1e12c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weapon: {fileID: 11400000, guid: 0c3ab05f2e6ff3042ae51c2d81b7bdd8, type: 2}
-  weaponSkill: {fileID: 11400000, guid: 5d9546c8eaf8e40409431b9eeaebe232, type: 2}
+  weapon: {fileID: 11400000, guid: 907ca5e2ae621994fb103613043b1f1d, type: 2}
+  weaponSkill: {fileID: 11400000, guid: 85a497562efa3ef468bfa12fdbfaf8ea, type: 2}
   damage: 10
   range: 100
   weaponAttackAnimation: RifleAttack

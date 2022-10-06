@@ -13,4 +13,8 @@ MonoBehaviour:
   m_Name: InventoryDatabase
   m_EditorClassIdentifier: 
   databaseMaxSize: 25
-  database: []
+  database:
+  - item: {fileID: 11400000, guid: c2a426159667e1e4ebbde59e8f560c2a, type: 2}
+    currentStackSize: 1
+    equipped: 0
+    itemIndexInDatabase: 0

@@ -19,7 +19,7 @@ public class DatabaseItem
 {
 
     [SerializeField] private Item item;
-    [SerializeField] private int currentStackSize;
+    [SerializeField] private int currentStackSize = 0;
     [SerializeField] private bool equipped;
     [SerializeField] private int itemIndexInDatabase;
 
@@ -52,7 +52,7 @@ public class DatabaseItem
 
     public bool IsLastItemOnStack()
     {
-        return currentStackSize == 1;
+        return currentStackSize <= 1;
     }
 
 }

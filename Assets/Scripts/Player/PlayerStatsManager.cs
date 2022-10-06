@@ -8,6 +8,7 @@ public class PlayerStatsManager : MonoBehaviour
     [SerializeField] private PlayerStats currentPlayerStats;
 
     [SerializeField] private PlayerStatsChannel playerStatsChannel;
+    [SerializeField] private PlayerEventChannel playerEventChannel;
     [SerializeField] private InventoryChannel inventoryChannel;
     
     public PlayerStats CurrentPlayerStats { get { return currentPlayerStats; } }
@@ -16,14 +17,14 @@ public class PlayerStatsManager : MonoBehaviour
     {
         playerStatsChannel.GetPlayerDamage += GetPlayerDamage;
         playerStatsChannel.ChangePlayerWeight += currentPlayerStats.PlayerWeightSystem.ChangePlayerWeight;
-        inventoryChannel.InventoryEat += OnInventoryEatListener;
+        inventoryChannel.InventoryConsume += OnInventoryConsumeListener;
     }
 
     private void OnDisable()
     {
         playerStatsChannel.GetPlayerDamage -= GetPlayerDamage;
         playerStatsChannel.ChangePlayerWeight -= currentPlayerStats.PlayerWeightSystem.ChangePlayerWeight;
-        inventoryChannel.InventoryEat -= OnInventoryEatListener;
+        inventoryChannel.InventoryConsume -= OnInventoryConsumeListener;
     }
 
     private void Start()
@@ -36,7 +37,7 @@ public class PlayerStatsManager : MonoBehaviour
         return currentPlayerStats.Damage;
     }
 
-    private void OnInventoryEatListener(Dictionary<string, object> args, Action<Dictionary<string, object>> callback)
+    private void OnInventoryConsumeListener(Dictionary<string, object> args, Action<Dictionary<string, object>> callback)
     {
 
         var consumable = inventoryChannel?.FetchInventoryItemWithIndex(args).Item as ItemConsumable;
@@ -58,7 +59,7 @@ public class PlayerStatsManager : MonoBehaviour
 
     private void OnHealthZero()
     {
-
+        playerEventChannel.DeadEvent?.Invoke();
     }
 
 }
