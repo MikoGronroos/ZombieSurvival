@@ -12,18 +12,16 @@ public class CraftingSystem : MonoBehaviour
     private void Awake()
     {
         Recipe[] recipes = Resources.LoadAll<Recipe>("Recipes/");
-
+        
         foreach (Recipe recipe in recipes)
         {
-            Debug.Log(recipe.Product);
-            Debug.Log(recipe.RecipeCategory);
             if (!_recipes.ContainsKey(recipe.RecipeCategory))
             {
                 _recipes.Add(recipe.RecipeCategory, new List<Recipe>());
-                Debug.Log(recipe.RecipeCategory);
             }
             _recipes[recipe.RecipeCategory].Add(recipe);
         }
+        
     }
 
     private void OnEnable()

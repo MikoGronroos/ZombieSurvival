@@ -8,8 +8,8 @@ public class Recipe : ScriptableObject
     [SerializeField] private Item[] itemsNeeded;
     [SerializeField] private RecipeCategory recipeCategory;
 
-    public RecipeCategory RecipeCategory { get; private set; }
+    public RecipeCategory RecipeCategory { get { return recipeCategory; } }
 
-    public Item Product { get; private set; }
+    public Item Product { get { return product; } }
 
 }
