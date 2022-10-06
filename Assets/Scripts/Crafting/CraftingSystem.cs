@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class CraftingSystem : MonoBehaviour
 {
@@ -47,6 +48,23 @@ public class CraftingSystem : MonoBehaviour
 
     private void CraftItem(Recipe recipe)
     {
+        List<Item> neededItems = recipe.ItemsNeeded.ToList();
+
+        for (int i = neededItems.Count - 1; i >= 0; i--)
+        {
+            if (!(bool)inventoryChannel.HasAmountOfItems?.Invoke(neededItems[i], 1))
+            {
+                return;
+            }
+        }
+
+        for (int i = neededItems.Count - 1; i >= 0; i--)
+        {
+            var item = neededItems[i];
+            neededItems.RemoveAt(i);
+            inventoryChannel.RemoveAmountOfItems?.Invoke(item, 1);
+        }
+
         inventoryChannel.AddAmountOfItems(recipe.Product, 1);
     }
 

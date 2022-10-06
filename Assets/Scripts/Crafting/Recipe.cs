@@ -12,4 +12,6 @@ public class Recipe : ScriptableObject
 
     public Item Product { get { return product; } }
 
+    public Item[] ItemsNeeded { get { return itemsNeeded; } }
+
 }

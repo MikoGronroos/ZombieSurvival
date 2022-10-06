@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: HomemadeBandageRecipe
   m_EditorClassIdentifier: 
   product: {fileID: 11400000, guid: f6b93e8ff1bed9748814e310088700d8, type: 2}
-  itemsNeeded: []
+  itemsNeeded:
+  - {fileID: 11400000, guid: c2a426159667e1e4ebbde59e8f560c2a, type: 2}
   recipeCategory: 4
