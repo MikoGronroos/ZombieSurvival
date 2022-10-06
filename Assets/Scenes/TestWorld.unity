@@ -4884,7 +4884,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   categoryButton: {fileID: 8707689073227304059, guid: bd60d7f232c3ec847a6b3e0afaf25243, type: 3}
   categoryButtonParent: {fileID: 58897305}
-  recipeButton: {fileID: 1229299736275923088, guid: 349b31b502f50c741a35ac6ace6f8694, type: 3}
+  recipeButtonPrefab: {fileID: 1229299736275923088, guid: 349b31b502f50c741a35ac6ace6f8694, type: 3}
   recipeButtonParent: {fileID: 1292677487}
   craftingEventChannel: {fileID: 11400000, guid: b2cdb4fb2091c5246a2155b28092a9e4, type: 2}
 --- !u!1 &1193723185
@@ -6272,7 +6272,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1820241454
 RectTransform:
   m_ObjectHideFlags: 0

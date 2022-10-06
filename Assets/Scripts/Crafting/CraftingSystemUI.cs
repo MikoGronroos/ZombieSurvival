@@ -9,7 +9,7 @@ public class CraftingSystemUI : MonoBehaviour
     [SerializeField] private GameObject categoryButton;
     [SerializeField] private Transform categoryButtonParent;
 
-    [SerializeField] private GameObject recipeButton;
+    [SerializeField] private GameObject recipeButtonPrefab;
     [SerializeField] private Transform recipeButtonParent;
 
     [SerializeField] private CraftingEventChannel craftingEventChannel;
@@ -52,7 +52,11 @@ public class CraftingSystemUI : MonoBehaviour
         {
             foreach (var recipe in recipes)
             {
-                GameObject button = Instantiate(recipeButton, recipeButtonParent);
+                GameObject button = Instantiate(recipeButtonPrefab, recipeButtonParent);
+                if (button.TryGetComponent(out RecipeButton recipeButton))
+                {
+                    recipeButton.SetupButton(recipe.Product.ItemName, recipe.Product.ItemIcon);
+                }
                 _drawnRecipes.Add(button);
                 button.GetComponent<Button>().onClick.AddListener(() => {
                     craftingEventChannel.Craft?.Invoke(recipe);
