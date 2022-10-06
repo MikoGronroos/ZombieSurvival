@@ -7,6 +7,7 @@ public class RangedWeapon : Weapon
     [SerializeField] private LayerMask hitMask;
     [SerializeField] private PlayerEventChannel playerEventChannel;
     [SerializeField] private InventoryChannel inventoryEventChannel;
+    [SerializeField] private PlayerSkillEventChannel playerSkillEventChannel;
 
     [SerializeField] private Item neededAmmunition;
 
@@ -83,11 +84,11 @@ public class RangedWeapon : Weapon
                     if (hit.transform.TryGetComponent(out IDamageable damageable))
                     {
                         damageable.DoDamage(damage);
+                        playerSkillEventChannel.ProgressSkillEvent?.Invoke(weaponSkill);
                     }
                 }
             }
         }
-
     }
 
     private void ResetGun()

@@ -15,14 +15,12 @@ public class PlayerStatsManager : MonoBehaviour
 
     private void OnEnable()
     {
-        playerStatsChannel.GetPlayerDamage += GetPlayerDamage;
         playerStatsChannel.ChangePlayerWeight += currentPlayerStats.PlayerWeightSystem.ChangePlayerWeight;
         inventoryChannel.InventoryConsume += OnInventoryConsumeListener;
     }
 
     private void OnDisable()
     {
-        playerStatsChannel.GetPlayerDamage -= GetPlayerDamage;
         playerStatsChannel.ChangePlayerWeight -= currentPlayerStats.PlayerWeightSystem.ChangePlayerWeight;
         inventoryChannel.InventoryConsume -= OnInventoryConsumeListener;
     }
@@ -30,11 +28,6 @@ public class PlayerStatsManager : MonoBehaviour
     private void Start()
     {
         currentPlayerStats.HealthSystem.SetupHealthSystem(OnHealthZero);
-    }
-
-    private float GetPlayerDamage(Dictionary<string, object> args, Action<Dictionary<string, object>> callback)
-    {
-        return currentPlayerStats.Damage;
     }
 
     private void OnInventoryConsumeListener(Dictionary<string, object> args, Action<Dictionary<string, object>> callback)

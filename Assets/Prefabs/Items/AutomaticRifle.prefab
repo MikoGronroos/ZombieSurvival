@@ -393,7 +393,8 @@ MonoBehaviour:
     m_Bits: 128
   playerEventChannel: {fileID: 11400000, guid: 707d7a0e19393aa428d0cfa2eafdf608, type: 2}
   inventoryEventChannel: {fileID: 11400000, guid: 6b7520e56ff7e1e478127af115e1efb5, type: 2}
-  neededAmmunition: {fileID: 11400000, guid: 1e9489cf3ccc21f40bc92ae01fc971eb, type: 2}
+  playerSkillEventChannel: {fileID: 11400000, guid: c2a92a5719962d845b9b42092fff225c, type: 2}
+  neededAmmunition: {fileID: 11400000, guid: 2a9774e99dd03b94da727fefa52ecf74, type: 2}
   currentAmmo: 0
   maxAmmo: 30
   automatic: 0
