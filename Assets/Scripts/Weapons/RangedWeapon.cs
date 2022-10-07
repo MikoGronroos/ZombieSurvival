@@ -16,13 +16,9 @@ public class RangedWeapon : Weapon
 
     [SerializeField] private bool automatic;
 
-    [Tooltip("How fast bullets come out from automatic gun")]
-    [SerializeField] private float fireRate;
-
-    [Tooltip("Time after you can shoot again")]
-    [SerializeField] private float fireDelay;
-
-    private float _timeSinceLastShot = 0;
+    [Tooltip("better quality weapons have more baseHitChance")]
+    [Range(0,100)]
+    [SerializeField] private int baseHitChance;
 
     private bool _shooting = false;
     private bool _reloading = false;
@@ -51,8 +47,6 @@ public class RangedWeapon : Weapon
 
     private void Update()
     {
-        _timeSinceLastShot = Mathf.Clamp(_timeSinceLastShot += 1 * Time.deltaTime, 0, fireDelay);
-
         if (automatic)
         {
             _shooting = inputEventChannel.IsHoldingDownAttack;
@@ -62,7 +56,7 @@ public class RangedWeapon : Weapon
             _shooting = inputEventChannel.IsAttacking;
         }
 
-        if (inputEventChannel.IsAiming && _readyToShoot && _shooting && !_reloading && CanShoot())
+        if (inputEventChannel.IsAiming && _readyToShoot && _shooting && !_reloading && currentAmmo > 0)
         {
             _readyToShoot = false;
             playerEventChannel.IsAttacking?.Invoke();
@@ -83,7 +77,22 @@ public class RangedWeapon : Weapon
                 {
                     if (hit.transform.TryGetComponent(out IDamageable damageable))
                     {
-                        damageable.DoDamage(damage);
+                        bool hitted = false;
+                        int hitChance = baseHitChance;
+                        int randomNumber = UnityEngine.Random.Range(0, 100);
+                        if (randomNumber <= hitChance) 
+                        { 
+                            hitted = true;
+                            Debug.Log($"Hit object with {randomNumber} roll.");
+                        }
+                        else
+                        {
+                            Debug.Log($"Missed object with {randomNumber} roll.");
+                        }
+                        if (hitted)
+                        {
+                            damageable.DoDamage(damage);
+                        }
                         playerSkillEventChannel.ProgressSkillEvent?.Invoke(weaponSkill);
                     }
                 }
@@ -121,11 +130,6 @@ public class RangedWeapon : Weapon
             return false;
         }
         return true;
-    }
-
-    public bool CanShoot()
-    {
-        return currentAmmo > 0;
     }
 
     private bool CheckRange(Transform target)

@@ -65401,7 +65401,7 @@ AnimationClip:
   m_HasMotionFloatCurves: 1
   m_Events:
   - time: 0.3
-    functionName: EnableWeaponCollider
+    functionName: ShootEvent
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

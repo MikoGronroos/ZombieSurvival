@@ -4300,7 +4300,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   containerName: Locker
   interactionTime: 3
-  containerItems: []
+  containerItems:
+  - {fileID: 11400000, guid: 33362f6b108a66e4caa3792f1848a53f, type: 2}
+  - {fileID: 11400000, guid: 907ca5e2ae621994fb103613043b1f1d, type: 2}
   inventoryChannel: {fileID: 11400000, guid: 6b7520e56ff7e1e478127af115e1efb5, type: 2}
 --- !u!65 &838791133
 BoxCollider:

@@ -400,6 +400,7 @@ MonoBehaviour:
   automatic: 0
   fireRate: 0
   fireDelay: 0
+  baseHitChance: 40
 --- !u!1 &8429562055023188873
 GameObject:
   m_ObjectHideFlags: 0
