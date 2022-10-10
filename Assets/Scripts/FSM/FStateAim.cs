@@ -42,7 +42,7 @@ public class FStateAim: FState
 
         if (!_aiming)
         {
-            _stateMachine.ChangeState(_character.fStateIdle);
+            //_stateMachine.ChangeState(_character.fStateIdle);
         }
 
         Ray cameraRay = _character.Camera.ScreenPointToRay(Input.mousePosition);
