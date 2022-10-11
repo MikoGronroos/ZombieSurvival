@@ -10,14 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4c4a3be83112dbf409ef8693de827033, type: 3}
-  m_Name: AutomaticRifle
+  m_Name: m4a4
   m_EditorClassIdentifier: 
-  itemName: Automatic Rifle
+  itemName: m4a4
   itemIcon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
   itemId: 9
   maxStackSize: 1
   weight: 2
   type: 5
-  equipmentPrefab: {fileID: 3317211609768970211, guid: 5c2f9a0b0bb59e541a74eedb3d3f474c, type: 3}
-  damage: 13
-  range: 30
+  equipmentPrefab: {fileID: 7379327462327495508, guid: d3dfa44d28c02cf4cae82e4adfef5f14, type: 3}

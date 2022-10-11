@@ -20,6 +20,8 @@ public class RangedWeapon : Weapon
     [Range(0,100)]
     [SerializeField] private int baseHitChance;
 
+    [Header("Recoil")]
+
     private bool _shooting = false;
     private bool _reloading = false;
     private bool _readyToShoot = true;

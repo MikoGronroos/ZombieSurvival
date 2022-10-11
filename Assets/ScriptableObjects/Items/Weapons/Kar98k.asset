@@ -18,6 +18,4 @@ MonoBehaviour:
   maxStackSize: 1
   weight: 2
   type: 5
-  equipmentPrefab: {fileID: 8557945009990634425, guid: 265ebdb445d9c0e459c4c0aa3b6d53c7, type: 3}
-  damage: 20
-  range: 35
+  equipmentPrefab: {fileID: 2712386305793105313, guid: 265ebdb445d9c0e459c4c0aa3b6d53c7, type: 3}

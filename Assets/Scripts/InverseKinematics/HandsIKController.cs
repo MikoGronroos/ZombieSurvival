@@ -1,52 +1,38 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations;
+using UnityEngine.Animations.Rigging;
 
 public class HandsIKController : MonoBehaviour
 {
 
-    [SerializeField] private Animator animator;
+    [SerializeField] private RigBuilder rigBuilder;
 
     [Header("Hand transforms")]
-    [SerializeField] private Transform leftHand;
-    [SerializeField] private Transform rightHand;
+    [SerializeField] private TwoBoneIKConstraint leftHand;
+    [SerializeField] private TwoBoneIKConstraint rightHand;
 
-    [Header("IK Positions")]
-    [SerializeField] private Transform leftHandIKPosition;
-    [SerializeField] private Transform rightHandIKPosition;
+    [SerializeField] private WeaponChannel weaponChannel;
 
-    [Header("IK Settings")]
-    [SerializeField] private bool ikActive;
-
-    private void OnAnimatorIK()
+    private void OnEnable()
     {
-        if (animator)
-        {
-            if (ikActive)
-            {
-                if (leftHandIKPosition != null)
-                {
-                    animator.SetIKPositionWeight(AvatarIKGoal.LeftHand, 1);
-                    animator.SetIKRotationWeight(AvatarIKGoal.LeftHand, 1);
-                    animator.SetIKPosition(AvatarIKGoal.LeftHand, leftHandIKPosition.position);
-                    animator.SetIKRotation(AvatarIKGoal.LeftHand, leftHandIKPosition.rotation);
-                }
-                if (rightHandIKPosition != null)
-                {
-                    animator.SetIKPositionWeight(AvatarIKGoal.RightHand, 1);
-                    animator.SetIKRotationWeight(AvatarIKGoal.RightHand, 1);
-                    animator.SetIKPosition(AvatarIKGoal.RightHand, rightHandIKPosition.position);
-                    animator.SetIKRotation(AvatarIKGoal.RightHand, rightHandIKPosition.rotation);
-                }
-            }
-            else
-            {
-                animator.SetIKPositionWeight(AvatarIKGoal.RightHand, 0);
-                animator.SetIKRotationWeight(AvatarIKGoal.RightHand, 0);
-                animator.SetIKPositionWeight(AvatarIKGoal.LeftHand, 0);
-                animator.SetIKRotationWeight(AvatarIKGoal.LeftHand, 0);
-            }
-        }
+        weaponChannel.SwitchWeaponEvent += SetIKPositions;
     }
 
+    private void OnDisable()
+    {
+        weaponChannel.SwitchWeaponEvent -= SetIKPositions;
+    }
+
+    private void SetIKPositions(Weapon weapon)
+    {
+        if (weapon.LeftHandPos != null)
+        {
+            leftHand.data.target = weapon.LeftHandPos;
+        }
+        if (weapon.RightHandPos != null)
+        {
+            rightHand.data.target = weapon.RightHandPos;
+        }
+        rigBuilder.Build();
+    }
 }
