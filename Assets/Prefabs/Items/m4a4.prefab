@@ -546,9 +546,13 @@ MonoBehaviour:
   playerSkillEventChannel: {fileID: 11400000, guid: c2a92a5719962d845b9b42092fff225c, type: 2}
   neededAmmunition: {fileID: 11400000, guid: 2a9774e99dd03b94da727fefa52ecf74, type: 2}
   currentAmmo: 0
-  maxAmmo: 30
-  automatic: 1
+  maxAmmo: 60
+  automatic: 0
   baseHitChance: 45
+  recoilPower: 2.4
+  maxRecoilMovementYAxis: 3.4
+  recoilResetTime: 1.1
+  amountOfContinousShots: 0
 --- !u!114 &5934445175227468788
 MonoBehaviour:
   m_ObjectHideFlags: 0

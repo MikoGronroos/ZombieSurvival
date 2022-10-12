@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
 
 public class RangedWeapon : Weapon
@@ -21,14 +22,23 @@ public class RangedWeapon : Weapon
     [SerializeField] private int baseHitChance;
 
     [Header("Recoil")]
+    [SerializeField] private float recoilPower;
+    [SerializeField] private float maxRecoilMovementYAxis;
 
+    [SerializeField] private float recoilResetTime = 0f;
+    [SerializeField] private int amountOfContinousShots = 0;
+
+    private bool _lerpActive = false;
     private bool _shooting = false;
     private bool _reloading = false;
     private bool _readyToShoot = true;
+    private Vector3 _startLocalEulerAngles;
+    private Coroutine recoil;
 
     private void Start()
     {
         currentAmmo = maxAmmo;
+        _startLocalEulerAngles = transform.localEulerAngles;
     }
 
     private void OnEnable()
@@ -61,14 +71,31 @@ public class RangedWeapon : Weapon
         if (inputEventChannel.IsAiming && _readyToShoot && _shooting && !_reloading && currentAmmo > 0)
         {
             _readyToShoot = false;
-            playerEventChannel.IsAttacking?.Invoke();
+            Shoot();
         }
+    }
 
+    private IEnumerator LerpRecoil(Vector3 start, Vector3 end, float lerpTime = 1, Action callback = null)
+    {
+        _lerpActive = true;
+        float timeElapsed = 0;
+        while (timeElapsed < lerpTime)
+        {
+            transform.localEulerAngles = Vector3.Lerp(start, end, timeElapsed / lerpTime);
+            timeElapsed = Mathf.Clamp(timeElapsed + Time.deltaTime, 0, lerpTime);
+            yield return null;
+        }
+        callback?.Invoke();
+        _lerpActive = false;
     }
 
     private void Shoot()
     {
+
+        Recoil();
+
         currentAmmo--;
+        amountOfContinousShots++;
 
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out var hit, Mathf.Infinity))
@@ -100,6 +127,21 @@ public class RangedWeapon : Weapon
                 }
             }
         }
+        _readyToShoot = true;
+    }
+
+    private void Recoil()
+    {
+        transform.localRotation = Quaternion.Euler(0, Mathf.Clamp(transform.localEulerAngles.y + recoilPower, 0, maxRecoilMovementYAxis),0);
+
+        if (recoil != null)
+        {
+            StopCoroutine(recoil);
+        }
+        recoil = StartCoroutine(LerpRecoil(transform.localEulerAngles, _startLocalEulerAngles, recoilResetTime, () => {
+            amountOfContinousShots = 0;
+        }));
+
     }
 
     private void ResetGun()

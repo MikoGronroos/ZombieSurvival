@@ -9562,6 +9562,11 @@ MonoBehaviour:
   maxAmmo: 30
   automatic: 0
   baseHitChance: 40
+  recoilPower: 0
+  decreaseContinousShotsTime: 0
+  amountOfContinousShots: 0
+  _currentTimeDecreaseContinousShots: 0
+  ratio: 0
 --- !u!4 &1657807078987433718
 Transform:
   m_ObjectHideFlags: 0
@@ -10159,6 +10164,10 @@ PrefabInstance:
     - target: {fileID: 8870599160458679695, guid: 886943efb62194240b199b5d4f5a9cb5, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 8870599161067779953, guid: 886943efb62194240b199b5d4f5a9cb5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 886943efb62194240b199b5d4f5a9cb5, type: 3}

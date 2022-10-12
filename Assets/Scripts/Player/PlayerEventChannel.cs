@@ -9,8 +9,6 @@ public class PlayerEventChannel : ScriptableObject
 
     public TransformIsVisible TransformIsVisibleEvent { get; set; }
 
-    public Action IsAttacking { get; set; }
-
     public Action DeadEvent { get; set; }
 
 }

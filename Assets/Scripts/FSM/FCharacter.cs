@@ -94,13 +94,11 @@ public class FCharacter : MonoBehaviour
 
     private void OnEnable()
     {
-        playerEventChannel.IsAttacking += IsAttackingListener;
         playerEventChannel.DeadEvent += DeadEventListener;
     }
 
     private void OnDisable()
     {
-        playerEventChannel.IsAttacking -= IsAttackingListener;
         playerEventChannel.DeadEvent -= DeadEventListener;
     }
 
@@ -114,13 +112,6 @@ public class FCharacter : MonoBehaviour
     private void FixedUpdate()
     {
         _stateMachine.currentState.PhysicsUpdate();
-    }
-
-    private void IsAttackingListener()
-    {
-
-        _stateMachine.ChangeState(fStateAttack);
-
     }
 
     private void DeadEventListener()
