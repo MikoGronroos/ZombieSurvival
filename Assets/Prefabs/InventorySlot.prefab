@@ -364,11 +364,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 072327ebf40db4b42bae35526763782e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spriteRenderer: {fileID: 4791079307117089600}
   itemLoadingBar: {fileID: 6756131604614789601}
+  spriteRenderer: {fileID: 4791079307117089600}
   itemNameAndStackSizeText: {fileID: 4791079305800847327}
   stateText: {fileID: 2676752955477280501}
   inventoryIndex: 0
+  currentItem: {fileID: 0}
   inventoryChannel: {fileID: 11400000, guid: 6b7520e56ff7e1e478127af115e1efb5, type: 2}
   interactionData: {fileID: 11400000, guid: fcf0a7cae64868942b3159543838ab7b, type: 2}
 --- !u!114 &8382625999962431371
