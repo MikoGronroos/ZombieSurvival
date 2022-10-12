@@ -547,12 +547,37 @@ MonoBehaviour:
   neededAmmunition: {fileID: 11400000, guid: 2a9774e99dd03b94da727fefa52ecf74, type: 2}
   currentAmmo: 0
   maxAmmo: 60
-  automatic: 0
+  automatic: 1
+  fireRate: 0.18
   baseHitChance: 45
-  recoilPower: 2.4
-  maxRecoilMovementYAxis: 3.4
-  recoilResetTime: 1.1
-  amountOfContinousShots: 0
+  recoilPower: 2.1
+  recoilEffectToHitChance:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  maxRecoilMovementYAxis: 2.7
+  minRecoilMovementYAxis: -3.4
+  recoilResetTime: 0.5
 --- !u!114 &5934445175227468788
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -9561,12 +9561,18 @@ MonoBehaviour:
   currentAmmo: 0
   maxAmmo: 30
   automatic: 0
+  fireRate: 0
   baseHitChance: 40
   recoilPower: 0
-  decreaseContinousShotsTime: 0
-  amountOfContinousShots: 0
-  _currentTimeDecreaseContinousShots: 0
-  ratio: 0
+  recoilEffectToHitChance:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  maxRecoilMovementYAxis: 0
+  minRecoilMovementYAxis: 0
+  recoilResetTime: 0
 --- !u!4 &1657807078987433718
 Transform:
   m_ObjectHideFlags: 0

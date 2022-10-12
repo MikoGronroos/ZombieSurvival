@@ -5,6 +5,8 @@ using UnityEngine;
 public class RangedWeapon : Weapon
 {
 
+    [Header("Ranged Weapon")]
+
     [SerializeField] private LayerMask hitMask;
     [SerializeField] private PlayerEventChannel playerEventChannel;
     [SerializeField] private InventoryChannel inventoryEventChannel;
@@ -17,23 +19,25 @@ public class RangedWeapon : Weapon
 
     [SerializeField] private bool automatic;
 
+    [SerializeField] private float fireRate;
+
     [Tooltip("better quality weapons have more baseHitChance")]
     [Range(0,100)]
     [SerializeField] private int baseHitChance;
 
     [Header("Recoil")]
     [SerializeField] private float recoilPower;
+    [SerializeField] private AnimationCurve recoilEffectToHitChance;
     [SerializeField] private float maxRecoilMovementYAxis;
+    [SerializeField] private float minRecoilMovementYAxis;
 
     [SerializeField] private float recoilResetTime = 0f;
-    [SerializeField] private int amountOfContinousShots = 0;
 
-    private bool _lerpActive = false;
     private bool _shooting = false;
     private bool _reloading = false;
     private bool _readyToShoot = true;
     private Vector3 _startLocalEulerAngles;
-    private Coroutine recoil;
+    private Coroutine _recoil;
 
     private void Start()
     {
@@ -44,7 +48,6 @@ public class RangedWeapon : Weapon
     private void OnEnable()
     {
         AnimMethodChannel.ResetReloadEvent += Reload;
-        AnimMethodChannel.ResetAttackEvent += ResetGun;
         AnimMethodChannel.ShootEvent += Shoot;
         inputEventChannel.SwitchFiremode += SwitchFiremode;
     }
@@ -52,7 +55,6 @@ public class RangedWeapon : Weapon
     private void OnDisable()
     {
         AnimMethodChannel.ResetReloadEvent -= Reload;
-        AnimMethodChannel.ResetAttackEvent -= ResetGun;
         AnimMethodChannel.ShootEvent -= Shoot;
         inputEventChannel.SwitchFiremode -= SwitchFiremode;
     }
@@ -75,9 +77,8 @@ public class RangedWeapon : Weapon
         }
     }
 
-    private IEnumerator LerpRecoil(Vector3 start, Vector3 end, float lerpTime = 1, Action callback = null)
+    private IEnumerator LerpRecoil(Vector3 start, Vector3 end, float lerpTime = 1)
     {
-        _lerpActive = true;
         float timeElapsed = 0;
         while (timeElapsed < lerpTime)
         {
@@ -85,8 +86,6 @@ public class RangedWeapon : Weapon
             timeElapsed = Mathf.Clamp(timeElapsed + Time.deltaTime, 0, lerpTime);
             yield return null;
         }
-        callback?.Invoke();
-        _lerpActive = false;
     }
 
     private void Shoot()
@@ -95,7 +94,6 @@ public class RangedWeapon : Weapon
         Recoil();
 
         currentAmmo--;
-        amountOfContinousShots++;
 
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out var hit, Mathf.Infinity))
@@ -127,24 +125,22 @@ public class RangedWeapon : Weapon
                 }
             }
         }
-        _readyToShoot = true;
+
+        Invoke("ResetShot", fireRate);
+
     }
 
     private void Recoil()
     {
-        transform.localRotation = Quaternion.Euler(0, Mathf.Clamp(transform.localEulerAngles.y + recoilPower, 0, maxRecoilMovementYAxis),0);
-
-        if (recoil != null)
+        transform.localRotation = Quaternion.Euler(0, Mathf.Clamp(transform.localEulerAngles.y + recoilPower, minRecoilMovementYAxis, maxRecoilMovementYAxis),0);
+        if (_recoil != null)
         {
-            StopCoroutine(recoil);
+            StopCoroutine(_recoil);
         }
-        recoil = StartCoroutine(LerpRecoil(transform.localEulerAngles, _startLocalEulerAngles, recoilResetTime, () => {
-            amountOfContinousShots = 0;
-        }));
-
+        _recoil = StartCoroutine(LerpRecoil(transform.localEulerAngles, _startLocalEulerAngles, recoilResetTime));
     }
 
-    private void ResetGun()
+    private void ResetShot()
     {
         _readyToShoot = true;
     }
