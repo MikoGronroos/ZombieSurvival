@@ -24,7 +24,7 @@ public class RangedWeapon : Weapon
     [SerializeField] private float fireRate;
 
     [Tooltip("better quality weapons have more baseHitChance")]
-    [Range(0,100)]
+    [Range(0,90)]
     [SerializeField] private int baseHitChance;
 
     [Header("Recoil")]
@@ -106,7 +106,8 @@ public class RangedWeapon : Weapon
                     if (hit.transform.TryGetComponent(out IDamageable damageable))
                     {
                         bool hitted = false;
-                        float hitChance = baseHitChance - (1 * GetRecoilEffectOnAccuracy() * 10);
+                        float hitChance = Mathf.Clamp(baseHitChance - (1 * GetRecoilEffectOnAccuracy() * 10) + weaponSkill.Level * 5, 0, 90);
+                        Debug.Log(hitChance);
                         float randomNumber = UnityEngine.Random.Range(0, 100);
                         if (randomNumber <= hitChance) 
                         { 
