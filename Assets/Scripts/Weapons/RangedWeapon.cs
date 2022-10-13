@@ -12,6 +12,8 @@ public class RangedWeapon : Weapon
     [SerializeField] private InventoryChannel inventoryEventChannel;
     [SerializeField] private PlayerSkillEventChannel playerSkillEventChannel;
 
+    [SerializeField] private Transform muzzleFlashParent;
+
     [SerializeField] private Item neededAmmunition;
 
     [SerializeField] private int currentAmmo;
@@ -27,15 +29,19 @@ public class RangedWeapon : Weapon
 
     [Header("Recoil")]
     [SerializeField] private float recoilPower;
-    [SerializeField] private AnimationCurve recoilEffectToHitChance;
+    [SerializeField] private AnimationCurve recoilEffectToAccuracy;
     [SerializeField] private float maxRecoilMovementYAxis;
     [SerializeField] private float minRecoilMovementYAxis;
 
     [SerializeField] private float recoilResetTime = 0f;
 
+    [Header("GFX")]
+    [SerializeField] private GameObject[] muzzleFlashes;
+
     private bool _shooting = false;
     private bool _reloading = false;
     private bool _readyToShoot = true;
+    [SerializeField] private int _currentShotsInRow;
     private Vector3 _startLocalEulerAngles;
     private Coroutine _recoil;
 
@@ -47,15 +53,11 @@ public class RangedWeapon : Weapon
 
     private void OnEnable()
     {
-        AnimMethodChannel.ResetReloadEvent += Reload;
-        AnimMethodChannel.ShootEvent += Shoot;
         inputEventChannel.SwitchFiremode += SwitchFiremode;
     }
 
     private void OnDisable()
     {
-        AnimMethodChannel.ResetReloadEvent -= Reload;
-        AnimMethodChannel.ShootEvent -= Shoot;
         inputEventChannel.SwitchFiremode -= SwitchFiremode;
     }
 
@@ -86,14 +88,17 @@ public class RangedWeapon : Weapon
             timeElapsed = Mathf.Clamp(timeElapsed + Time.deltaTime, 0, lerpTime);
             yield return null;
         }
+        _currentShotsInRow = 0;
     }
 
     private void Shoot()
     {
 
         Recoil();
+        MuzzleFlash();
 
         currentAmmo--;
+        _currentShotsInRow = Mathf.Clamp(_currentShotsInRow + 1, 0, 10);
 
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out var hit, Mathf.Infinity))
@@ -105,16 +110,12 @@ public class RangedWeapon : Weapon
                     if (hit.transform.TryGetComponent(out IDamageable damageable))
                     {
                         bool hitted = false;
-                        int hitChance = baseHitChance;
-                        int randomNumber = UnityEngine.Random.Range(0, 100);
+                        float hitChance = baseHitChance - (1 * GetRecoilEffectOnAccuracy() * 10);
+                        float randomNumber = UnityEngine.Random.Range(0, 100);
+                        Debug.Log($"hitChance: {hitChance}");
                         if (randomNumber <= hitChance) 
                         { 
                             hitted = true;
-                            Debug.Log($"Hit object with {randomNumber} roll.");
-                        }
-                        else
-                        {
-                            Debug.Log($"Missed object with {randomNumber} roll.");
                         }
                         if (hitted)
                         {
@@ -128,6 +129,11 @@ public class RangedWeapon : Weapon
 
         Invoke("ResetShot", fireRate);
 
+    }
+
+    private void MuzzleFlash()
+    {
+        Instantiate(muzzleFlashes[UnityEngine.Random.Range(0, muzzleFlashes.Length - 1)], muzzleFlashParent);
     }
 
     private void Recoil()
@@ -160,6 +166,11 @@ public class RangedWeapon : Weapon
         }
         inventoryEventChannel.RemoveAmountOfItems?.Invoke(neededAmmunition, neededAmmo);
         currentAmmo = currentAmmo + neededAmmo;
+    }
+
+    private float GetRecoilEffectOnAccuracy()
+    {
+        return recoilEffectToAccuracy.Evaluate((float)_currentShotsInRow / 10);
     }
 
     public bool CanReload()

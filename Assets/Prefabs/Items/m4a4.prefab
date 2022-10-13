@@ -228,6 +228,37 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &4013145357943477557
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4382572289086799441}
+  m_Layer: 0
+  m_Name: MuzzleFlashPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4382572289086799441
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4013145357943477557}
+  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
+  m_LocalPosition: {x: 0.625, y: -0.035, z: 0.1168}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7379327462327495509}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
 --- !u!1 &4350669871733712202
 GameObject:
   m_ObjectHideFlags: 0
@@ -514,6 +545,7 @@ Transform:
   - {fileID: 5975513496411519144}
   - {fileID: 2217916449286809253}
   - {fileID: 2217916447496860941}
+  - {fileID: 4382572289086799441}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -531,8 +563,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weapon: {fileID: 11400000, guid: 9dbc594868b332e4599d6d46605fdddf, type: 2}
   weaponSkill: {fileID: 11400000, guid: 85a497562efa3ef468bfa12fdbfaf8ea, type: 2}
-  damage: 0
-  range: 0
+  damage: 2.5
+  range: 100
   weaponAttackAnimation: 
   weaponReloadAnimation: 
   rightHandPos: {fileID: 2217916449286809253}
@@ -544,14 +576,15 @@ MonoBehaviour:
   playerEventChannel: {fileID: 11400000, guid: 707d7a0e19393aa428d0cfa2eafdf608, type: 2}
   inventoryEventChannel: {fileID: 11400000, guid: 6b7520e56ff7e1e478127af115e1efb5, type: 2}
   playerSkillEventChannel: {fileID: 11400000, guid: c2a92a5719962d845b9b42092fff225c, type: 2}
+  muzzleFlashParent: {fileID: 4382572289086799441}
   neededAmmunition: {fileID: 11400000, guid: 2a9774e99dd03b94da727fefa52ecf74, type: 2}
   currentAmmo: 0
-  maxAmmo: 60
+  maxAmmo: 512
   automatic: 1
   fireRate: 0.18
   baseHitChance: 45
   recoilPower: 2.1
-  recoilEffectToHitChance:
+  recoilEffectToAccuracy:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
@@ -578,6 +611,10 @@ MonoBehaviour:
   maxRecoilMovementYAxis: 2.7
   minRecoilMovementYAxis: -3.4
   recoilResetTime: 0.5
+  muzzleFlashes:
+  - {fileID: 3143798823777783, guid: 925ffb78f945005418e519240e508a96, type: 3}
+  - {fileID: 6914922822319412134, guid: 13ab0326c13fbc94e86bd25a2f09dd06, type: 3}
+  - {fileID: 6013890894387117823, guid: c8760ea7319b93f41bdeac11752874c7, type: 3}
 --- !u!114 &5934445175227468788
 MonoBehaviour:
   m_ObjectHideFlags: 0
