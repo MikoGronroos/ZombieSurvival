@@ -30,8 +30,6 @@ public class RangedWeapon : Weapon
     [Header("Recoil")]
     [SerializeField] private float recoilPower;
     [SerializeField] private AnimationCurve recoilEffectToAccuracy;
-    [SerializeField] private float maxRecoilMovementYAxis;
-    [SerializeField] private float minRecoilMovementYAxis;
 
     [SerializeField] private float recoilResetTime = 0f;
 
@@ -41,14 +39,12 @@ public class RangedWeapon : Weapon
     private bool _shooting = false;
     private bool _reloading = false;
     private bool _readyToShoot = true;
-    [SerializeField] private int _currentShotsInRow;
-    private Vector3 _startLocalEulerAngles;
+    private int _currentShotsInRow;
     private Coroutine _recoil;
 
     private void Start()
     {
         currentAmmo = maxAmmo;
-        _startLocalEulerAngles = transform.localEulerAngles;
     }
 
     private void OnEnable()
@@ -79,12 +75,12 @@ public class RangedWeapon : Weapon
         }
     }
 
-    private IEnumerator LerpRecoil(Vector3 start, Vector3 end, float lerpTime = 1)
+    private IEnumerator LerpRecoil(float start, float end, float lerpTime = 1)
     {
         float timeElapsed = 0;
         while (timeElapsed < lerpTime)
         {
-            transform.localEulerAngles = Vector3.Lerp(start, end, timeElapsed / lerpTime);
+            transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, Mathf.Clamp(Mathf.Lerp(start, end, timeElapsed / lerpTime), 0, 360), transform.localEulerAngles.z);
             timeElapsed = Mathf.Clamp(timeElapsed + Time.deltaTime, 0, lerpTime);
             yield return null;
         }
@@ -112,7 +108,6 @@ public class RangedWeapon : Weapon
                         bool hitted = false;
                         float hitChance = baseHitChance - (1 * GetRecoilEffectOnAccuracy() * 10);
                         float randomNumber = UnityEngine.Random.Range(0, 100);
-                        Debug.Log($"hitChance: {hitChance}");
                         if (randomNumber <= hitChance) 
                         { 
                             hitted = true;
@@ -138,12 +133,12 @@ public class RangedWeapon : Weapon
 
     private void Recoil()
     {
-        transform.localRotation = Quaternion.Euler(0, Mathf.Clamp(transform.localEulerAngles.y + recoilPower, minRecoilMovementYAxis, maxRecoilMovementYAxis),0);
+        transform.localEulerAngles = new Vector3(0, transform.localEulerAngles.y - recoilPower, 0);
         if (_recoil != null)
         {
             StopCoroutine(_recoil);
         }
-        _recoil = StartCoroutine(LerpRecoil(transform.localEulerAngles, _startLocalEulerAngles, recoilResetTime));
+        _recoil = StartCoroutine(LerpRecoil(transform.localEulerAngles.y, 360, recoilResetTime));
     }
 
     private void ResetShot()

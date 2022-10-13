@@ -784,7 +784,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   containerName: Sports bag
   interactionTime: 1
-  containerItems: []
+  containerItems:
+  - {fileID: 11400000, guid: 907ca5e2ae621994fb103613043b1f1d, type: 2}
   inventoryChannel: {fileID: 11400000, guid: 6b7520e56ff7e1e478127af115e1efb5, type: 2}
 --- !u!1 &134714734
 GameObject:
@@ -9602,6 +9603,7 @@ MonoBehaviour:
   minRecoilMovementYAxis: 0
   recoilResetTime: 0
   muzzleFlashes: []
+  _currentShotsInRow: 0
 --- !u!4 &1657807078987433718
 Transform:
   m_ObjectHideFlags: 0
