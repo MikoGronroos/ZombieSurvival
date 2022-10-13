@@ -563,7 +563,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weapon: {fileID: 11400000, guid: 9dbc594868b332e4599d6d46605fdddf, type: 2}
   weaponSkill: {fileID: 11400000, guid: 85a497562efa3ef468bfa12fdbfaf8ea, type: 2}
-  damage: 2.5
+  damage: 10
   range: 100
   weaponAttackAnimation: 
   weaponReloadAnimation: 
@@ -608,8 +608,6 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  maxRecoilMovementYAxis: 2.7
-  minRecoilMovementYAxis: -3.4
   recoilResetTime: 0.5
   muzzleFlashes:
   - {fileID: 3143798823777783, guid: 925ffb78f945005418e519240e508a96, type: 3}

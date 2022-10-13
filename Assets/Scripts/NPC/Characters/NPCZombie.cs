@@ -59,6 +59,8 @@ public class MoveState : State
 
     public override void RunState(StateMachine machine)
     {
+        if (!_npcBase.CanMove) return;
+
         _npcBase.NavigationSystem.MoveToPosition(_target.position);
     }
 }
@@ -79,7 +81,6 @@ public class AttackState : State
     public override void EnterState(StateMachine machine)
     {
         _npcBase.AnimationSystem.PlayAnimation("Unarmed-Run-Forward-Attack1-Right");
-        _npcBase.NavigationSystem.ToggleAgent(false);
         _timer = new Timer(_attackSpeed, Attack);
     }
 

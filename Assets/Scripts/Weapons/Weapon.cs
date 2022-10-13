@@ -10,8 +10,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] protected float range;
 
     [Header("Animations")]
-    [SerializeField] protected string weaponAttackAnimation;
-    [SerializeField] protected string weaponReloadAnimation;
+    [SerializeField] protected string weaponAimAnimation;
 
     [Header("Hand Positions")]
     [SerializeField] private Transform rightHandPos;
@@ -28,14 +27,9 @@ public class Weapon : MonoBehaviour
 
     public virtual void EndAttack() { }
 
-    public string GetWeaponAttackAnimation()
+    public string GetWeaponAimAnimation()
     {
-        return weaponAttackAnimation;
-    }
-
-    public string GetWeaponReloadAnimation()
-    {
-        return weaponReloadAnimation;
+        return weaponAimAnimation;
     }
 
 }

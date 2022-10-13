@@ -13,6 +13,8 @@ public class NPCBase : StateMachine, IDamageable
 
     [SerializeField] private bool canMove;
 
+    public bool CanMove { get { return canMove; } }
+
     public HealthSystem HealthSystem { get { return healthSystem; } }
 
     public NavigationSystem NavigationSystem { get { return navigationSystem; } }
@@ -26,10 +28,7 @@ public class NPCBase : StateMachine, IDamageable
         healthSystem.SetupHealthSystem(OnHealthHitZero);
         combatSystem.SetupCombatSystem(transform);
         animationSystem.SetupAnimationSystem(GetComponent<Animator>());
-        if (canMove)
-        {
-            navigationSystem.SetupNavigationSystem(GetComponent<NavMeshAgent>());
-        }
+        navigationSystem.SetupNavigationSystem(GetComponent<NavMeshAgent>());
     }
 
     public void DoDamage(float damage)

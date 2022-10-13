@@ -22,6 +22,5 @@ public class FStateAttack : FState
 
     public override void LogicUpdate()
     {
-        _character.AnimationSystem.PlayAnimation(_character.WeaponController.CurrentWeapon.GetWeaponAttackAnimation());
     }
 }

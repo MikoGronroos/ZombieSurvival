@@ -99,27 +99,21 @@ public class RangedWeapon : Weapon
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out var hit, Mathf.Infinity))
         {
-            if (CheckRange(hit.transform))
+            Transform firstHit = playerEventChannel.GetTransformFromRaycast?.Invoke(hit.transform.GetComponent<Collider>().bounds.center, range);
+            if (firstHit.TryGetComponent(out IDamageable damageable))
             {
-                if ((bool)playerEventChannel.TransformIsVisibleEvent?.Invoke(hit.transform))
+                bool hitted = false;
+                float hitChance = Mathf.Clamp(baseHitChance - (1 * GetRecoilEffectOnAccuracy() * 10) + weaponSkill.Level * 5, 0, 90);
+                float randomNumber = UnityEngine.Random.Range(0, 100);
+                if (randomNumber <= hitChance)
                 {
-                    if (hit.transform.TryGetComponent(out IDamageable damageable))
-                    {
-                        bool hitted = false;
-                        float hitChance = Mathf.Clamp(baseHitChance - (1 * GetRecoilEffectOnAccuracy() * 10) + weaponSkill.Level * 5, 0, 90);
-                        Debug.Log(hitChance);
-                        float randomNumber = UnityEngine.Random.Range(0, 100);
-                        if (randomNumber <= hitChance) 
-                        { 
-                            hitted = true;
-                        }
-                        if (hitted)
-                        {
-                            damageable.DoDamage(damage);
-                        }
-                        playerSkillEventChannel.ProgressSkillEvent?.Invoke(weaponSkill);
-                    }
+                    hitted = true;
                 }
+                if (hitted)
+                {
+                    damageable.DoDamage(damage);
+                }
+                playerSkillEventChannel.ProgressSkillEvent?.Invoke(weaponSkill);
             }
         }
 
