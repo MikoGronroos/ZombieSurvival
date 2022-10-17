@@ -3,9 +3,9 @@ using UnityEngine;
 public class AnimationMethods : MonoBehaviour
 {
 
-    public void ShootEvent()
+    public void EndMeleeAttack()
     {
-        AnimMethodChannel.ShootEvent?.Invoke();
+        AnimMethodChannel.EndMeleeAttack?.Invoke();
     }
 
 }

@@ -24,13 +24,12 @@ public class WeaponController : MonoBehaviour
         currentWeapon = weapon;
     }
 
-
     public void EnableWeaponCollider()
     {
 
         if (currentWeapon == null) return;
 
-        currentWeapon.Attack();
+        (currentWeapon as MeleeWeapon).EnableWeaponCollider();
     }
 
     public void DisableWeaponCollider()
@@ -38,7 +37,7 @@ public class WeaponController : MonoBehaviour
 
         if (currentWeapon == null) return;
 
-        currentWeapon.EndAttack();
+        (currentWeapon as MeleeWeapon).DisableWeaponCollider();
     }
 
 }

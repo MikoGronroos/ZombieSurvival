@@ -18,3 +18,11 @@ MonoBehaviour:
     currentStackSize: 1
     equipped: 0
     itemIndexInDatabase: 0
+  - item: {fileID: 11400000, guid: 9dbc594868b332e4599d6d46605fdddf, type: 2}
+    currentStackSize: 1
+    equipped: 0
+    itemIndexInDatabase: 1
+  - item: {fileID: 11400000, guid: af2de87cbc1b79a40bc815a13f1f70ba, type: 2}
+    currentStackSize: 1
+    equipped: 0
+    itemIndexInDatabase: 2

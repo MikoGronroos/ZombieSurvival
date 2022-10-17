@@ -10,14 +10,14 @@ public class MeleeWeapon : Weapon
         weaponCollider = GetComponent<Collider>();
     }
 
-    public override void Attack()
+    public void EnableWeaponCollider()
     {
         if (weaponCollider == null) return;
 
         weaponCollider.enabled = true;
     }
 
-    public override void EndAttack()
+    public void DisableWeaponCollider()
     {
         if (weaponCollider == null) return;
 

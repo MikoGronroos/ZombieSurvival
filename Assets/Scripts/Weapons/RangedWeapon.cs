@@ -173,9 +173,4 @@ public class RangedWeapon : Weapon
         return true;
     }
 
-    private bool CheckRange(Transform target)
-    {
-        return Vector3.Distance(new Vector3(transform.position.x, 0, transform.position.z), new Vector3(target.position.x, 0, target.position.z)) < range;
-    }
-
 }

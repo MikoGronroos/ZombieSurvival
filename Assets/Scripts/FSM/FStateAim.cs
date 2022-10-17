@@ -6,6 +6,7 @@ public class FStateAim: FState
     private bool _aiming;
     private bool _moving;
     private bool _reloading;
+    private bool _attacking;
 
     public FStateAim(FCharacter character, FStateMachine stateMachine, InputEventChannel inputEventChannel) : base(character, stateMachine, inputEventChannel)
     {
@@ -17,6 +18,7 @@ public class FStateAim: FState
         _aiming = true;
         _moving = false;
         _reloading = false;
+        _attacking = false;
     }
 
     public override void HandleInput()
@@ -30,6 +32,8 @@ public class FStateAim: FState
 
         _moving = _inputEventChannel.MoveVector.magnitude != 0;
 
+        _attacking = _inputEventChannel.IsAttacking;
+
     }
 
     public override void LogicUpdate()
@@ -42,7 +46,15 @@ public class FStateAim: FState
 
         if (!_aiming)
         {
-            //_stateMachine.ChangeState(_character.fStateIdle);
+            _stateMachine.ChangeState(_character.fStateIdle);
+        }
+
+        if (_attacking)
+        {
+            if (_character.WeaponController.CurrentWeapon.GetWeaponAttackAnimation() != "")
+            {
+                _stateMachine.ChangeState(_character.fStateAttack);
+            }
         }
 
         Ray cameraRay = _character.Camera.ScreenPointToRay(Input.mousePosition);
