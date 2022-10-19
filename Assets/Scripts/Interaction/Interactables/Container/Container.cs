@@ -2,12 +2,14 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Container : MonoBehaviour, IInteractable
+public class Container : MonoBehaviour, IInteractable, ISaveable
 {
 
     [SerializeField] private string containerName;
 
     [SerializeField] private float interactionTime;
+
+    [SerializeField] private bool hasBeenOpened;
 
     [SerializeField] private List<Item> containerItems = new List<Item>();
 
@@ -20,11 +22,12 @@ public class Container : MonoBehaviour, IInteractable
 
     public float GetInteractionTime()
     {
-        return interactionTime;
+        return hasBeenOpened ? 0 : interactionTime;
     }
 
     public void Interact()
     {
+        hasBeenOpened = true;
         inventoryChannel.OpenedContainerEvent?.Invoke(containerItems, ItemLooting);
     }
 
@@ -55,5 +58,29 @@ public class Container : MonoBehaviour, IInteractable
     {
         containerItems.RemoveAt(index);
     }
+
+    public void RestoreState(object state)
+    {
+        var data = (SaveData)state;
+        hasBeenOpened = data.hasBeenOpened;
+        containerItems = data.items;
+    }
+
+    public object CaptureState()
+    {
+        return new SaveData {
+            hasBeenOpened = hasBeenOpened,
+            items = containerItems
+        };
+    }
+
+    [Serializable]
+    public struct SaveData
+    {
+        public bool hasBeenOpened;
+        public List<Item> items;
+    }
+
+
 
 }

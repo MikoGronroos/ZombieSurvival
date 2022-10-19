@@ -8,6 +8,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float runMovemenSpeed;
     [SerializeField] private float aimMovementSpeed;
 
+    [SerializeField] private bool canMove = true;
+
+    [SerializeField] private Vector3 movementVector;
+
+    public bool CanMove { get { return canMove; } }
+
     private float _currentMovementSpeed
     {
         get
@@ -44,8 +50,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private InteractionData interactionData;
     [SerializeField] private InputEventChannel inputEventChannel;
 
-    [SerializeField] private PlayerState currentPlayerState;
-
     private AnimationSystem _animationSystem = new AnimationSystem();
     private Camera _camera;
 
@@ -72,16 +76,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private bool IsMoving()
-    {
-        return inputEventChannel.MoveVector.magnitude != 0;
-    }
-
-    private void MoveOnlyForward()
-    {
-        controller.Move(transform.forward * _currentMovementSpeed * Time.deltaTime);
-    }
-
     private void MoveTowardsInput()
     {
         Vector3 moveDir = inputEventChannel.MoveVector.normalized;
@@ -104,108 +98,27 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-
-        switch (currentPlayerState)
+        movementVector = inputEventChannel.MoveVector;
+        if (canMove)
         {
-            case PlayerState.Idle:
-                if (inputEventChannel.IsAiming)
-                {
-                    currentPlayerState = PlayerState.Aiming;
-                    break;
-                }
-                if (IsMoving())
-                {
-                    currentPlayerState = inputEventChannel.IsRunning ? PlayerState.Running : PlayerState.Walking;
-                    break;
-                }
-                break;
-            case PlayerState.Walking:
-                if (inputEventChannel.IsAiming)
-                {
-                    currentPlayerState = PlayerState.Aiming;
-                    break;
-                }
-                if (!IsMoving())
-                {
-                    currentPlayerState = PlayerState.Idle;
-                    break;
-                }
-                currentPlayerState = inputEventChannel.IsRunning ? PlayerState.Running : PlayerState.Walking;
-                RotateMovingPlayer();
-                MoveOnlyForward();
-                break;
-            case PlayerState.Running:
-                if (inputEventChannel.IsAiming)
-                {
-                    currentPlayerState = PlayerState.Aiming;
-                    break;
-                }
-                if (!IsMoving())
-                {
-                    currentPlayerState = PlayerState.Idle;
-                    break;
-                }
-                currentPlayerState = inputEventChannel.IsRunning ? PlayerState.Running : PlayerState.Walking;
-                RotateMovingPlayer();
-                MoveOnlyForward();
-                break;
-            case PlayerState.Attacking:
-                break;
-            case PlayerState.Looting:
-                break;
-            case PlayerState.Aiming:
-                if (!inputEventChannel.IsAiming)
-                {
-                    currentPlayerState = PlayerState.Idle;
-                    break;
-                }
-                MoveTowardsInput();
-                RotateTowardsMousePosition();
-                break;
+            MoveTowardsInput();
+            if (inputEventChannel.MoveVector.magnitude != 0 && !inputEventChannel.IsAiming)
+            {
+                _animationSystem.PlayAnimation("Walk");
+            }
+            else if(!inputEventChannel.IsAiming)
+            {
+                _animationSystem.PlayAnimation("Idle");
+            }
         }
-    }
-
-    private void LateUpdate()
-    {
-        AnimationController();
-    }
-
-    private void AnimationController()
-    {
-        string animationName = "";
-        switch (currentPlayerState)
+        if (inputEventChannel.IsAiming)
         {
-            case PlayerState.Idle:
-                animationName = "Idle";
-                break;
-            case PlayerState.Walking:
-                animationName = "Walk";
-                break;
-            case PlayerState.Running:
-                animationName = "Run";
-                break;
-            case PlayerState.Attacking:
-                animationName = "Attack";
-                break;
-            case PlayerState.Looting:
-                animationName = "Loot";
-                break;
-            case PlayerState.Aiming:
-                animationName = "Aim";
-                break;
+            RotateTowardsMousePosition();
+            _animationSystem.PlayAnimation("Aim");
         }
-
-        _animationSystem.PlayAnimation(animationName);
-
-    }
-
-    private enum PlayerState
-    {
-        Idle,
-        Walking,
-        Running,
-        Attacking,
-        Aiming,
-        Looting
+        else
+        {
+            RotateMovingPlayer();
+        }
     }
 }

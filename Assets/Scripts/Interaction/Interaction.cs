@@ -68,16 +68,19 @@ public class Interaction : MonoBehaviour
 
     private IEnumerator Interacting(IInteractable interactable)
     {
-        isInteracting = true;
-        userInterfaceChannel.ToggleGeneralInteractionDelayUI?.Invoke(true);
-        Timer timer = new Timer(interactable.GetInteractionTime(), null);
-        interactionData.StartProgressBarEvent?.Invoke(interactable.GetInteractionTime());
-        while (timer.CurrentTime < timer.MaxTime)
+        if (interactable.GetInteractionTime() > 0)
         {
-            timer.Tick();
-            yield return null;
+            isInteracting = true;
+            userInterfaceChannel.ToggleGeneralInteractionDelayUI?.Invoke(true);
+            Timer timer = new Timer(interactable.GetInteractionTime(), null);
+            interactionData.StartProgressBarEvent?.Invoke(interactable.GetInteractionTime());
+            while (timer.CurrentTime < timer.MaxTime)
+            {
+                timer.Tick();
+                yield return null;
+            }
+            userInterfaceChannel.ToggleGeneralInteractionDelayUI?.Invoke(false);
         }
-        userInterfaceChannel.ToggleGeneralInteractionDelayUI?.Invoke(false);
         interactable.Interact();
         isInteracting = false;
     }
