@@ -52,14 +52,7 @@ public class Container : MonoBehaviour, IInteractable, ISaveable
     {
         if (fullLooting)
         {
-            for (int i = containerItems.Count - 1; i >= 0;)
-            {
-                StartCoroutine(LootingCoroutine(ItemPickupSpeedFormula.GetItemPickupSpeed(containerItems[i].Item.Weight), i,() => {
-                    LootItem(i);
-                    inventoryChannel.ItemLootedEvent?.Invoke(i);
-                    i--;
-                }));
-            }
+            StartCoroutine(FullLoot());
         }
         else
         {
@@ -72,15 +65,22 @@ public class Container : MonoBehaviour, IInteractable, ISaveable
         }
     }
 
+    private IEnumerator FullLoot()
+    {
+        for (int i = containerItems.Count - 1; i >= 0; i--)
+        {
+            StartCoroutine(LootingCoroutine(ItemPickupSpeedFormula.GetItemPickupSpeed(containerItems[i].Item.Weight), i, () => {
+                LootItem(i);
+                inventoryChannel.ItemLootedEvent?.Invoke(i);
+            }));
+            yield return new WaitForSeconds(ItemPickupSpeedFormula.GetItemPickupSpeed(containerItems[i].Item.Weight));
+        }
+    }
+
     private IEnumerator LootingCoroutine(float time, int index, Action callback)
     {
         inventoryChannel.LootItemEvent?.Invoke(time, index);
-        Timer timer = new Timer(time, null);
-        while (timer.CurrentTime < timer.MaxTime)
-        {
-            timer.Tick();
-            yield return null;
-        }
+        yield return new WaitForSeconds(time);
         callback?.Invoke();
     }
 

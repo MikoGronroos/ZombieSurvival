@@ -81,11 +81,10 @@ public class InventoryUI : MonoBehaviour
 
     #endregion
 
-    private void InventoryItemClicked(int id, Item item, Vector3 pos, InventoryDelay delay, Action<bool, int> callback)
+    private void InventoryItemClicked(int id, Item item, Vector3 pos, Action<bool, int> callback)
     {
         inventoryItemClickedPopup.Id = id;
         inventoryItemClickedPopup.Callback = callback;
-        inventoryItemClickedPopup.InventoryDelay = delay;
         inventoryItemClickedPopup.transform.position = pos;
         inventoryItemClickedPopup.CurrentItem = item;
         inventoryItemClickedPopup.TogglePanel(true);

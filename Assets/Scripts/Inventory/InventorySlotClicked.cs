@@ -15,24 +15,10 @@ public class InventorySlotClicked : MonoBehaviour
     [SerializeField] private InteractionData interactionData;
 
     private Action<bool, int> _callback;
-    private InventoryDelay inventoryDelay;
 
     public int Id { get { return id; } set { id = value; } }
 
     public Item CurrentItem { get { return currentItem; } set { currentItem = value; } }
-
-    public InventoryDelay InventoryDelay
-    {
-        get
-        { 
-            return inventoryDelay;
-        } 
-        set
-        {
-            inventoryDelay = value;
-            interactionData.InteractedEvent?.Invoke(inventoryDelay);
-        } 
-    }
 
     public Action<bool, int> Callback { get { return _callback; } set { _callback = value; } }
 

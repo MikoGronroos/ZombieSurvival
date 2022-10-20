@@ -9,7 +9,7 @@ public class InventoryChannel : EventChannelBase
 
     public EventChannel InventoryFull { get; set; }
 
-    public delegate void InventorySlotClicked(int index, Item item, Vector3 pos, InventoryDelay delay, Action<bool, int> callback = null);
+    public delegate void InventorySlotClicked(int index, Item item, Vector3 pos, Action<bool, int> callback = null);
 
     public InventorySlotClicked InventorySlotClickedEvent { get; set; }
 

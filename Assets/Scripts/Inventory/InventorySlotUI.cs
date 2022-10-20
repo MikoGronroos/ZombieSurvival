@@ -30,7 +30,7 @@ public class InventorySlotUI : InventoryDelay, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        inventoryChannel.InventorySlotClickedEvent?.Invoke(inventoryId, currentItem, transform.position, this, _callback);
+        inventoryChannel.InventorySlotClickedEvent?.Invoke(inventoryId, currentItem, transform.position, _callback);
     }
 
 }

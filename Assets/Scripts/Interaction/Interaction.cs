@@ -72,12 +72,7 @@ public class Interaction : MonoBehaviour
             isInteracting = true;
             userInterfaceChannel.InteractedEvent?.Invoke(interactable.GetInteractionTime());
             userInterfaceChannel.ToggleGeneralInteractionDelayUI?.Invoke(true);
-            Timer timer = new Timer(interactable.GetInteractionTime(), null);
-            while (timer.CurrentTime < timer.MaxTime)
-            {
-                timer.Tick();
-                yield return null;
-            }
+            yield return new WaitForSeconds(interactable.GetInteractionTime());
             userInterfaceChannel.ToggleGeneralInteractionDelayUI?.Invoke(false);
         }
         interactable.Interact();
