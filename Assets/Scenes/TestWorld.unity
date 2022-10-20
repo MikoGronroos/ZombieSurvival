@@ -790,6 +790,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 907ca5e2ae621994fb103613043b1f1d, type: 2}
   - {fileID: 11400000, guid: 33362f6b108a66e4caa3792f1848a53f, type: 2}
   inventoryChannel: {fileID: 11400000, guid: 6b7520e56ff7e1e478127af115e1efb5, type: 2}
+  itemDatabaseChannel: {fileID: 11400000, guid: 3de50ed75ebbd73489ddce25d36ef9f0, type: 2}
 --- !u!114 &129886266
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4519,6 +4520,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 33362f6b108a66e4caa3792f1848a53f, type: 2}
   - {fileID: 11400000, guid: 907ca5e2ae621994fb103613043b1f1d, type: 2}
   inventoryChannel: {fileID: 11400000, guid: 6b7520e56ff7e1e478127af115e1efb5, type: 2}
+  itemDatabaseChannel: {fileID: 11400000, guid: 3de50ed75ebbd73489ddce25d36ef9f0, type: 2}
 --- !u!65 &838791133
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8902,7 +8904,7 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 7292049014377839975, guid: 886943efb62194240b199b5d4f5a9cb5, type: 3}
+    - target: {fileID: 0}
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}

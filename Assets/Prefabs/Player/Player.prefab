@@ -180,7 +180,6 @@ GameObject:
   - component: {fileID: 2410929357729582487}
   - component: {fileID: 3766892354733497316}
   - component: {fileID: 1503796230288647225}
-  - component: {fileID: 7292049014377839975}
   - component: {fileID: 3977502562035089348}
   - component: {fileID: 3192530052414184199}
   m_Layer: 0
@@ -218,15 +217,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0291bc12bba73f44ab378590e175d378, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkMovemenSpeed: 2.75
+  walkMovemenSpeed: 2.65
   runMovemenSpeed: 5
   aimMovementSpeed: 0.9
+  canMove: 1
+  movementVector: {x: 0, y: 0, z: 0}
   turnSmoothTime: 0.01
   animator: {fileID: 8870599160458679687}
   controller: {fileID: 8870599160458679690}
   interactionData: {fileID: 11400000, guid: fcf0a7cae64868942b3159543838ab7b, type: 2}
   inputEventChannel: {fileID: 11400000, guid: 881aa76ade36a60468c90e5598bf5627, type: 2}
-  currentPlayerState: 0
 --- !u!114 &8870599160458679682
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -392,27 +392,6 @@ MonoBehaviour:
   - m_Rig: {fileID: 3693036408416127628}
     m_Active: 1
   m_Effectors: []
---- !u!114 &7292049014377839975
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8870599160458679695}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95bd33b7c5959d849a46a16505311fac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  walkMovemenSpeed: 2.75
-  runMovemenSpeed: 5
-  aimMovementSpeed: 0.9
-  turnSmoothTime: 0.04
-  weaponController: {fileID: 2410929357729582487}
-  controller: {fileID: 8870599160458679690}
-  inputEventChannel: {fileID: 11400000, guid: 881aa76ade36a60468c90e5598bf5627, type: 2}
-  playerEventChannel: {fileID: 11400000, guid: 707d7a0e19393aa428d0cfa2eafdf608, type: 2}
-  animator: {fileID: 8870599160458679687}
 --- !u!114 &3977502562035089348
 MonoBehaviour:
   m_ObjectHideFlags: 0

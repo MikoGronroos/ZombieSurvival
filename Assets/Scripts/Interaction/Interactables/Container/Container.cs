@@ -14,6 +14,7 @@ public class Container : MonoBehaviour, IInteractable, ISaveable
     [SerializeField] private List<Item> containerItems = new List<Item>();
 
     [SerializeField] private InventoryChannel inventoryChannel;
+    [SerializeField] private ItemDatabaseChannel itemDatabaseChannel;
 
     public string GetDescription()
     {
@@ -63,14 +64,27 @@ public class Container : MonoBehaviour, IInteractable, ISaveable
     {
         var data = (SaveData)state;
         hasBeenOpened = data.hasBeenOpened;
-        containerItems = data.items;
+
+        containerItems.Clear();
+        foreach (var item in data.items)
+        {
+            containerItems.Add(itemDatabaseChannel.FetchItemFromDatabaseWithID?.Invoke(item));
+        }
+        inventoryChannel.OpenedContainerEvent?.Invoke(containerItems, ItemLooting);
     }
 
     public object CaptureState()
     {
+        List<int> ids = new List<int>();
+
+        foreach (var item in containerItems)
+        {
+            ids.Add(item.ItemId);
+        }
+
         return new SaveData {
             hasBeenOpened = hasBeenOpened,
-            items = containerItems
+            items = ids
         };
     }
 
@@ -78,7 +92,7 @@ public class Container : MonoBehaviour, IInteractable, ISaveable
     public struct SaveData
     {
         public bool hasBeenOpened;
-        public List<Item> items;
+        public List<int> items;
     }
 
 
