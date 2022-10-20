@@ -148,7 +148,7 @@ public class InventoryManager : MonoBehaviour
 
     private void CreateNewStack(Item item)
     {
-        currentDatabase.Database.Add(new DatabaseItem(item, currentDatabase.Database.Count));
+        currentDatabase.Database.Add(new DatabaseItem(item));
         SendInventoryDrawRequestToUI();
     }
 

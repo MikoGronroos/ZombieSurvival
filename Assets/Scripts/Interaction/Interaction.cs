@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using Finark.Utils;
 using System.Collections;
-using System;
 
 public class Interaction : MonoBehaviour
 {
@@ -71,14 +70,9 @@ public class Interaction : MonoBehaviour
         if (interactable.GetInteractionTime() > 0)
         {
             isInteracting = true;
+            userInterfaceChannel.InteractedEvent?.Invoke(interactable.GetInteractionTime());
             userInterfaceChannel.ToggleGeneralInteractionDelayUI?.Invoke(true);
-            Timer timer = new Timer(interactable.GetInteractionTime(), null);
-            interactionData.StartProgressBarEvent?.Invoke(interactable.GetInteractionTime());
-            while (timer.CurrentTime < timer.MaxTime)
-            {
-                timer.Tick();
-                yield return null;
-            }
+            yield return new WaitForSeconds(interactable.GetInteractionTime());
             userInterfaceChannel.ToggleGeneralInteractionDelayUI?.Invoke(false);
         }
         interactable.Interact();

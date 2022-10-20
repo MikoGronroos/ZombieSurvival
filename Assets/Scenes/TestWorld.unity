@@ -787,8 +787,12 @@ MonoBehaviour:
   interactionTime: 1
   hasBeenOpened: 0
   containerItems:
-  - {fileID: 11400000, guid: 907ca5e2ae621994fb103613043b1f1d, type: 2}
-  - {fileID: 11400000, guid: 33362f6b108a66e4caa3792f1848a53f, type: 2}
+  - Item: {fileID: 11400000, guid: 907ca5e2ae621994fb103613043b1f1d, type: 2}
+    Id: 1
+  - Item: {fileID: 11400000, guid: 9dbc594868b332e4599d6d46605fdddf, type: 2}
+    Id: 2
+  - Item: {fileID: 11400000, guid: c2a426159667e1e4ebbde59e8f560c2a, type: 2}
+    Id: 3
   inventoryChannel: {fileID: 11400000, guid: 6b7520e56ff7e1e478127af115e1efb5, type: 2}
   itemDatabaseChannel: {fileID: 11400000, guid: 3de50ed75ebbd73489ddce25d36ef9f0, type: 2}
 --- !u!114 &129886266
@@ -1463,6 +1467,8 @@ MonoBehaviour:
   inventoryItemPrefab: {fileID: 4791079306012451701, guid: f08c85b54f41a4f4b815973d2aa2fb1c, type: 3}
   inventoryItemParent: {fileID: 332665039}
   closeLootingUIButton: {fileID: 27104027}
+  interactionData: {fileID: 11400000, guid: fcf0a7cae64868942b3159543838ab7b, type: 2}
+  drawnGameObjects: []
 --- !u!1 &249501945
 GameObject:
   m_ObjectHideFlags: 0
@@ -4516,9 +4522,7 @@ MonoBehaviour:
   containerName: Locker
   interactionTime: 3
   hasBeenOpened: 0
-  containerItems:
-  - {fileID: 11400000, guid: 33362f6b108a66e4caa3792f1848a53f, type: 2}
-  - {fileID: 11400000, guid: 907ca5e2ae621994fb103613043b1f1d, type: 2}
+  containerItems: []
   inventoryChannel: {fileID: 11400000, guid: 6b7520e56ff7e1e478127af115e1efb5, type: 2}
   itemDatabaseChannel: {fileID: 11400000, guid: 3de50ed75ebbd73489ddce25d36ef9f0, type: 2}
 --- !u!65 &838791133
@@ -4682,7 +4686,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactionData: {fileID: 11400000, guid: fcf0a7cae64868942b3159543838ab7b, type: 2}
-  inventorySlot: {fileID: 2483848}
 --- !u!1 &906541423
 GameObject:
   m_ObjectHideFlags: 0
@@ -6776,7 +6779,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7012033b9bd3fb24a85cff3fad1efc79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 0
+  id: 0
   inventorySlotClickedPanel: {fileID: 1827437293}
   currentItem: {fileID: 0}
   inventoryChannel: {fileID: 11400000, guid: 6b7520e56ff7e1e478127af115e1efb5, type: 2}
@@ -8903,10 +8906,6 @@ PrefabInstance:
     - target: {fileID: 7226680995812220415, guid: 886943efb62194240b199b5d4f5a9cb5, type: 3}
       propertyPath: m_Enabled
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_Enabled
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8636737648932847835, guid: 886943efb62194240b199b5d4f5a9cb5, type: 3}
       propertyPath: m_IsActive

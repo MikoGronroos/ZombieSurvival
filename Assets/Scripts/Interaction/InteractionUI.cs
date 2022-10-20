@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System.Collections;
 
 public class InteractionUI : MonoBehaviour
 {
@@ -17,12 +18,14 @@ public class InteractionUI : MonoBehaviour
     {
         userInterfaceChannel.ToggleMouseOnTopOfInteractionUI += ToggleInteractionUI;
         userInterfaceChannel.ToggleGeneralInteractionDelayUI += ToggleGeneralInteractionDelayUI;
+        userInterfaceChannel.InteractedEvent += Interacted;
     }
 
     private void OnDisable()
     {
         userInterfaceChannel.ToggleMouseOnTopOfInteractionUI -= ToggleInteractionUI;
         userInterfaceChannel.ToggleGeneralInteractionDelayUI -= ToggleGeneralInteractionDelayUI;
+        userInterfaceChannel.InteractedEvent -= Interacted;
     }
 
     private void ToggleInteractionUI(Dictionary<string, object> args, Action<Dictionary<string, object>> callback)
@@ -40,8 +43,12 @@ public class InteractionUI : MonoBehaviour
 
     private void ToggleGeneralInteractionDelayUI(bool value)
     {
-        interactionData.InteractedEvent?.Invoke(generalInteractionDelayImage);
         generalInteractionDelayImageBG.SetActive(value);
+    }
+
+    private void Interacted(float time)
+    {
+        interactionData.StartProgressBarEvent?.Invoke(time, generalInteractionDelayImage);
     }
 
 }

@@ -6,29 +6,20 @@ public class InventoryDelayUI : MonoBehaviour
 {
 
     [SerializeField] private InteractionData interactionData;
-    [SerializeField] private InventoryDelay inventorySlot;
 
     private void OnEnable()
     {
-        interactionData.InteractedEvent += InteractedListener;
         interactionData.StartProgressBarEvent += StartProgressBar;
     }
 
     private void OnDisable()
     {
-        interactionData.InteractedEvent -= InteractedListener;
         interactionData.StartProgressBarEvent -= StartProgressBar;
     }
 
-
-    private void InteractedListener(InventoryDelay slot)
+    private void StartProgressBar(float time, InventoryDelay inventoryDelay)
     {
-        inventorySlot = slot;
-    }
-
-    private void StartProgressBar(float time)
-    {
-        StartCoroutine(DelayCoroutine(inventorySlot, time));
+        StartCoroutine(DelayCoroutine(inventoryDelay, time));
     }
 
     private void UpdateLoadingBarState(InventoryDelay slot, float current, float max)
