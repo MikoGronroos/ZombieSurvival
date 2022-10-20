@@ -86,7 +86,7 @@ public class Container : MonoBehaviour, IInteractable, ISaveable
 
     private void LootItem(int index)
     {
-        inventoryChannel.AddAmountOfItems?.Invoke(containerItems[index].Item, 1, ()=> {
+        inventoryChannel.AddAmountOfItems?.Invoke(containerItems[index].Item, containerItems[index].AmountOfItems, ()=> {
             RemoveItemWithIndex(index);
         });
     }
@@ -141,5 +141,6 @@ public class Container : MonoBehaviour, IInteractable, ISaveable
 public class ContainerSlot
 {
     public Item Item;
+    public int AmountOfItems;
     public int Id;
 }

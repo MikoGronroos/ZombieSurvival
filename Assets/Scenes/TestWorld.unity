@@ -788,10 +788,13 @@ MonoBehaviour:
   hasBeenOpened: 0
   containerItems:
   - Item: {fileID: 11400000, guid: 907ca5e2ae621994fb103613043b1f1d, type: 2}
+    AmountOfItems: 2
     Id: 1
   - Item: {fileID: 11400000, guid: 9dbc594868b332e4599d6d46605fdddf, type: 2}
+    AmountOfItems: 1
     Id: 2
   - Item: {fileID: 11400000, guid: c2a426159667e1e4ebbde59e8f560c2a, type: 2}
+    AmountOfItems: 1
     Id: 3
   inventoryChannel: {fileID: 11400000, guid: 6b7520e56ff7e1e478127af115e1efb5, type: 2}
   itemDatabaseChannel: {fileID: 11400000, guid: 3de50ed75ebbd73489ddce25d36ef9f0, type: 2}
