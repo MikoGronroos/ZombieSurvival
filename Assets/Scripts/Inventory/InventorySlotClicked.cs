@@ -29,19 +29,19 @@ public class InventorySlotClicked : MonoBehaviour
 
     public void Equip()
     {
-        inventoryChannel.InventoryEquip?.Invoke(new Dictionary<string, object> { { "Index", id } });
+        inventoryChannel.InventoryEquip?.Invoke(new Dictionary<string, object> { { "Id", id } });
         TogglePanel(false);
     }
 
     public void Dequip()
     {
-        inventoryChannel.InventoryDequip?.Invoke(new Dictionary<string, object> { { "Index", id } });
+        inventoryChannel.InventoryDequip?.Invoke(new Dictionary<string, object> { { "Id", id } });
         TogglePanel(false);
     }
 
     public void Eat()
     {
-        inventoryChannel.InventoryConsume?.Invoke(new Dictionary<string, object> { { "Index", id } });
+        inventoryChannel.InventoryConsume?.Invoke(new Dictionary<string, object> { { "Id", id } });
         TogglePanel(false);
     }
 

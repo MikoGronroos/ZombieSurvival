@@ -18,7 +18,7 @@ public class InventoryChannel : EventChannelBase
 
     public EventChannel InventoryConsume { get; set; }
 
-    public EventChannelDatabaseItem FetchInventoryItemWithIndex { get; set; }
+    public EventChannelDatabaseItem FetchInventoryItemWithId { get; set; }
 
     #region Inventory Manipulation
 

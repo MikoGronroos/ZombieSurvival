@@ -33,7 +33,7 @@ public class PlayerStatsManager : MonoBehaviour
     private void OnInventoryConsumeListener(Dictionary<string, object> args, Action<Dictionary<string, object>> callback)
     {
 
-        var consumable = inventoryChannel?.FetchInventoryItemWithIndex(args).Item as ItemConsumable;
+        var consumable = inventoryChannel?.FetchInventoryItemWithId(args).Item as ItemConsumable;
 
         foreach (var item in consumable.ConsumableValues)
         {

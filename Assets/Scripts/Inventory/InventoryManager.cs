@@ -19,7 +19,7 @@ public class InventoryManager : MonoBehaviour
         inventoryChannel.AddAmountOfItems += AddItem;
         inventoryChannel.RemoveAmountOfItems += RemoveItem;
         inventoryChannel.HasAmountOfItems += HasAmountOfItems;
-        inventoryChannel.FetchInventoryItemWithIndex += FetchInventoryItemWithIndex;
+        inventoryChannel.FetchInventoryItemWithId += FetchInventoryItemWithId;
         inventoryChannel.GetAmountOfItems += GetAmountOfItems;
     }
 
@@ -28,7 +28,7 @@ public class InventoryManager : MonoBehaviour
         inventoryChannel.AddAmountOfItems -= AddItem;
         inventoryChannel.RemoveAmountOfItems -= RemoveItem;
         inventoryChannel.HasAmountOfItems -= HasAmountOfItems;
-        inventoryChannel.FetchInventoryItemWithIndex -= FetchInventoryItemWithIndex;
+        inventoryChannel.FetchInventoryItemWithId -= FetchInventoryItemWithId;
         inventoryChannel.GetAmountOfItems -= GetAmountOfItems;
     }
 
@@ -157,9 +157,17 @@ public class InventoryManager : MonoBehaviour
         return currentDatabase.Database.Count >= currentDatabase.DatabaseMaxSize;
     }
 
-    private DatabaseItem FetchInventoryItemWithIndex(Dictionary<string, object> args, Action<Dictionary<string, object>> callback)
+    private DatabaseItem FetchInventoryItemWithId(Dictionary<string, object> args, Action<Dictionary<string, object>> callback)
     {
-        return currentDatabase.Database[(int)args["Index"]];
+        int id = (int)args["Id"];
+        foreach (var item in currentDatabase.Database)
+        {
+            if (item.SlotId == id)
+            {
+                return item;
+            }
+        }
+        return null;
     }
 
     private void SendInventoryDrawRequestToUI()

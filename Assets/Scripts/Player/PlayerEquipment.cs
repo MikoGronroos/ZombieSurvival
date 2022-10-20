@@ -38,13 +38,13 @@ public partial class PlayerEquipment : MonoBehaviour
 
     private void DequipListener(Dictionary<string, object> args, Action<Dictionary<string, object>> callback)
     {
-        var item = inventoryChannel.FetchInventoryItemWithIndex?.Invoke(args);
+        var item = inventoryChannel.FetchInventoryItemWithId?.Invoke(args);
         DequipItem(item);
     }
 
     private void EquipListener(Dictionary<string, object> args, Action<Dictionary<string, object>> callback)
     {
-        var item = inventoryChannel.FetchInventoryItemWithIndex?.Invoke(args);
+        var item = inventoryChannel.FetchInventoryItemWithId?.Invoke(args);
         EquipItem(item);
     }
 
