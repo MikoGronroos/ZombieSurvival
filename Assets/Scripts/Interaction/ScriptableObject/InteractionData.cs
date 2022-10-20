@@ -6,7 +6,7 @@ public class InteractionData : ScriptableObject
 
     public delegate void Interacted(InventoryDelay slot);
 
-    public delegate void StartProgressBar(float time);
+    public delegate void StartProgressBar(float time, InventoryDelay inventoryDelay);
 
     public delegate bool CanInteract(Transform target);
 

@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,32 +13,36 @@ public class LootingUI : MonoBehaviour
 
     [SerializeField] private Button closeLootingUIButton;
 
-    private List<GameObject> drawnGameObjects = new List<GameObject>();
+    [SerializeField] private InteractionData interactionData;
+
+    [SerializeField] private List<InventorySlotUI> drawnGameObjects = new List<InventorySlotUI>();
 
     private void OnEnable()
     {
         inventoryChannel.OpenedContainerEvent += OnOpenedContainerListener;
+        inventoryChannel.LootItemEvent += Loot;
+        inventoryChannel.ItemLootedEvent += EraseDrawnItemWithIndex;
     }
 
     private void OnDisable()
     {
         inventoryChannel.OpenedContainerEvent -= OnOpenedContainerListener;
+        inventoryChannel.LootItemEvent -= Loot;
+        inventoryChannel.ItemLootedEvent -= EraseDrawnItemWithIndex;
     }
 
-    private void OnOpenedContainerListener(IEnumerable<Item> items, Action<bool,int> callback)
+    private void OnOpenedContainerListener(IEnumerable<ContainerSlot> items, Action<bool,int> callback)
     {
 
         EraseDrawnItems();
-        int index = 0;
         foreach (var item in items)
         {
             GameObject go = Instantiate(inventoryItemPrefab, inventoryItemParent);
             if (go.TryGetComponent(out InventorySlotUI slot))
             {
-                slot.SetupSlot(item.ItemIcon, $"{item.ItemName}", "", index, item, callback);
+                slot.SetupSlot(item.Item.ItemIcon, $"{item.Item.ItemName}", "", item.Id, item.Item, callback);
+                drawnGameObjects.Add(slot);
             }
-            drawnGameObjects.Add(go);
-            index++;
         }
 
 
@@ -52,10 +57,22 @@ public class LootingUI : MonoBehaviour
 
     private void EraseDrawnItems()
     {
-        foreach (var item in drawnGameObjects)
+        for (int i = drawnGameObjects.Count - 1; i >= 0; i--)
         {
-            Destroy(item);
+            Destroy(drawnGameObjects[i].gameObject);
         }
+        drawnGameObjects.Clear();
+    }
+    
+    private void EraseDrawnItemWithIndex(int index)
+    {
+        var gameObject = drawnGameObjects[index];
+        drawnGameObjects.Remove(gameObject);
+        Destroy(gameObject.gameObject);
     }
 
+    private void Loot(float time, int index)
+    {
+        interactionData.StartProgressBarEvent?.Invoke(time, drawnGameObjects[index]);
+    }
 }

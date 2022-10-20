@@ -6,7 +6,7 @@ using System.Collections;
 public class InventorySlotClicked : MonoBehaviour
 {
 
-    [SerializeField] private int index;
+    [SerializeField] private int id;
 
     [SerializeField] private GameObject inventorySlotClickedPanel;
     [SerializeField] private Item currentItem;
@@ -17,7 +17,7 @@ public class InventorySlotClicked : MonoBehaviour
     private Action<bool, int> _callback;
     private InventoryDelay inventoryDelay;
 
-    public int Index { get { return index; } set { index = value; } }
+    public int Id { get { return id; } set { id = value; } }
 
     public Item CurrentItem { get { return currentItem; } set { currentItem = value; } }
 
@@ -43,46 +43,32 @@ public class InventorySlotClicked : MonoBehaviour
 
     public void Equip()
     {
-        inventoryChannel.InventoryEquip?.Invoke(new Dictionary<string, object> { { "Index", index } });
+        inventoryChannel.InventoryEquip?.Invoke(new Dictionary<string, object> { { "Index", id } });
         TogglePanel(false);
     }
 
     public void Dequip()
     {
-        inventoryChannel.InventoryDequip?.Invoke(new Dictionary<string, object> { { "Index", index } });
+        inventoryChannel.InventoryDequip?.Invoke(new Dictionary<string, object> { { "Index", id } });
         TogglePanel(false);
     }
 
     public void Eat()
     {
-        inventoryChannel.InventoryConsume?.Invoke(new Dictionary<string, object> { { "Index", index } });
+        inventoryChannel.InventoryConsume?.Invoke(new Dictionary<string, object> { { "Index", id } });
         TogglePanel(false);
     }
 
     public void Loot()
     {
-        StartCoroutine(ClickActionCoroutine(ItemPickupSpeedFormula.GetItemPickupSpeed(currentItem.Weight), ()=> {
-            _callback?.Invoke(false, index);
-            TogglePanel(false);
-        }));
+        _callback?.Invoke(false, id);
+        TogglePanel(false);
     }
 
     public void LootAll()
     {
         _callback?.Invoke(true, 0);
         TogglePanel(false);
-    }
-
-    private IEnumerator ClickActionCoroutine(float time, Action callback)
-    {
-        Timer timer = new Timer(time, null);
-        interactionData.StartProgressBarEvent?.Invoke(time);
-        while (timer.CurrentTime < timer.MaxTime)
-        {
-            timer.Tick();
-            yield return null;
-        }
-        callback?.Invoke();
     }
 
 }

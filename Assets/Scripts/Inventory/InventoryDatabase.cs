@@ -21,17 +21,17 @@ public class DatabaseItem
     [SerializeField] private Item item;
     [SerializeField] private int currentStackSize = 0;
     [SerializeField] private bool equipped;
-    [SerializeField] private int itemIndexInDatabase;
+    [SerializeField] private int slotId;
 
     public Item Item { get { return item; } private set { } }
     public int CurrentStackSize { get { return currentStackSize; } private set { } }
     public bool Equipped { get { return equipped; } set { equipped = value; } }
-    public int ItemIndexInDatabase { get { return itemIndexInDatabase; } set { itemIndexInDatabase = value; } }
+    public int SlotId { get { return slotId; } set { slotId = value; } }
 
-    public DatabaseItem(Item item, int itemIndexInDatabase)
+    public DatabaseItem(Item item)
     {
         this.item = item;
-        this.itemIndexInDatabase = itemIndexInDatabase;
+        slotId = Random.Range(0,999999999);
         IncrementStack();
     }
 

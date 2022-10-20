@@ -51,7 +51,7 @@ public class InventoryUI : MonoBehaviour
             drawnSlots.Add(newSlot);
             if (newSlot.TryGetComponent(out InventorySlotUI slot))
             {
-                slot.SetupSlot(item.Item.ItemIcon, $"{item.Item.ItemName} x{item.CurrentStackSize}", $"", item.ItemIndexInDatabase, item.Item);
+                slot.SetupSlot(item.Item.ItemIcon, $"{item.Item.ItemName} x{item.CurrentStackSize}", $"", item.SlotId, item.Item);
             }
         }
     }
@@ -81,9 +81,9 @@ public class InventoryUI : MonoBehaviour
 
     #endregion
 
-    private void InventoryItemClicked(int index, Item item, Vector3 pos, InventoryDelay delay, Action<bool, int> callback)
+    private void InventoryItemClicked(int id, Item item, Vector3 pos, InventoryDelay delay, Action<bool, int> callback)
     {
-        inventoryItemClickedPopup.Index = index;
+        inventoryItemClickedPopup.Id = id;
         inventoryItemClickedPopup.Callback = callback;
         inventoryItemClickedPopup.InventoryDelay = delay;
         inventoryItemClickedPopup.transform.position = pos;

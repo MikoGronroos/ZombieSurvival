@@ -37,9 +37,17 @@ public class InventoryChannel : EventChannelBase
 
     #region Looting
 
-    public delegate void OpenedContainer(IEnumerable<Item> items, Action<bool, int> callback);
+    public delegate void OpenedContainer(IEnumerable<ContainerSlot> items, Action<bool, int> callback);
 
     public OpenedContainer OpenedContainerEvent { get; set; }
+
+    public delegate void LootItem(float time, int id);
+
+    public LootItem LootItemEvent { get; set; }
+
+    public delegate void ItemLooted(int id);
+
+    public ItemLooted ItemLootedEvent { get; set; }
 
     #endregion
 
