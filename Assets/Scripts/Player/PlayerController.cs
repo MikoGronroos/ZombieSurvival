@@ -10,8 +10,6 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private bool canMove = true;
 
-    [SerializeField] private Vector3 movementVector;
-
     public bool CanMove { get { return canMove; } }
 
     private float _currentMovementSpeed
@@ -79,7 +77,7 @@ public class PlayerController : MonoBehaviour
     private void MoveTowardsInput()
     {
         Vector3 moveDir = inputEventChannel.MoveVector.normalized;
-        controller.Move(moveDir * _currentMovementSpeed * Time.deltaTime);
+        controller.Move(transform.forward * (moveDir.magnitude * _currentMovementSpeed) * Time.deltaTime);
     }
 
     private void RotateTowardsMousePosition()
@@ -98,7 +96,6 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        movementVector = inputEventChannel.MoveVector;
         if (canMove)
         {
             MoveTowardsInput();

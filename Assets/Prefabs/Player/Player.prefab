@@ -221,8 +221,7 @@ MonoBehaviour:
   runMovemenSpeed: 5
   aimMovementSpeed: 0.9
   canMove: 1
-  movementVector: {x: 0, y: 0, z: 0}
-  turnSmoothTime: 0.01
+  turnSmoothTime: 0.09
   animator: {fileID: 8870599160458679687}
   controller: {fileID: 8870599160458679690}
   interactionData: {fileID: 11400000, guid: fcf0a7cae64868942b3159543838ab7b, type: 2}
