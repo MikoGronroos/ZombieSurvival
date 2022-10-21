@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Finark.Utils;
 using System.Collections;
+using System;
 
 public class Interaction : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class Interaction : MonoBehaviour
 
     private Camera _cam;
     private IInteractable _interactable;
+    private Coroutine _interactableCoroutine;
 
     private void Awake()
     {
@@ -24,19 +26,21 @@ public class Interaction : MonoBehaviour
     {
         interactionData.IsInteractingEvent += GetIsInteracting;
         inputEventChannel.IsInteracting += IsInteractingListener;
+        interactionData.EndInteraction += EndInteraction;
     }
 
     private void OnDisable()
     {
         interactionData.IsInteractingEvent -= GetIsInteracting;
         inputEventChannel.IsInteracting -= IsInteractingListener;
+        interactionData.EndInteraction -= EndInteraction;
     }
 
     private void IsInteractingListener()
     {
         if (_interactable != null)
         {
-            StartCoroutine(Interacting(_interactable));
+            _interactableCoroutine = StartCoroutine(Interacting(_interactable));
         }
     }
 
@@ -67,9 +71,9 @@ public class Interaction : MonoBehaviour
 
     private IEnumerator Interacting(IInteractable interactable)
     {
+        isInteracting = true;
         if (interactable.GetInteractionTime() > 0)
         {
-            isInteracting = true;
             userInterfaceChannel.InteractedEvent?.Invoke(interactable.GetInteractionTime());
             userInterfaceChannel.ToggleGeneralInteractionDelayUI?.Invoke(true);
             yield return new WaitForSeconds(interactable.GetInteractionTime());
@@ -77,6 +81,13 @@ public class Interaction : MonoBehaviour
         }
         interactable.Interact();
         isInteracting = false;
+    }
+
+    private void EndInteraction()
+    {
+        StopCoroutine(_interactableCoroutine);
+        isInteracting = false;
+        userInterfaceChannel.ToggleGeneralInteractionDelayUI?.Invoke(false);
     }
 
     private bool GetIsInteracting()

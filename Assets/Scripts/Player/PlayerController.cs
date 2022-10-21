@@ -78,6 +78,10 @@ public class PlayerController : MonoBehaviour
     {
         Vector3 moveDir = inputEventChannel.MoveVector.normalized;
         controller.Move(transform.forward * (moveDir.magnitude * _currentMovementSpeed) * Time.deltaTime);
+        if ((bool)interactionData.IsInteractingEvent?.Invoke() && inputEventChannel.MoveVector.magnitude != 0)
+        {
+            interactionData.EndInteraction?.Invoke();
+        }
     }
 
     private void RotateTowardsMousePosition()

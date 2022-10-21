@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "InteractionData")]
@@ -15,5 +16,7 @@ public class InteractionData : ScriptableObject
     public CanInteract CanInteractEvent { get; set; }
 
     public IsInteracting IsInteractingEvent { get; set; }
+
+    public Action EndInteraction { get; set; }
 
 }
