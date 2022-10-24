@@ -84,10 +84,10 @@ public class InventoryManager : MonoBehaviour
                     CreateNewStack(item);
                 }
                 playerStatsChannel.ChangePlayerWeight?.Invoke(new Dictionary<string, object> { { "Weight", item.Weight } });
-                callback?.Invoke();
                 SendInventoryDrawRequestToUI();
             }
         }
+        callback?.Invoke();
         return false;
     }
 

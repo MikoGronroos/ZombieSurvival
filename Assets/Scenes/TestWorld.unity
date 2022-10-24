@@ -1478,7 +1478,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1711966684466626417, guid: 7870ca0abc4e2b34893e0dc66fcbafb6, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1711966684466626423, guid: 7870ca0abc4e2b34893e0dc66fcbafb6, type: 3}
       propertyPath: lootTable
@@ -7781,7 +7781,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1711966684466626417, guid: 7870ca0abc4e2b34893e0dc66fcbafb6, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1711966684466626423, guid: 7870ca0abc4e2b34893e0dc66fcbafb6, type: 3}
       propertyPath: lootTable
@@ -8126,7 +8126,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1711966684466626417, guid: 7870ca0abc4e2b34893e0dc66fcbafb6, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1711966684466626423, guid: 7870ca0abc4e2b34893e0dc66fcbafb6, type: 3}
       propertyPath: lootTable
@@ -8196,7 +8196,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1711966684466626417, guid: 7870ca0abc4e2b34893e0dc66fcbafb6, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1711966684466626423, guid: 7870ca0abc4e2b34893e0dc66fcbafb6, type: 3}
       propertyPath: lootTable
