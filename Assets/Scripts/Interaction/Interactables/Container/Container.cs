@@ -73,7 +73,6 @@ public class Container : MonoBehaviour, IInteractable, ISaveable
                 LootItem(index);
                 inventoryChannel.ItemLootedEvent?.Invoke(index);
             }));
-
         }
     }
 
