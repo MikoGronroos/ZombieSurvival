@@ -74,10 +74,20 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void MoveTowardsInput()
+    private void MoveTowardsForward()
     {
         Vector3 moveDir = inputEventChannel.MoveVector.normalized;
         controller.Move(transform.forward * (moveDir.magnitude * _currentMovementSpeed) * Time.deltaTime);
+        if ((bool)interactionData.IsInteractingEvent?.Invoke() && inputEventChannel.MoveVector.magnitude != 0)
+        {
+            interactionData.EndInteraction?.Invoke();
+        }
+    }
+
+    private void MoveTowardsInput()
+    {
+        Vector3 moveDir = inputEventChannel.MoveVector.normalized;
+        controller.Move(moveDir * _currentMovementSpeed * Time.deltaTime);
         if ((bool)interactionData.IsInteractingEvent?.Invoke() && inputEventChannel.MoveVector.magnitude != 0)
         {
             interactionData.EndInteraction?.Invoke();
@@ -102,14 +112,18 @@ public class PlayerController : MonoBehaviour
     {
         if (canMove)
         {
-            MoveTowardsInput();
             if (inputEventChannel.MoveVector.magnitude != 0 && !inputEventChannel.IsAiming)
             {
                 _animationSystem.PlayAnimation("Walk");
+                MoveTowardsForward();
             }
             else if(!inputEventChannel.IsAiming)
             {
                 _animationSystem.PlayAnimation("Idle");
+            }
+            if (inputEventChannel.IsAiming)
+            {
+                MoveTowardsInput();
             }
         }
         if (inputEventChannel.IsAiming)

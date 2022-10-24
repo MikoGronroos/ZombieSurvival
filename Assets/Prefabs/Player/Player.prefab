@@ -374,6 +374,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   raycastOrigin: {fileID: 4633294365662862789}
+  hitMask:
+    serializedVersion: 2
+    m_Bits: 2147483647
+  checkRadius: 0
   playerEventChannel: {fileID: 11400000, guid: 707d7a0e19393aa428d0cfa2eafdf608, type: 2}
 --- !u!114 &1503796230288647225
 MonoBehaviour:

@@ -99,7 +99,7 @@ public class RangedWeapon : Weapon
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out var hit, Mathf.Infinity))
         {
-            Transform firstHit = playerEventChannel.GetTransformFromRaycast?.Invoke(hit.transform.GetComponent<Collider>().bounds.center, range);
+            Transform firstHit = playerEventChannel.GetTransformFromRaycast?.Invoke(hit.point, range);
             if (firstHit.TryGetComponent(out IDamageable damageable))
             {
                 bool hitted = false;

@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Linq;
 
 public class Container : MonoBehaviour, IInteractable, ISaveable
 {
@@ -17,6 +16,19 @@ public class Container : MonoBehaviour, IInteractable, ISaveable
 
     [SerializeField] private InventoryChannel inventoryChannel;
     [SerializeField] private ItemDatabaseChannel itemDatabaseChannel;
+
+    [SerializeField] private LootTable lootTable;
+
+    private bool _hasBeenInitialized = false;
+
+    private void Start()
+    {
+        if (!_hasBeenInitialized)
+        {
+            containerItems = lootTable.GetLoot();
+            _hasBeenInitialized = true;
+        }
+    }
 
     public string GetDescription()
     {
@@ -102,30 +114,35 @@ public class Container : MonoBehaviour, IInteractable, ISaveable
         hasBeenOpened = data.hasBeenOpened;
 
         containerItems.Clear();
-        foreach (var item in data.items)
+        for (int i = 0; i < data.items.Count; i++)
         {
             containerItems.Add(new ContainerSlot
             {
-                Item = itemDatabaseChannel.FetchItemFromDatabaseWithID?.Invoke(item),
+                Item = itemDatabaseChannel.FetchItemFromDatabaseWithID?.Invoke(data.items[i]),
+                AmountOfItems = data.itemAmounts[i],
                 Id = UnityEngine.Random.Range(0, 999999999)
             });
         }
-        inventoryChannel.OpenedContainerEvent?.Invoke(containerItems, ItemLooting);
     }
 
     public object CaptureState()
     {
         List<int> ids = new List<int>();
+        List<int> amounts = new List<int>();
 
         foreach (var item in containerItems)
         {
             ids.Add(item.Item.ItemId);
+            amounts.Add(item.AmountOfItems);
         }
 
-        return new SaveData {
+        return new SaveData
+        {
             hasBeenOpened = hasBeenOpened,
-            items = ids
+            items = ids,
+            itemAmounts = amounts
         };
+
     }
 
     [Serializable]
@@ -133,6 +150,7 @@ public class Container : MonoBehaviour, IInteractable, ISaveable
     {
         public bool hasBeenOpened;
         public List<int> items;
+        public List<int> itemAmounts;
     }
 
 }
@@ -143,4 +161,11 @@ public class ContainerSlot
     public Item Item;
     public int AmountOfItems;
     public int Id;
+}
+
+public enum ContainerType
+{
+    LightMilitaryContainer,
+    HeavyMilitaryContainer,
+    MedicalMilitaryContainer
 }

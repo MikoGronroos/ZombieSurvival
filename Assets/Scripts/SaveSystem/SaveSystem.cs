@@ -6,7 +6,21 @@ using System.Runtime.Serialization.Formatters.Binary;
 public class SaveSystem : MonoBehaviour
 {
 
-    private string _savePath => $"{Application.persistentDataPath}/save.txt";
+    [SerializeField] private SaveEventChannel saveEventChannel;
+
+    private void OnEnable()
+    {
+        saveEventChannel.Save += Save;
+        saveEventChannel.Load += Load;
+    }
+
+    private void OnDisable()
+    {
+        saveEventChannel.Save -= Save;
+        saveEventChannel.Load -= Load;
+    }
+
+    private string _savePath => $"{Application.persistentDataPath}/gamestate.txt";
 
     [ContextMenu("Save")]
     private void Save()
