@@ -115,7 +115,7 @@ public class InventoryManager : MonoBehaviour
         return 0;
     }
 
-    private bool FindItemWithSpaceWithId(int id, out DatabaseItem wrapper)
+    private bool FindItemWithSpaceWithId(string id, out DatabaseItem wrapper)
     {
         foreach (var item in currentDatabase.Database)
         {

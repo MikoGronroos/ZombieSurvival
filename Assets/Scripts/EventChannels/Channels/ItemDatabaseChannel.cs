@@ -5,7 +5,7 @@ using Finark.Events;
 public class ItemDatabaseChannel : EventChannelBase
 {
 
-    public delegate Item DatabaseDelegate(int id);
+    public delegate Item DatabaseDelegate(string id);
 
     public DatabaseDelegate FetchItemFromDatabaseWithID;
 

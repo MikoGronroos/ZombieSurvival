@@ -7,9 +7,9 @@ public class ItemDatabase : ScriptableObject
 
     [SerializeField] private List<Item> items = new List<Item>();
 
-    private Dictionary<int, Item> database = new Dictionary<int, Item>();
+    private Dictionary<string, Item> database = new Dictionary<string, Item>();
 
-    public Dictionary<int, Item> Database { get { return database; } private set { } }
+    public Dictionary<string, Item> Database { get { return database; } private set { } }
 
     public void Setup()
     {

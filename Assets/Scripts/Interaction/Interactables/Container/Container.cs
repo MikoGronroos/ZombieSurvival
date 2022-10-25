@@ -126,7 +126,7 @@ public class Container : MonoBehaviour, IInteractable, ISaveable
 
     public object CaptureState()
     {
-        List<int> ids = new List<int>();
+        List<string> ids = new List<string>();
         List<int> amounts = new List<int>();
 
         foreach (var item in containerItems)
@@ -148,7 +148,7 @@ public class Container : MonoBehaviour, IInteractable, ISaveable
     public struct SaveData
     {
         public bool hasBeenOpened;
-        public List<int> items;
+        public List<string> items;
         public List<int> itemAmounts;
     }
 

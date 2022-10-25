@@ -24,7 +24,7 @@ public class ItemDatabaseManager : MonoBehaviour
         itemDatabaseChannel.FetchItemFromDatabaseWithID -= FetchItemWithID;
     }
 
-    private Item FetchItemWithID(int id)
+    private Item FetchItemWithID(string id)
     {
         if (currentItemDatabase.Database.ContainsKey(id))
         {
