@@ -15,5 +15,5 @@ MonoBehaviour:
   itemName: Pine Log
   itemIcon: {fileID: 21300000, guid: c66e06566609068478aadbaa7fe63952, type: 3}
   itemId: 0
-  maxStackSize: 0
+  maxStackSize: 32
   weight: 0

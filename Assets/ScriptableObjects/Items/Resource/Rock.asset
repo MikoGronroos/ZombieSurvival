@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Rock
   itemIcon: {fileID: 21300000, guid: 992c80816f713c44fac171e11c85daa1, type: 3}
-  itemId: 
-  maxStackSize: 0
+  itemId: ce602611-e112-4c29-b54b-76809a2cede9
+  maxStackSize: 32
   weight: 0

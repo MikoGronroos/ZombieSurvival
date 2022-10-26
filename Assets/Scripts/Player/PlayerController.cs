@@ -3,14 +3,21 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
 
+    #region Movement
+
     [Header("Movement")]
     [SerializeField] private float walkMovemenSpeed;
     [SerializeField] private float runMovemenSpeed;
     [SerializeField] private float aimMovementSpeed;
 
+    [SerializeField] private float gravityValue = -9.81f;
+
     [SerializeField] private bool canMove = true;
+    [SerializeField] private bool useGravity = false;
 
     public bool CanMove { get { return canMove; } }
+
+    [SerializeField] private Vector3 _velocity;
 
     private float _currentMovementSpeed
     {
@@ -28,6 +35,8 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    #endregion
+
     #region Rotation
 
     [Header("Rotation")]
@@ -40,6 +49,15 @@ public class PlayerController : MonoBehaviour
 
     #endregion
 
+    #region GroundCheck
+
+    [Header("GroundCheck")]
+
+    [SerializeField] private float distance = 0.04f;
+    [SerializeField] private LayerMask walkableMask;
+    [SerializeField] private Transform groundCheckPos;
+
+    #endregion
 
     [Header("References")]
     [SerializeField] private Animator animator;
@@ -72,6 +90,22 @@ public class PlayerController : MonoBehaviour
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref _turnSmoothVelocity, turnSmoothTime);
             transform.rotation = Quaternion.Euler(0, angle, 0);
         }
+    }
+
+    private void UpdateGravity()
+    {
+        _velocity.y += gravityValue * Time.deltaTime;
+        controller.Move(_velocity * Time.deltaTime);
+    }
+
+    private bool GroundCheck()
+    {
+        return Physics.CheckSphere(groundCheckPos.position, distance, walkableMask);
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawSphere(groundCheckPos.position, distance);
     }
 
     private void MoveTowardsForward()
@@ -110,6 +144,16 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+
+        if (useGravity)
+        {
+            if (GroundCheck() && _velocity.y < 0)
+            {
+                _velocity.y = -2f;
+            }
+            UpdateGravity();
+        }
+
         if (canMove)
         {
             if (inputEventChannel.MoveVector.magnitude != 0 && !inputEventChannel.IsAiming)
