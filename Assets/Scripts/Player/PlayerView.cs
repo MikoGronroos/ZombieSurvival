@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Linq;
+using UnityEditor;
 
 public class PlayerView : MonoBehaviour
 {
@@ -30,9 +31,8 @@ public class PlayerView : MonoBehaviour
     private Transform GetTheFirstTransformFromRaycast(Vector3 target, float distance)
     {
         RaycastHit raycastHit;
-        target.y = raycastOrigin.position.y / 2;
-        Physics.Raycast(raycastOrigin.position, target - raycastOrigin.position, out raycastHit, distance);
-        Debug.DrawRay(raycastOrigin.position, (target - raycastOrigin.position) * distance, Color.cyan);
+        Physics.Raycast(raycastOrigin.position, new Vector3(target.x, raycastOrigin.position.y, target.z) - raycastOrigin.position, out raycastHit, distance);
+        Debug.DrawRay(raycastOrigin.position, (new Vector3(target.x, raycastOrigin.position.y, target.z) - raycastOrigin.position) * distance, Color.cyan);
         return raycastHit.transform;
     }
 

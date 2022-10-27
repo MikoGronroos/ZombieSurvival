@@ -1364,6 +1364,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 733476257}
     - target: {fileID: 3252644490330032833, guid: 5d78ac2445b753a49baec51966b39142, type: 3}
+      propertyPath: canMove
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3252644490330032833, guid: 5d78ac2445b753a49baec51966b39142, type: 3}
       propertyPath: navigationSystem.speed
       value: 0.7
       objectReference: {fileID: 0}
@@ -1373,7 +1377,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3252644490330032893, guid: 5d78ac2445b753a49baec51966b39142, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3252644490330032894, guid: 5d78ac2445b753a49baec51966b39142, type: 3}
       propertyPath: m_RootOrder
@@ -1827,7 +1831,7 @@ PrefabInstance:
       objectReference: {fileID: 733476257}
     - target: {fileID: 3252644490330032833, guid: 5d78ac2445b753a49baec51966b39142, type: 3}
       propertyPath: canMove
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3252644490330032833, guid: 5d78ac2445b753a49baec51966b39142, type: 3}
       propertyPath: navigationSystem.speed
@@ -1839,7 +1843,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3252644490330032893, guid: 5d78ac2445b753a49baec51966b39142, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3252644490330032894, guid: 5d78ac2445b753a49baec51966b39142, type: 3}
       propertyPath: m_RootOrder
@@ -4723,6 +4727,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 733476257}
     - target: {fileID: 3252644490330032833, guid: 5d78ac2445b753a49baec51966b39142, type: 3}
+      propertyPath: canMove
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3252644490330032833, guid: 5d78ac2445b753a49baec51966b39142, type: 3}
       propertyPath: navigationSystem.speed
       value: 0.7
       objectReference: {fileID: 0}
@@ -4732,7 +4740,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3252644490330032893, guid: 5d78ac2445b753a49baec51966b39142, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3252644490330032894, guid: 5d78ac2445b753a49baec51966b39142, type: 3}
       propertyPath: m_RootOrder
@@ -6928,7 +6936,7 @@ PrefabInstance:
       objectReference: {fileID: 733476257}
     - target: {fileID: 3252644490330032833, guid: 5d78ac2445b753a49baec51966b39142, type: 3}
       propertyPath: canMove
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3252644490330032833, guid: 5d78ac2445b753a49baec51966b39142, type: 3}
       propertyPath: navigationSystem.speed
@@ -6940,7 +6948,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3252644490330032893, guid: 5d78ac2445b753a49baec51966b39142, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3252644490330032894, guid: 5d78ac2445b753a49baec51966b39142, type: 3}
       propertyPath: m_RootOrder
@@ -7337,6 +7345,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 733476257}
     - target: {fileID: 3252644490330032833, guid: 5d78ac2445b753a49baec51966b39142, type: 3}
+      propertyPath: canMove
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3252644490330032833, guid: 5d78ac2445b753a49baec51966b39142, type: 3}
       propertyPath: navigationSystem.speed
       value: 0.7
       objectReference: {fileID: 0}
@@ -7346,7 +7358,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3252644490330032893, guid: 5d78ac2445b753a49baec51966b39142, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3252644490330032894, guid: 5d78ac2445b753a49baec51966b39142, type: 3}
       propertyPath: m_RootOrder
@@ -9408,6 +9420,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 733476257}
     - target: {fileID: 3252644490330032833, guid: 5d78ac2445b753a49baec51966b39142, type: 3}
+      propertyPath: canMove
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3252644490330032833, guid: 5d78ac2445b753a49baec51966b39142, type: 3}
       propertyPath: navigationSystem.speed
       value: 0.7
       objectReference: {fileID: 0}
@@ -9417,7 +9433,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3252644490330032893, guid: 5d78ac2445b753a49baec51966b39142, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3252644490330032894, guid: 5d78ac2445b753a49baec51966b39142, type: 3}
       propertyPath: m_RootOrder
@@ -9553,6 +9569,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 733476257}
     - target: {fileID: 3252644490330032833, guid: 5d78ac2445b753a49baec51966b39142, type: 3}
+      propertyPath: canMove
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3252644490330032833, guid: 5d78ac2445b753a49baec51966b39142, type: 3}
       propertyPath: navigationSystem.speed
       value: 0.7
       objectReference: {fileID: 0}
@@ -9562,7 +9582,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3252644490330032893, guid: 5d78ac2445b753a49baec51966b39142, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3252644490330032894, guid: 5d78ac2445b753a49baec51966b39142, type: 3}
       propertyPath: m_RootOrder
@@ -9806,13 +9826,17 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 733476257}
+    - target: {fileID: 3252644490330032833, guid: 5d78ac2445b753a49baec51966b39142, type: 3}
+      propertyPath: canMove
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3252644490330032893, guid: 5d78ac2445b753a49baec51966b39142, type: 3}
       propertyPath: m_Name
       value: Zombie
       objectReference: {fileID: 0}
     - target: {fileID: 3252644490330032893, guid: 5d78ac2445b753a49baec51966b39142, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3252644490330032894, guid: 5d78ac2445b753a49baec51966b39142, type: 3}
       propertyPath: m_RootOrder

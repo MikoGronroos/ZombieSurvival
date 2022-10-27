@@ -128,12 +128,43 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1485949916796263503}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.01, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8870599160458679694}
   m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5094840283533179107
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6571897990158716531}
+  m_Layer: 8
+  m_Name: ShootingRay
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6571897990158716531
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5094840283533179107}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.29, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8870599160458679694}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8037371687052627085
 GameObject:
@@ -234,6 +265,7 @@ Transform:
   m_Children:
   - {fileID: 8975686758713973345}
   - {fileID: 382201069513363118}
+  - {fileID: 6571897990158716531}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -257,7 +289,7 @@ MonoBehaviour:
   useGravity: 1
   _velocity: {x: 0, y: 0, z: 0}
   turnSmoothTime: 0.09
-  distance: 0.04
+  distance: 0.045
   walkableMask:
     serializedVersion: 2
     m_Bits: 65
@@ -313,7 +345,7 @@ CharacterController:
   m_Radius: 0.29
   m_SlopeLimit: 45
   m_StepOffset: 0.3
-  m_SkinWidth: 0.08
+  m_SkinWidth: 0.045
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 1.05, z: 0}
 --- !u!95 &8870599160458679687
@@ -413,7 +445,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1748c29292cb9684fa9eb8960f672647, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  raycastOrigin: {fileID: 4633294365662862789}
+  raycastOrigin: {fileID: 6571897990158716531}
   hitMask:
     serializedVersion: 2
     m_Bits: 2147483647
@@ -533,11 +565,6 @@ Transform:
 --- !u!4 &2026460654744419634 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4880921129520835843, guid: c17daa76e8248654790afdb46c3e12c6, type: 3}
-  m_PrefabInstance: {fileID: 6891612244188139569}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &4633294365662862789 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2301102463852629492, guid: c17daa76e8248654790afdb46c3e12c6, type: 3}
   m_PrefabInstance: {fileID: 6891612244188139569}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &7374331327004071075 stripped

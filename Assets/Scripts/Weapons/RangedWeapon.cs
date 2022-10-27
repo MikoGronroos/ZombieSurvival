@@ -100,20 +100,24 @@ public class RangedWeapon : Weapon
         if (Physics.Raycast(ray, out var hit, Mathf.Infinity))
         {
             Transform firstHit = playerEventChannel.GetTransformFromRaycast?.Invoke(hit.point, range);
-            if (firstHit.TryGetComponent(out IDamageable damageable))
+
+            if(firstHit != null)
             {
-                bool hitted = false;
-                float hitChance = Mathf.Clamp(baseHitChance - (1 * GetRecoilEffectOnAccuracy() * 10) + weaponSkill.Level * 5, 0, 90);
-                float randomNumber = UnityEngine.Random.Range(0, 100);
-                if (randomNumber <= hitChance)
+                if (firstHit.TryGetComponent(out IDamageable damageable))
                 {
-                    hitted = true;
+                    bool hitted = false;
+                    float hitChance = Mathf.Clamp(baseHitChance - (1 * GetRecoilEffectOnAccuracy() * 10) + weaponSkill.Level * 5, 0, 90);
+                    float randomNumber = UnityEngine.Random.Range(0, 100);
+                    if (randomNumber <= hitChance)
+                    {
+                        hitted = true;
+                    }
+                    if (hitted)
+                    {
+                        damageable.DoDamage(damage);
+                    }
+                    playerSkillEventChannel.ProgressSkillEvent?.Invoke(weaponSkill);
                 }
-                if (hitted)
-                {
-                    damageable.DoDamage(damage);
-                }
-                playerSkillEventChannel.ProgressSkillEvent?.Invoke(weaponSkill);
             }
         }
 
