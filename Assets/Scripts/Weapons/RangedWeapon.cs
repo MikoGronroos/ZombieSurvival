@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using UnityEngine;
+using Finark.Utils;
 
 public class RangedWeapon : Weapon
 {
@@ -100,8 +101,7 @@ public class RangedWeapon : Weapon
         if (Physics.Raycast(ray, out var hit, Mathf.Infinity))
         {
             Transform firstHit = playerEventChannel.GetTransformFromRaycast?.Invoke(hit.point, range);
-
-            if(firstHit != null)
+            if (firstHit != null)
             {
                 if (firstHit.TryGetComponent(out IDamageable damageable))
                 {

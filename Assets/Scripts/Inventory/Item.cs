@@ -11,15 +11,15 @@ public abstract class Item : ScriptableObject
 
     [SerializeField] private float weight;
 
-    public int MaxStackSize { get { return maxStackSize; } private set { } }
+    public int MaxStackSize { get { return maxStackSize; } set { maxStackSize = value; } }
 
-    public float Weight { get { return weight; } private set { } }
+    public float Weight { get { return weight; } set { weight = value; } }
 
-    public Sprite ItemIcon { get { return itemIcon; } private set { } }
+    public Sprite ItemIcon { get { return itemIcon; } set { itemIcon = value; } }
 
-    public string ItemId { get { return itemId; } private set { } }
+    public string ItemId { get { return itemId; } set { itemId = value; } }
 
-    public string ItemName { get { return itemName; } private set { } }
+    public string ItemName { get { return itemName; } set { itemName = value; } }
 
     public void GenerateId() => itemId = Guid.NewGuid().ToString();
 

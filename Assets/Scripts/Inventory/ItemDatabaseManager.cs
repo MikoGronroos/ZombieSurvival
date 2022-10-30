@@ -5,14 +5,11 @@ using UnityEngine;
 public class ItemDatabaseManager : MonoBehaviour
 {
 
-    [SerializeField] private ItemDatabase currentItemDatabase;
-
     [SerializeField] private ItemDatabaseChannel itemDatabaseChannel;
 
-    private void Awake()
-    {
-        currentItemDatabase.Setup();
-    }
+    private Dictionary<string, Item> database = new Dictionary<string, Item>();
+
+    public Dictionary<string, Item> Database { get { return database; } private set { } }
 
     private void OnEnable()
     {
@@ -24,11 +21,24 @@ public class ItemDatabaseManager : MonoBehaviour
         itemDatabaseChannel.FetchItemFromDatabaseWithID -= FetchItemWithID;
     }
 
+    private void Awake()
+    {
+        Item[] items = Resources.LoadAll<Item>("Items/");
+
+        foreach (Item item in items)
+        {
+            if (!database.ContainsKey(item.ItemId))
+            {
+                database.Add(item.ItemId, item);
+            }
+        }
+    }
+
     private Item FetchItemWithID(string id)
     {
-        if (currentItemDatabase.Database.ContainsKey(id))
+        if (database.ContainsKey(id))
         {
-            return currentItemDatabase.Database[id];
+            return database[id];
         }
         return null;
     }

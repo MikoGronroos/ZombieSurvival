@@ -13,11 +13,9 @@ MonoBehaviour:
   m_Name: Scrimitar
   m_EditorClassIdentifier: 
   itemName: Scrimitar
-  itemIcon: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
-  itemId: 1
+  itemIcon: {fileID: 21300000, guid: 1f4cde62794aa784bb8203b58a044b77, type: 3}
+  itemId: 42ca2bde-82fe-4974-9b35-7a9c7ab71ca4
   maxStackSize: 1
-  weight: 3
+  weight: 1
   type: 5
   equipmentPrefab: {fileID: 4901090922616655373, guid: eece8bde85551fc4893714f946e8abb8, type: 3}
-  damage: 10
-  range: 5
