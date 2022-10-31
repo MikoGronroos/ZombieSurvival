@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 [CreateAssetMenu(menuName = "Inventory/Item Equipment")]
-public abstract class ItemEquipment : Item
+public class ItemEquipment : Item
 {
 
     [SerializeField] private EquipmentType type;

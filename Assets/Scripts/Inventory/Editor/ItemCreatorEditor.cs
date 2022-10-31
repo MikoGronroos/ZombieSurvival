@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEditor;
+using System.Collections.Generic;
 
 public class ItemCreatorEditor : EditorWindow
 {
@@ -16,9 +17,8 @@ public class ItemCreatorEditor : EditorWindow
 
     string[] scriptableObjectOptions =
     {
-        "Tool",
+        "Equipment",
         "Resource",
-        "Weapon",
         "Clothing",
         "Consumable"
     };
@@ -29,6 +29,8 @@ public class ItemCreatorEditor : EditorWindow
     Sprite itemIcon;
     EquipmentType equipmentType;
 
+    int consumableValuesSize;
+    ConsumableValue[] consumableValues;
 
     int maxStackSize = 0;
     float itemWeight = 0;
@@ -47,7 +49,7 @@ public class ItemCreatorEditor : EditorWindow
     {
 
         index = EditorGUILayout.Popup(
-            "Item category",
+            "Item save folder",
             index,
             options
         );
@@ -66,16 +68,17 @@ public class ItemCreatorEditor : EditorWindow
 
         itemWeight = EditorGUILayout.FloatField("Item weight", itemWeight);
 
-        if (scriptIndex == 0 || scriptIndex == 2) //Item tool or weapon
+        if (scriptIndex == 0) //Item tool or weapon
         {
             equipmentPrefab = (GameObject)EditorGUILayout.ObjectField(equipmentPrefab, typeof(GameObject), true);
             equipmentType = (EquipmentType)EditorGUILayout.EnumPopup("Equipment type", equipmentType);
         }
-        else if (scriptIndex == 3) //Item clothing
+        else if (scriptIndex == 2) //Item clothing
         {
-
+            equipmentPrefab = (GameObject)EditorGUILayout.ObjectField(equipmentPrefab, typeof(GameObject), true);
+            equipmentType = (EquipmentType)EditorGUILayout.EnumPopup("Equipment type", equipmentType);
         }
-        else if (scriptIndex == 4) //Item consumable
+        else if (scriptIndex == 3) //Item consumable
         {
 
         }
@@ -85,8 +88,8 @@ public class ItemCreatorEditor : EditorWindow
             switch (scriptIndex)
             {
                 case 0:
-                    creationResult = ScriptableObject.CreateInstance<ItemTool>();
-                    var temp = creationResult as ItemTool;
+                    creationResult = ScriptableObject.CreateInstance<ItemEquipment>();
+                    var temp = creationResult as ItemEquipment;
                     temp.EquipmentPrefab = equipmentPrefab;
                     temp.Type = equipmentType;
                     break;
@@ -94,16 +97,13 @@ public class ItemCreatorEditor : EditorWindow
                     creationResult = ScriptableObject.CreateInstance<ItemResource>();
                     break;
                 case 2:
-                    creationResult = ScriptableObject.CreateInstance<ItemWeapon>();
-                    break;
-                case 3:
                     creationResult = ScriptableObject.CreateInstance<ItemClothing>();
                     break;
-                case 4:
+                case 3:
                     creationResult = ScriptableObject.CreateInstance<ItemConsumable>();
                     break;
             }
-            
+
             creationResult.GenerateId();
             creationResult.ItemIcon = itemIcon;
             creationResult.ItemName = itemName;

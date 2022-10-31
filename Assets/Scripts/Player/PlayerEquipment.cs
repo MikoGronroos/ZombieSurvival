@@ -58,10 +58,12 @@ public partial class PlayerEquipment : MonoBehaviour
             DequipItem(playerEquipment.FindEquippedItemWithType(newItem.Type).CurrentDatabaseItem);
         }
         GameObject obj = Instantiate(newItem.EquipmentPrefab, GetEquipmentParenTransform(newItem.Type));
-        if (newItem is ItemWeapon)
+
+        if (obj.TryGetComponent(out Weapon weapon))
         {
-            weaponChannel.SwitchWeaponEvent?.Invoke(obj.GetComponent<Weapon>());
+            weaponChannel.SwitchWeaponEvent?.Invoke(weapon);
         }
+
         obj.transform.rotation = new Quaternion(0,0,0,0);
         playerInstancedEquipmentPrefabs.Add(obj);
         equippedItem.CurrentEquipmentPrefabIndex = playerInstancedEquipmentPrefabs.IndexOf(obj);

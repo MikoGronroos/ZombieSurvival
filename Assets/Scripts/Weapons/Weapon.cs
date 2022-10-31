@@ -3,7 +3,7 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
 
-    [SerializeField] protected ItemWeapon weapon;
+    [SerializeField] protected ItemEquipment weapon;
     [SerializeField] protected PlayerSkill weaponSkill;
 
     [SerializeField] protected float damage;
