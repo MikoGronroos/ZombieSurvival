@@ -566,7 +566,6 @@ MonoBehaviour:
   damage: 10
   range: 100
   weaponAttackAnimation: 
-  weaponReloadAnimation: 
   rightHandPos: {fileID: 2217916449286809253}
   leftHandPos: {fileID: 2217916447496860941}
   inputEventChannel: {fileID: 11400000, guid: 881aa76ade36a60468c90e5598bf5627, type: 2}
@@ -577,7 +576,7 @@ MonoBehaviour:
   inventoryEventChannel: {fileID: 11400000, guid: 6b7520e56ff7e1e478127af115e1efb5, type: 2}
   playerSkillEventChannel: {fileID: 11400000, guid: c2a92a5719962d845b9b42092fff225c, type: 2}
   muzzleFlashParent: {fileID: 4382572289086799441}
-  neededAmmunition: {fileID: 11400000, guid: 2a9774e99dd03b94da727fefa52ecf74, type: 2}
+  neededAmmunition: {fileID: 11400000, guid: 1d16486be39100f49a02abf9cd146c1c, type: 2}
   currentAmmo: 0
   maxAmmo: 512
   automatic: 1

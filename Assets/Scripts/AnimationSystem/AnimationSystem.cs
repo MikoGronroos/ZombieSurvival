@@ -22,4 +22,9 @@ public class AnimationSystem
         _currentlyPlayingAnim = animation;
     }
 
+    public void Trigger(string trigger)
+    {
+        _animator.SetTrigger(trigger);
+    }
+
 }

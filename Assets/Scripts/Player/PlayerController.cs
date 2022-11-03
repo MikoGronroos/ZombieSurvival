@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -60,13 +61,13 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     [Header("References")]
-    [SerializeField] private Animator animator;
     [SerializeField] private CharacterController controller;
 
     [SerializeField] private InteractionData interactionData;
     [SerializeField] private InputEventChannel inputEventChannel;
+    [SerializeField] private PlayerEventChannel playerEventChannel;
+    [SerializeField] private AnimationChannel animationChannel;
 
-    private AnimationSystem _animationSystem = new AnimationSystem();
     private Camera _camera;
 
     private void Awake()
@@ -74,9 +75,14 @@ public class PlayerController : MonoBehaviour
         _camera = Camera.main;
     }
 
-    private void Start()
+    private void OnEnable()
     {
-        _animationSystem.SetupAnimationSystem(animator);
+        playerEventChannel.DeadEvent += Death;
+    }
+
+    private void OnDisable()
+    {
+        playerEventChannel.DeadEvent -= Death;
     }
 
     private void RotateMovingPlayer()
@@ -158,12 +164,12 @@ public class PlayerController : MonoBehaviour
         {
             if (inputEventChannel.MoveVector.magnitude != 0 && !inputEventChannel.IsAiming)
             {
-                _animationSystem.PlayAnimation("Walk");
+                animationChannel.SetBool?.Invoke("Walking", true);
                 MoveTowardsForward();
             }
             else if(!inputEventChannel.IsAiming)
             {
-                _animationSystem.PlayAnimation("Idle");
+                animationChannel.SetBool?.Invoke("Walking", false);
             }
             if (inputEventChannel.IsAiming)
             {
@@ -173,11 +179,18 @@ public class PlayerController : MonoBehaviour
         if (inputEventChannel.IsAiming)
         {
             RotateTowardsMousePosition();
-            _animationSystem.PlayAnimation("Aim");
+            animationChannel.SetBool?.Invoke("Aiming", true);
         }
         else
         {
             RotateMovingPlayer();
+            animationChannel.SetBool?.Invoke("Aiming", false);
         }
     }
+
+    private void Death()
+    {
+        animationChannel.Trigger?.Invoke("Death");
+    }
+
 }

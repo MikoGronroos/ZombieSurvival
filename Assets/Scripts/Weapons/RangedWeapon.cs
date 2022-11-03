@@ -12,6 +12,7 @@ public class RangedWeapon : Weapon
     [SerializeField] private PlayerEventChannel playerEventChannel;
     [SerializeField] private InventoryChannel inventoryEventChannel;
     [SerializeField] private PlayerSkillEventChannel playerSkillEventChannel;
+    [SerializeField] private AnimationChannel animationChannel;
 
     [SerializeField] private Transform muzzleFlashParent;
 

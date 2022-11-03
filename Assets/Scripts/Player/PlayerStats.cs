@@ -1,6 +1,3 @@
-using Finark.Events;
-using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Player/Player Stats", fileName = "Player Stats")]

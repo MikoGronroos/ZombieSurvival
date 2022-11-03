@@ -78,10 +78,6 @@ public class ItemCreatorEditor : EditorWindow
             equipmentPrefab = (GameObject)EditorGUILayout.ObjectField(equipmentPrefab, typeof(GameObject), true);
             equipmentType = (EquipmentType)EditorGUILayout.EnumPopup("Equipment type", equipmentType);
         }
-        else if (scriptIndex == 3) //Item consumable
-        {
-
-        }
 
         if (GUILayout.Button("Create item"))
         {
@@ -98,6 +94,9 @@ public class ItemCreatorEditor : EditorWindow
                     break;
                 case 2:
                     creationResult = ScriptableObject.CreateInstance<ItemClothing>();
+                    var clothingTemp = creationResult as ItemClothing;
+                    clothingTemp.EquipmentPrefab = equipmentPrefab;
+                    clothingTemp.Type = equipmentType;
                     break;
                 case 3:
                     creationResult = ScriptableObject.CreateInstance<ItemConsumable>();

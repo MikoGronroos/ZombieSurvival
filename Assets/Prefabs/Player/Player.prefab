@@ -244,6 +244,7 @@ GameObject:
   - component: {fileID: 1503796230288647225}
   - component: {fileID: 3977502562035089348}
   - component: {fileID: 3192530052414184199}
+  - component: {fileID: 306919583451623291}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -294,10 +295,11 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 65
   groundCheckPos: {fileID: 382201069513363118}
-  animator: {fileID: 8870599160458679687}
   controller: {fileID: 8870599160458679690}
   interactionData: {fileID: 11400000, guid: fcf0a7cae64868942b3159543838ab7b, type: 2}
   inputEventChannel: {fileID: 11400000, guid: 881aa76ade36a60468c90e5598bf5627, type: 2}
+  playerEventChannel: {fileID: 11400000, guid: 707d7a0e19393aa428d0cfa2eafdf608, type: 2}
+  animationChannel: {fileID: 11400000, guid: 72ab4a2b8386f6d45916a50ff957c14a, type: 2}
 --- !u!114 &8870599160458679682
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -329,6 +331,7 @@ MonoBehaviour:
   userInterfaceChannel: {fileID: 11400000, guid: aabecbb7def401244ae2372c2cf234d7, type: 2}
   interactionData: {fileID: 11400000, guid: fcf0a7cae64868942b3159543838ab7b, type: 2}
   inputEventChannel: {fileID: 11400000, guid: 881aa76ade36a60468c90e5598bf5627, type: 2}
+  animationChannel: {fileID: 11400000, guid: 72ab4a2b8386f6d45916a50ff957c14a, type: 2}
   isInteracting: 0
 --- !u!143 &8870599160458679690
 CharacterController:
@@ -495,6 +498,20 @@ MonoBehaviour:
   leftHand: {fileID: 8171719786951502436}
   rightHand: {fileID: 8307749303730986681}
   weaponChannel: {fileID: 11400000, guid: 92665d5cbd8692d439af3cfef2653c65, type: 2}
+--- !u!114 &306919583451623291
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8870599160458679695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c526c9233253c7439bd31f52093d280, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animationChannel: {fileID: 11400000, guid: 72ab4a2b8386f6d45916a50ff957c14a, type: 2}
+  animator: {fileID: 8870599160458679687}
 --- !u!1001 &6891612244188139569
 PrefabInstance:
   m_ObjectHideFlags: 0

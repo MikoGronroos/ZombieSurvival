@@ -10,6 +10,7 @@ public class Interaction : MonoBehaviour
     [SerializeField] private UserInterfaceChannel userInterfaceChannel;
     [SerializeField] private InteractionData interactionData;
     [SerializeField] private InputEventChannel inputEventChannel;
+    [SerializeField] private AnimationChannel animationChannel;
 
     [SerializeField] private bool isInteracting;
 
@@ -71,6 +72,7 @@ public class Interaction : MonoBehaviour
 
     private IEnumerator Interacting(IInteractable interactable)
     {
+        animationChannel.Trigger?.Invoke("PickingItem");
         isInteracting = true;
         if (interactable.GetInteractionTime() > 0)
         {
@@ -81,6 +83,7 @@ public class Interaction : MonoBehaviour
         }
         interactable.Interact();
         isInteracting = false;
+        animationChannel.Trigger?.Invoke("PickingItem");
     }
 
     private void EndInteraction()

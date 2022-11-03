@@ -12,6 +12,7 @@ public class HealthSystem
     [SerializeField] private bool immortal;
 
     private Action _healthZeroCallback;
+    private bool _healthIsZero;
 
     public float MaxHealth { get { return maxHealth; } private set { } }
 
@@ -27,16 +28,23 @@ public class HealthSystem
     {
         if (immortal) return;
 
+        if (_healthIsZero) return;
+
         currentHealth = Mathf.Clamp(currentHealth -= amount, 0, maxHealth);
         if (currentHealth <= 0)
         {
             _healthZeroCallback?.Invoke();
+            _healthIsZero = true;
         }
     }
 
     public void Heal(float amount)
     {
         currentHealth = Mathf.Clamp(currentHealth += amount, 0, maxHealth);
+        if (_healthIsZero)
+        {
+            _healthIsZero = false;
+        }
     }
 
 }
