@@ -561,13 +561,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da450737abc0ab34ab4561ff15c1e12c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weapon: {fileID: 11400000, guid: 9dbc594868b332e4599d6d46605fdddf, type: 2}
+  weapon: {fileID: 11400000, guid: b178475140505c340a84a075454fe3f2, type: 2}
   weaponSkill: {fileID: 11400000, guid: 85a497562efa3ef468bfa12fdbfaf8ea, type: 2}
   damage: 10
   range: 100
   weaponAttackAnimation: 
   rightHandPos: {fileID: 2217916449286809253}
   leftHandPos: {fileID: 2217916447496860941}
+  weaponNumber: 1
   inputEventChannel: {fileID: 11400000, guid: 881aa76ade36a60468c90e5598bf5627, type: 2}
   hitMask:
     serializedVersion: 2
@@ -575,6 +576,7 @@ MonoBehaviour:
   playerEventChannel: {fileID: 11400000, guid: 707d7a0e19393aa428d0cfa2eafdf608, type: 2}
   inventoryEventChannel: {fileID: 11400000, guid: 6b7520e56ff7e1e478127af115e1efb5, type: 2}
   playerSkillEventChannel: {fileID: 11400000, guid: c2a92a5719962d845b9b42092fff225c, type: 2}
+  animationChannel: {fileID: 0}
   muzzleFlashParent: {fileID: 4382572289086799441}
   neededAmmunition: {fileID: 11400000, guid: 1d16486be39100f49a02abf9cd146c1c, type: 2}
   currentAmmo: 0

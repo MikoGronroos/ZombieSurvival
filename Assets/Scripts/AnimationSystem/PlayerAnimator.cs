@@ -12,6 +12,7 @@ public class PlayerAnimator : MonoBehaviour
         animationChannel.Trigger += Trigger;
         animationChannel.SetFloat += SetFloat;
         animationChannel.SetBool += SetBool;
+        animationChannel.SetInt += SetInt;
     }
 
     private void OnDisable()
@@ -19,6 +20,7 @@ public class PlayerAnimator : MonoBehaviour
         animationChannel.Trigger -= Trigger;
         animationChannel.SetFloat -= SetFloat;
         animationChannel.SetBool -= SetBool;
+        animationChannel.SetInt -= SetInt;
     }
 
     private void SetBool(string name, bool value)
@@ -34,6 +36,11 @@ public class PlayerAnimator : MonoBehaviour
     private void Trigger(string name)
     {
         animator.SetTrigger(name);
+    }
+
+    private void SetInt(string name, int value)
+    {
+        animator.SetInteger(name, value);
     }
 
 }

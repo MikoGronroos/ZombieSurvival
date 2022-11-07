@@ -165,6 +165,14 @@ public class PlayerController : MonoBehaviour
             if (inputEventChannel.MoveVector.magnitude != 0 && !inputEventChannel.IsAiming)
             {
                 animationChannel.SetBool?.Invoke("Walking", true);
+                if (inputEventChannel.IsRunning)
+                {
+                    animationChannel.SetBool?.Invoke("Running", true);
+                }
+                else
+                {
+                    animationChannel.SetBool?.Invoke("Running", false);
+                }
                 MoveTowardsForward();
             }
             else if(!inputEventChannel.IsAiming)

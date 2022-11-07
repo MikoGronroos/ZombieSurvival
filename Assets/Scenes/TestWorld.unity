@@ -2875,6 +2875,7 @@ MonoBehaviour:
   backPackGameObjectParent: {fileID: 778359872}
   inventoryChannel: {fileID: 11400000, guid: 6b7520e56ff7e1e478127af115e1efb5, type: 2}
   weaponChannel: {fileID: 11400000, guid: 92665d5cbd8692d439af3cfef2653c65, type: 2}
+  animationChannel: {fileID: 11400000, guid: 72ab4a2b8386f6d45916a50ff957c14a, type: 2}
 --- !u!1001 &489998877
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -14,6 +14,7 @@ public partial class PlayerEquipment : MonoBehaviour
 
     [SerializeField] private InventoryChannel inventoryChannel;
     [SerializeField] private WeaponChannel weaponChannel;
+    [SerializeField] private AnimationChannel animationChannel;
 
     private void OnEnable()
     {
@@ -62,6 +63,8 @@ public partial class PlayerEquipment : MonoBehaviour
         if (obj.TryGetComponent(out Weapon weapon))
         {
             weaponChannel.SwitchWeaponEvent?.Invoke(weapon);
+            animationChannel.SetInt("WeaponNumber", weapon.GetWeaponNumber());
+            animationChannel.Trigger?.Invoke("WeaponChange");
         }
 
         obj.transform.rotation = new Quaternion(0,0,0,0);
