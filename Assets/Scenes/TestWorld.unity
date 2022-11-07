@@ -2425,6 +2425,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: 2a9774e99dd03b94da727fefa52ecf74, type: 2}
   amountOfItems: 6
+  interactionNumber: 0
   infiteItem: 1
   inventoryChannel: {fileID: 11400000, guid: 6b7520e56ff7e1e478127af115e1efb5, type: 2}
 --- !u!65 &407958680
@@ -4510,6 +4511,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: b178475140505c340a84a075454fe3f2, type: 2}
   amountOfItems: 1
+  interactionNumber: 0
   infiteItem: 1
   inventoryChannel: {fileID: 11400000, guid: 6b7520e56ff7e1e478127af115e1efb5, type: 2}
 --- !u!65 &761048307
@@ -4877,7 +4879,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c77ffb887de8e647a4228e99617ce23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  openingTime: 15
+  openingTime: 7
+  interactionNumber: 1
 --- !u!4 &838791131 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1711966684466626416, guid: 7870ca0abc4e2b34893e0dc66fcbafb6, type: 3}
@@ -5002,6 +5005,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: c2a426159667e1e4ebbde59e8f560c2a, type: 2}
   amountOfItems: 1
+  interactionNumber: 0
   infiteItem: 1
   inventoryChannel: {fileID: 11400000, guid: 6b7520e56ff7e1e478127af115e1efb5, type: 2}
 --- !u!65 &906541425
@@ -6640,6 +6644,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   npcName: John
+  interactionTime: 2
+  interactionNumber: 5
 --- !u!1 &1387266609
 GameObject:
   m_ObjectHideFlags: 0
@@ -7828,7 +7834,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5980726172424368765, guid: 62ccbddab0230684abd00e2ef31450b0, type: 3}
       propertyPath: m_Name
-      value: Rock (7)
+      value: Small Rock
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 62ccbddab0230684abd00e2ef31450b0, type: 3}
@@ -7994,6 +8000,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   item: {fileID: 0}
   amountOfItems: 1
+  interactionNumber: 0
   infiteItem: 1
   inventoryChannel: {fileID: 11400000, guid: 6b7520e56ff7e1e478127af115e1efb5, type: 2}
 --- !u!65 &1832764740
@@ -8754,6 +8761,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: 9dbc594868b332e4599d6d46605fdddf, type: 2}
   amountOfItems: 1
+  interactionNumber: 0
   infiteItem: 1
   inventoryChannel: {fileID: 11400000, guid: 6b7520e56ff7e1e478127af115e1efb5, type: 2}
 --- !u!65 &1917733677
@@ -8883,6 +8891,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: f6b93e8ff1bed9748814e310088700d8, type: 2}
   amountOfItems: 0
+  interactionNumber: 0
   infiteItem: 1
   inventoryChannel: {fileID: 11400000, guid: 6b7520e56ff7e1e478127af115e1efb5, type: 2}
 --- !u!65 &1934755130

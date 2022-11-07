@@ -50,10 +50,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   containerName: Locker
   interactionTime: 2.4
+  gatherNumber: 1
   hasBeenOpened: 0
   containerItems: []
   inventoryChannel: {fileID: 11400000, guid: 6b7520e56ff7e1e478127af115e1efb5, type: 2}
   itemDatabaseChannel: {fileID: 11400000, guid: 3de50ed75ebbd73489ddce25d36ef9f0, type: 2}
+  lootTable: {fileID: 0}
 --- !u!114 &1711966684466626379
 MonoBehaviour:
   m_ObjectHideFlags: 0

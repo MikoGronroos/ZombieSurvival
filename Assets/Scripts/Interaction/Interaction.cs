@@ -72,7 +72,8 @@ public class Interaction : MonoBehaviour
 
     private IEnumerator Interacting(IInteractable interactable)
     {
-        animationChannel.Trigger?.Invoke("PickingItem");
+        animationChannel.SetInt?.Invoke("InteractionNumber", interactable.GetInteractionNumber());
+        animationChannel.Trigger?.Invoke("Trigger");
         isInteracting = true;
         if (interactable.GetInteractionTime() > 0)
         {
@@ -83,7 +84,7 @@ public class Interaction : MonoBehaviour
         }
         interactable.Interact();
         isInteracting = false;
-        animationChannel.Trigger?.Invoke("PickingItem");
+        animationChannel.Trigger?.Invoke("Trigger");
     }
 
     private void EndInteraction()

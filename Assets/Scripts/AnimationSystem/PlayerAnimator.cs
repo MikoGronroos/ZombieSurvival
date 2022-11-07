@@ -44,3 +44,19 @@ public class PlayerAnimator : MonoBehaviour
     }
 
 }
+
+public enum WeaponNumber
+{
+    Unarmed,
+    Rifle
+}
+
+public enum InteractionNumber
+{
+    UnarmedPickup,
+    UnarmedDoor,
+    Axe,
+    Pickaxe,
+    Shovel,
+    Talk
+}

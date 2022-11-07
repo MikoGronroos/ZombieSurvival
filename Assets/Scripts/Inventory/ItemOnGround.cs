@@ -7,6 +7,8 @@ public class ItemOnGround : MonoBehaviour, IInteractable
     [SerializeField] private Item item;
     [SerializeField] private int amountOfItems = 1;
 
+    [SerializeField] private InteractionNumber interactionNumber;
+
     [Header("Item Settings")]
     [SerializeField] private bool infiteItem;
 
@@ -32,5 +34,10 @@ public class ItemOnGround : MonoBehaviour, IInteractable
             Destroy(gameObject);
 
         }
+    }
+
+    public int GetInteractionNumber()
+    {
+        return (int)interactionNumber;
     }
 }

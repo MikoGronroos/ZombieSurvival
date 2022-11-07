@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5980726172424368766}
   - component: {fileID: 5980726172424368767}
   m_Layer: 6
-  m_Name: Rock
+  m_Name: Boulder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46,11 +46,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39bb45f3a33f3d444abbc395f5a23c79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  resourceName: Rock
+  resourceName: Boulder
   gatherTime: 3
-  resourceItem: {fileID: 11400000, guid: 4aa91653dfff3b149a606a8dd786d50c, type: 2}
-  minBaseResourceYield: 1
+  resourceItem: {fileID: 11400000, guid: 6b3c7a51a5685cc4581f0c8319301f4a, type: 2}
+  minBaseResourceYield: 2
   maxBaseResourceYield: 4
+  interactionNumber: 3
   inventoryChannel: {fileID: 11400000, guid: 6b7520e56ff7e1e478127af115e1efb5, type: 2}
 --- !u!65 &5980726172424368767
 BoxCollider:

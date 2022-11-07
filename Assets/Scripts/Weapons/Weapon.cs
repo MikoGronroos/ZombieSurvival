@@ -37,9 +37,3 @@ public class Weapon : MonoBehaviour
     }
 
 }
-
-public enum WeaponNumber
-{
-    Unarmed,
-    Rifle
-}

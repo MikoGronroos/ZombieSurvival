@@ -4,6 +4,8 @@ public class NPCVendor : MonoBehaviour, IInteractable
 {
 
     [SerializeField] private string npcName;
+    [SerializeField] private float interactionTime;
+    [SerializeField] private InteractionNumber interactionNumber;
 
     public string GetDescription()
     {
@@ -12,10 +14,16 @@ public class NPCVendor : MonoBehaviour, IInteractable
 
     public float GetInteractionTime()
     {
-        return 0;
+        return interactionTime;
     }
 
     public void Interact()
     {
     }
+
+    public int GetInteractionNumber()
+    {
+        return (int)interactionNumber;
+    }
+
 }

@@ -11,6 +11,8 @@ public class Resource : MonoBehaviour, IInteractable
     [SerializeField] private int minBaseResourceYield;
     [SerializeField] private int maxBaseResourceYield;
 
+    [SerializeField] private InteractionNumber interactionNumber;
+
     [SerializeField] private InventoryChannel inventoryChannel;
 
     public string GetDescription()
@@ -29,4 +31,10 @@ public class Resource : MonoBehaviour, IInteractable
             Destroy(gameObject);
         });
     }
+
+    public int GetInteractionNumber()
+    {
+        return (int)interactionNumber;
+    }
+
 }

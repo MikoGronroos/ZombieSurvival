@@ -10,6 +10,8 @@ public class Container : MonoBehaviour, IInteractable, ISaveable
 
     [SerializeField] private float interactionTime;
 
+    [SerializeField] private InteractionNumber gatherNumber;
+
     [SerializeField] private bool hasBeenOpened;
 
     [SerializeField] private List<ContainerSlot> containerItems = new List<ContainerSlot>();
@@ -105,6 +107,11 @@ public class Container : MonoBehaviour, IInteractable, ISaveable
     private void RemoveItemWithIndex(int index)
     {
         containerItems.RemoveAt(index);
+    }
+
+    public int GetInteractionNumber()
+    {
+        return (int)gatherNumber;
     }
 
     public void RestoreState(object state)

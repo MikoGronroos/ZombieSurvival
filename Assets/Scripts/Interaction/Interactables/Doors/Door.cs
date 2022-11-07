@@ -5,6 +5,7 @@ public class Door : MonoBehaviour, IInteractable
 {
 
     [SerializeField] private float openingTime;
+    [SerializeField] private InteractionNumber interactionNumber;
 
     public string GetDescription()
     {
@@ -19,6 +20,11 @@ public class Door : MonoBehaviour, IInteractable
     public void Interact()
     {
         gameObject.SetActive(false);
+    }
+
+    public int GetInteractionNumber()
+    {
+        return (int)interactionNumber;
     }
 
 }

@@ -64,7 +64,7 @@ public partial class PlayerEquipment : MonoBehaviour
         {
             weaponChannel.SwitchWeaponEvent?.Invoke(weapon);
             animationChannel.SetInt("WeaponNumber", weapon.GetWeaponNumber());
-            animationChannel.Trigger?.Invoke("WeaponChange");
+            animationChannel.Trigger?.Invoke("Trigger");
         }
 
         obj.transform.rotation = new Quaternion(0,0,0,0);
@@ -89,7 +89,7 @@ public partial class PlayerEquipment : MonoBehaviour
 
             weaponChannel.ResetIKPositions?.Invoke();
             animationChannel.SetInt("WeaponNumber", 0);
-            animationChannel.Trigger?.Invoke("WeaponChange");
+            animationChannel.Trigger?.Invoke("Trigger");
 
             item.Equipped = false;
         }
