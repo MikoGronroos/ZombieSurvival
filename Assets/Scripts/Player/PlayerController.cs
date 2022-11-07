@@ -181,6 +181,8 @@ public class PlayerController : MonoBehaviour
             }
             if (inputEventChannel.IsAiming)
             {
+                animationChannel.SetFloat("X", inputEventChannel.MoveVector.x);
+                animationChannel.SetFloat("Z", inputEventChannel.MoveVector.z);
                 MoveTowardsInput();
             }
         }

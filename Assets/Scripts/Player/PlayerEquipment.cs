@@ -86,6 +86,11 @@ public partial class PlayerEquipment : MonoBehaviour
                 playerInstancedEquipmentPrefabs.RemoveAt(equippedItem.CurrentEquipmentPrefabIndex);
                 Destroy(temp);
             }
+
+            weaponChannel.ResetIKPositions?.Invoke();
+            animationChannel.SetInt("WeaponNumber", 0);
+            animationChannel.Trigger?.Invoke("WeaponChange");
+
             item.Equipped = false;
         }
     }
