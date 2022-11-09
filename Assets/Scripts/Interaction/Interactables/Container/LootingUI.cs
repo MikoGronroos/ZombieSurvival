@@ -40,7 +40,7 @@ public class LootingUI : MonoBehaviour
             GameObject go = Instantiate(inventoryItemPrefab, inventoryItemParent);
             if (go.TryGetComponent(out InventorySlotUI slot))
             {
-                slot.SetupSlot(item.Item.ItemIcon, $"{item.Item.ItemName}", "", item.Id, item.Item, callback);
+                slot.SetupSlot(item.Item.ItemIcon, $"{item.Item.ItemName}", "", item.Id, item.Item, SlotMenuType.ContainerItem, callback);
                 drawnGameObjects.Add(slot);
             }
         }

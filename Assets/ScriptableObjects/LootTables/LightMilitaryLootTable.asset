@@ -13,4 +13,16 @@ MonoBehaviour:
   m_Name: LightMilitaryLootTable
   m_EditorClassIdentifier: 
   containerType: 0
-  lootTable: []
+  lootTable:
+  - Item: {fileID: 11400000, guid: b178475140505c340a84a075454fe3f2, type: 2}
+    ChanceOfSpawning: 1
+    MinAmountToSpawn: 1
+    MaxAmountToSpawn: 1
+  - Item: {fileID: 11400000, guid: 1d16486be39100f49a02abf9cd146c1c, type: 2}
+    ChanceOfSpawning: 0
+    MinAmountToSpawn: 1
+    MaxAmountToSpawn: 5
+  - Item: {fileID: 11400000, guid: 1d16486be39100f49a02abf9cd146c1c, type: 2}
+    ChanceOfSpawning: 0
+    MinAmountToSpawn: 1
+    MaxAmountToSpawn: 5

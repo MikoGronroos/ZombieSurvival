@@ -16,7 +16,7 @@ public class InventoryUI : MonoBehaviour
 
     [Header("Inventory Item Clicked GameObject")]
 
-    [SerializeField] private InventorySlotClicked inventoryItemClickedPopup;
+    [SerializeField] private SlotClickedMenu slotClickedMenu;
 
     [Header("EventChannels")]
 
@@ -51,7 +51,7 @@ public class InventoryUI : MonoBehaviour
             drawnSlots.Add(newSlot);
             if (newSlot.TryGetComponent(out InventorySlotUI slot))
             {
-                slot.SetupSlot(item.Item.ItemIcon, $"{item.Item.ItemName} x{item.CurrentStackSize}", $"", item.SlotId, item.Item);
+                slot.SetupSlot(item.Item.ItemIcon, $"{item.Item.ItemName} x{item.CurrentStackSize}", $"", item.SlotId, item.Item, SlotMenuType.InInventory);
             }
         }
     }
@@ -81,13 +81,14 @@ public class InventoryUI : MonoBehaviour
 
     #endregion
 
-    private void InventoryItemClicked(int id, Item item, Vector3 pos, Action<bool, int> callback)
+    private void InventoryItemClicked(int id, Item item, Vector3 pos, SlotMenuType type, Action<bool, int> callback)
     {
-        inventoryItemClickedPopup.Id = id;
-        inventoryItemClickedPopup.Callback = callback;
-        inventoryItemClickedPopup.transform.position = pos;
-        inventoryItemClickedPopup.CurrentItem = item;
-        inventoryItemClickedPopup.TogglePanel(true);
+        slotClickedMenu.Id = id;
+        slotClickedMenu.Callback = callback;
+        slotClickedMenu.transform.position = pos;
+        slotClickedMenu.CurrentItem = item;
+        slotClickedMenu.FilterMenu(type);
+        slotClickedMenu.TogglePanel(true);
     }
 
 }

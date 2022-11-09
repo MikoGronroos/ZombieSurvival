@@ -1090,6 +1090,7 @@ GameObject:
   - component: {fileID: 202794183}
   - component: {fileID: 202794182}
   - component: {fileID: 202794181}
+  - component: {fileID: 202794184}
   m_Layer: 5
   m_Name: Equip
   m_TagString: Untagged
@@ -1162,8 +1163,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1713127680}
-        m_TargetAssemblyTypeName: InventorySlotClicked, Assembly-CSharp
+      - m_Target: {fileID: 1713127681}
+        m_TargetAssemblyTypeName: SlotClickedMenu, Assembly-CSharp
         m_MethodName: Equip
         m_Mode: 1
         m_Arguments:
@@ -1212,6 +1213,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 202794179}
   m_CullTransparentMesh: 1
+--- !u!114 &202794184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 202794179}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0048a1be641c9ed46ab2372d768596a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slotMenuType: 0
 --- !u!1001 &209106488
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3438,6 +3452,7 @@ GameObject:
   - component: {fileID: 631247587}
   - component: {fileID: 631247586}
   - component: {fileID: 631247585}
+  - component: {fileID: 631247588}
   m_Layer: 5
   m_Name: Dequip
   m_TagString: Untagged
@@ -3510,8 +3525,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1713127680}
-        m_TargetAssemblyTypeName: InventorySlotClicked, Assembly-CSharp
+      - m_Target: {fileID: 1713127681}
+        m_TargetAssemblyTypeName: SlotClickedMenu, Assembly-CSharp
         m_MethodName: Dequip
         m_Mode: 1
         m_Arguments:
@@ -3560,6 +3575,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 631247583}
   m_CullTransparentMesh: 1
+--- !u!114 &631247588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 631247583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0048a1be641c9ed46ab2372d768596a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slotMenuType: 0
 --- !u!1 &635028635
 GameObject:
   m_ObjectHideFlags: 0
@@ -4954,7 +4982,7 @@ MonoBehaviour:
   inventorySlotPrefab: {fileID: 4791079306012451701, guid: f08c85b54f41a4f4b815973d2aa2fb1c, type: 3}
   inventoryFullTextGameObject: {fileID: 563818182}
   inventoryFullTextTime: 0.8
-  inventoryItemClickedPopup: {fileID: 1713127680}
+  slotClickedMenu: {fileID: 1713127681}
   userInterfaceChannel: {fileID: 11400000, guid: aabecbb7def401244ae2372c2cf234d7, type: 2}
   inventoryChannel: {fileID: 11400000, guid: 6b7520e56ff7e1e478127af115e1efb5, type: 2}
   drawnSlots: []
@@ -5925,6 +5953,7 @@ GameObject:
   - component: {fileID: 1274050048}
   - component: {fileID: 1274050047}
   - component: {fileID: 1274050046}
+  - component: {fileID: 1274050049}
   m_Layer: 5
   m_Name: Loot
   m_TagString: Untagged
@@ -5997,8 +6026,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1713127680}
-        m_TargetAssemblyTypeName: InventorySlotClicked, Assembly-CSharp
+      - m_Target: {fileID: 1713127681}
+        m_TargetAssemblyTypeName: SlotClickedMenu, Assembly-CSharp
         m_MethodName: Loot
         m_Mode: 1
         m_Arguments:
@@ -6047,6 +6076,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1274050044}
   m_CullTransparentMesh: 1
+--- !u!114 &1274050049
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1274050044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0048a1be641c9ed46ab2372d768596a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slotMenuType: 1
 --- !u!1 &1279720492
 GameObject:
   m_ObjectHideFlags: 0
@@ -6367,6 +6409,7 @@ GameObject:
   - component: {fileID: 1329424905}
   - component: {fileID: 1329424904}
   - component: {fileID: 1329424903}
+  - component: {fileID: 1329424906}
   m_Layer: 5
   m_Name: Eat
   m_TagString: Untagged
@@ -6439,8 +6482,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1713127680}
-        m_TargetAssemblyTypeName: InventorySlotClicked, Assembly-CSharp
+      - m_Target: {fileID: 1713127681}
+        m_TargetAssemblyTypeName: SlotClickedMenu, Assembly-CSharp
         m_MethodName: Eat
         m_Mode: 1
         m_Arguments:
@@ -6489,6 +6532,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1329424901}
   m_CullTransparentMesh: 1
+--- !u!114 &1329424906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1329424901}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0048a1be641c9ed46ab2372d768596a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slotMenuType: 0
 --- !u!1 &1336225308
 GameObject:
   m_ObjectHideFlags: 0
@@ -7283,6 +7339,7 @@ GameObject:
   - component: {fileID: 1662223669}
   - component: {fileID: 1662223668}
   - component: {fileID: 1662223667}
+  - component: {fileID: 1662223670}
   m_Layer: 5
   m_Name: Loot All
   m_TagString: Untagged
@@ -7355,8 +7412,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1713127680}
-        m_TargetAssemblyTypeName: InventorySlotClicked, Assembly-CSharp
+      - m_Target: {fileID: 1713127681}
+        m_TargetAssemblyTypeName: SlotClickedMenu, Assembly-CSharp
         m_MethodName: LootAll
         m_Mode: 1
         m_Arguments:
@@ -7405,6 +7462,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1662223665}
   m_CullTransparentMesh: 1
+--- !u!114 &1662223670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1662223665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0048a1be641c9ed46ab2372d768596a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slotMenuType: 1
 --- !u!1 &1687320186
 GameObject:
   m_ObjectHideFlags: 0
@@ -7550,7 +7620,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1713127679}
-  - component: {fileID: 1713127680}
+  - component: {fileID: 1713127681}
   m_Layer: 5
   m_Name: ItemClickPopup
   m_TagString: Untagged
@@ -7579,7 +7649,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1713127680
+--- !u!114 &1713127681
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -7588,7 +7658,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1713127678}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7012033b9bd3fb24a85cff3fad1efc79, type: 3}
+  m_Script: {fileID: 11500000, guid: 9354c6a78330a5e4ca8dc17588358907, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   id: 0
@@ -7596,6 +7666,12 @@ MonoBehaviour:
   currentItem: {fileID: 0}
   inventoryChannel: {fileID: 11400000, guid: 6b7520e56ff7e1e478127af115e1efb5, type: 2}
   interactionData: {fileID: 11400000, guid: fcf0a7cae64868942b3159543838ab7b, type: 2}
+  buttons:
+  - {fileID: 202794184}
+  - {fileID: 631247588}
+  - {fileID: 1329424906}
+  - {fileID: 1274050049}
+  - {fileID: 1662223670}
 --- !u!1001 &1765128566
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8714,12 +8790,20 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 08355eed4f2393848b62d49c781cb336, type: 2}
     - target: {fileID: 1711966684466626423, guid: 7870ca0abc4e2b34893e0dc66fcbafb6, type: 3}
       propertyPath: containerItems.Array.size
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1711966684466626423, guid: 7870ca0abc4e2b34893e0dc66fcbafb6, type: 3}
+      propertyPath: containerItems.Array.data[0].Id
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1711966684466626423, guid: 7870ca0abc4e2b34893e0dc66fcbafb6, type: 3}
       propertyPath: containerItems.Array.data[0].Item
       value: 
-      objectReference: {fileID: 11400000, guid: 4c34b2ac5c77b204b9c5163b8394f862, type: 2}
+      objectReference: {fileID: 11400000, guid: 1d16486be39100f49a02abf9cd146c1c, type: 2}
+    - target: {fileID: 1711966684466626423, guid: 7870ca0abc4e2b34893e0dc66fcbafb6, type: 3}
+      propertyPath: containerItems.Array.data[0].AmountOfItems
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7870ca0abc4e2b34893e0dc66fcbafb6, type: 3}
 --- !u!4 &1906594987 stripped

@@ -8,12 +8,14 @@ public class LootTable : ScriptableObject
     [SerializeField] private ContainerType containerType;
     [SerializeField] private LootTableItem[] lootTable;
 
+    public LootTableItem[] CurrentLootTable { get { return lootTable; } private set { } }
+
     [System.Serializable]
-    private class LootTableItem
+    public class LootTableItem
     {
         public Item Item;
 
-        [Range(0,100)]
+        [Range(0,1)]
         public float ChanceOfSpawning;
 
         public int MinAmountToSpawn;
@@ -39,6 +41,11 @@ public class LootTable : ScriptableObject
 
         }
         return slots;
+    }
+
+    public void SetValue(int index, float value)
+    {
+        lootTable[index].ChanceOfSpawning = value;
     }
 
 }

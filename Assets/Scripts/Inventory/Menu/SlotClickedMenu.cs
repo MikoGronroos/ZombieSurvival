@@ -1,9 +1,8 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
 using System;
-using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
-public class InventorySlotClicked : MonoBehaviour
+public class SlotClickedMenu : MonoBehaviour
 {
 
     [SerializeField] private int id;
@@ -14,6 +13,8 @@ public class InventorySlotClicked : MonoBehaviour
     [SerializeField] private InventoryChannel inventoryChannel;
     [SerializeField] private InteractionData interactionData;
 
+    [SerializeField] private SlotClickedMenuButton[] buttons;
+
     private Action<bool, int> _callback;
 
     public int Id { get { return id; } set { id = value; } }
@@ -21,6 +22,22 @@ public class InventorySlotClicked : MonoBehaviour
     public Item CurrentItem { get { return currentItem; } set { currentItem = value; } }
 
     public Action<bool, int> Callback { get { return _callback; } set { _callback = value; } }
+
+    public void FilterMenu(SlotMenuType menu)
+    {
+
+        foreach (var button in buttons)
+        {
+            if (button.SlotMenuType == menu)
+            {
+                button.ToggleGameObject(true);
+            }
+            else
+            {
+                button.ToggleGameObject(false);
+            }
+        }
+    }
 
     public void TogglePanel(bool value)
     {
@@ -57,4 +74,10 @@ public class InventorySlotClicked : MonoBehaviour
         TogglePanel(false);
     }
 
+}
+
+public enum SlotMenuType
+{
+    InInventory,
+    ContainerItem
 }
